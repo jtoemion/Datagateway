@@ -13,20 +13,22 @@ import json
 import re
 import hashlib
 from datetime import datetime, timezone, timedelta
+from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
 from bs4 import BeautifulSoup
 
 # ── project local imports ────────────────────────────────────────────────────
-from database import (
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from scripts.database import (
     get_db,
     init_db,
     cache_get,
     cache_set,
     article_scraped_exists,
     article_save_scraped,
-    get_scraped_article,
+    save_article_metadata,
 )
 
 
@@ -284,6 +286,10 @@ def scrape_article(article_id: str, url: str, title: str, limiter: RateLimiter) 
         images      = images,
     )
     print(f"  ✓ Done — {len(images)} image(s), {len(full_text)} chars text")
+
+    # Enrich metadata after successful scrape
+    # (Run scripts/enrich-metadata.py separately for full batch)
+
     return True
 
 

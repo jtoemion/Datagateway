@@ -120,6 +120,16 @@ CREATE TABLE IF NOT EXISTS football_odds (
     line_value    REAL,
     updated_at    TEXT,
     UNIQUE(event_id, market_id, affiliate_id, participant_name, line_value)
+);
+
+CREATE TABLE IF NOT EXISTS article_metadata (
+    article_id TEXT PRIMARY KEY REFERENCES articles(id),
+    sections    TEXT DEFAULT '[]',
+    keywords    TEXT DEFAULT '[]',
+    entities    TEXT DEFAULT '[]',
+    word_count  INTEGER DEFAULT 0,
+    reading_time INTEGER DEFAULT 0,
+    enriched_at  TEXT DEFAULT (datetime('now'))
 );"""
 
 # Default sources — sync with config.yaml
@@ -454,4 +464,74 @@ def get_next_football_match() -> dict | None:
     ).fetchone()
     db.close()
     return dict(row) if row else None
+
+
+# ─── Article metadata helpers ─────────────────────────────────────────────────
+
+def get_article_metadata(article_id: str) -> dict | None:
+    """Get enriched metadata for an article."""
+    db = get_db()
+    row = db.execute(
+        "SELECT * FROM article_metadata WHERE article_id = ?", (article_id,)
+    ).fetchone()
+    db.close()
+    if not row:
+        return None
+    import json
+    return {
+        "article_id": row["article_id"],
+        "sections": json.loads(row["sections"] or "[]"),
+        "keywords": json.loads(row["keywords"] or "[]"),
+        "entities": json.loads(row["entities"] or "[]"),
+        "word_count": row["word_count"],
+        "reading_time": row["reading_time"],
+        "enriched_at": row["enriched_at"],
+    }
+
+
+def save_article_metadata(
+    article_id: str,
+    sections: list,
+    keywords: list,
+    entities: list,
+    word_count: int,
+):
+    """Save or update enriched metadata for an article."""
+    import json
+    reading_time = max(1, round(word_count / 200))
+    db = get_db()
+    db.execute(
+        """INSERT OR REPLACE INTO article_metadata
+           (article_id, sections, keywords, entities, word_count, reading_time, enriched_at)
+           VALUES (?, ?, ?, ?, ?, ?, datetime('now'))""",
+        (article_id, json.dumps(sections), json.dumps(keywords),
+         json.dumps(entities), word_count, reading_time),
+    )
+    db.commit()
+    db.close()
+
+
+def get_articles_with_metadata(limit: int = 200, offset: int = 0) -> list[dict]:
+    """Get articles enriched with metadata for dashboard."""
+    import json
+    db = get_db()
+    rows = db.execute(
+        """SELECT a.id, a.source, a.title, a.url,
+                  a.description as excerpt, a.image_url, a.date, a.date_wib,
+                  a.category, a.lang, a.filepath, a.wikilink,
+                  m.sections, m.keywords, m.word_count, m.reading_time
+           FROM articles a
+           LEFT JOIN article_metadata m ON a.id = m.article_id
+           ORDER BY a.date DESC
+           LIMIT ? OFFSET ?""",
+        (limit, offset),
+    ).fetchall()
+    db.close()
+    result = []
+    for r in rows:
+        d = dict(r)
+        d["sections"] = json.loads(d["sections"] or "[]") if d.get("sections") else []
+        d["keywords"] = json.loads(d["keywords"] or "[]") if d.get("keywords") else []
+        result.append(d)
+    return result
 

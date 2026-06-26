@@ -14,6 +14,7 @@ from pathlib import Path
 from scripts.database import (
     init_db,
     get_articles,
+    get_articles_with_metadata,
     get_article_count,
     get_today_count,
     get_source_stats,
@@ -139,6 +140,24 @@ def build_world_news_html(articles: list[dict]) -> str:
         img_url = a.get("image_url", "")
         img_html = f'<div class="card-img-wrap"><img class="card-img" src="{esc(img_url)}" alt="" loading="lazy" onerror="this.closest(\'.card-img-wrap\').remove()"></div>' if img_url else ""
 
+        # Keywords badges
+        keywords = a.get("keywords", [])
+        kw_html = ""
+        if keywords:
+            kw_tags = " ".join(f'<span class="kw-badge">{esc(k)}</span>' for k in keywords[:4])
+            kw_html = f'<div class="card-kws">{kw_tags}</div>'
+
+        # Reading time
+        reading_time = a.get("reading_time", 0)
+        rt_html = f'<span class="rt-badge" title="{reading_time} min read">⏱{reading_time}m</span>' if reading_time else ""
+
+        # Section tags
+        sections = a.get("sections", [])
+        sec_html = ""
+        if sections:
+            sec_tags = " ".join(f'<span class="sec-badge">{esc(s)}</span>' for s in sections[:2])
+            sec_html = f'<div class="card-secs">{sec_tags}</div>'
+
         cards += f"""
     <article class="card" data-source="{esc(src)}" data-cat="{a.get('category','')}" data-lang="{a.get('lang','')}">
       <a href="article.html?id={esc(a.get('id',''))}" class="card-link-wrap">
@@ -150,9 +169,12 @@ def build_world_news_html(articles: list[dict]) -> str:
           <span class="card-source" style="color:{fg}">{esc(src)}</span>
           <span class="card-lang badge-{a.get('lang','id')}">{a.get('lang','id')}</span>
           <span class="card-date">{date_short}</span>
+          {rt_html}
         </div>
         <div class="card-title">{title_esc}</div>
         <p class="card-excerpt">{excerpt_esc}</p>
+        {sec_html}
+        {kw_html}
         <div class="card-meta">
           <span class="meta-cat">{cat}</span>
           <span class="meta-id">{a.get('id','')}</span>
@@ -358,6 +380,78 @@ def build_football_html() -> str:
 </div>"""
 
 
+GSAP_JS = r"""
+// GSAP Premium Animations
+document.addEventListener('DOMContentLoaded', function() {
+
+  // 1. Stats counter: count up from 0
+  document.querySelectorAll('.stat-card .num').forEach(function(el) {
+    var target = parseInt(el.textContent.replace(/\D/g, ''), 10) || 0;
+    if (target === 0) return;
+    var obj = { val: 0 };
+    gsap.to(obj, {
+      val: target, duration: 1.2, ease: 'power2.out', delay: 0.3,
+      onUpdate: function() { el.textContent = Math.round(obj.val); }
+    });
+  });
+
+  // 2. Stat cards: stagger fade-up
+  gsap.from('.stat-card', {
+    opacity: 0, y: 20, stagger: 0.06, duration: 0.5, ease: 'power2.out', delay: 0.1
+  });
+
+  // 3. News cards: stagger fade-up on load
+  gsap.from('.card', {
+    opacity: 0, y: 28, stagger: 0.03, duration: 0.45, ease: 'power2.out', delay: 0.2
+  });
+
+  // 4. Tab switching with fade + slide
+  window.switchTab = function(name) {
+    var panes = document.querySelectorAll('.tab-pane');
+    var activePane = document.getElementById('tab-' + name);
+
+    // Fade out all panes
+    gsap.to(panes, { opacity: 0, x: -12, duration: 0.18, ease: 'power2.in',
+      onComplete: function() {
+        // Switch active state
+        document.querySelectorAll('.tab').forEach(function(t) {
+          t.classList.toggle('active', t.dataset.tab === name);
+        });
+        panes.forEach(function(p) { p.classList.remove('active'); });
+        if (activePane) activePane.classList.add('active');
+
+        // Fade in new pane with slight slide
+        if (name === 'news') {
+          gsap.from('.card', { opacity: 0, y: 28, stagger: 0.03, duration: 0.4, ease: 'power2.out' });
+        } else if (name === 'football') {
+          // Hero card slide-in
+          gsap.from('.hero-card', { opacity: 0, x: -30, duration: 0.5, ease: 'power3.out' });
+          // Teams slide in from opposite sides
+          gsap.from('.hero-away', { opacity: 0, x: -60, duration: 0.55, ease: 'power3.out', delay: 0.15 });
+          gsap.from('.hero-home', { opacity: 0, x: 60, duration: 0.55, ease: 'power3.out', delay: 0.15 });
+          // Carousel cards stagger in
+          gsap.from('.cs-card', { opacity: 0, y: 20, stagger: 0.05, duration: 0.4, ease: 'power2.out', delay: 0.3 });
+        }
+        gsap.to(activePane, { opacity: 1, x: 0, duration: 0.25, ease: 'power2.out' });
+      }
+    });
+  };
+
+  // 5. Hover effects: buttons pulse on hover via GSAP quickTo
+  document.querySelectorAll('.act-ext, .act-md').forEach(function(btn) {
+    var scaleX = gsap.quickTo(btn, 'scaleX', { duration: 0.15, ease: 'power2.out' });
+    var scaleY = gsap.quickTo(btn, 'scaleY', { duration: 0.15, ease: 'power2.out' });
+    btn.addEventListener('mouseenter', function() {
+      scaleX(1.04); scaleY(1.04);
+    });
+    btn.addEventListener('mouseleave', function() {
+      scaleX(1); scaleY(1);
+    });
+  });
+});
+"""
+
+
 def build_html(articles: list[dict]) -> str:
     now = datetime.now(WIB)
     last_update = now.strftime("%Y-%m-%d %H:%M WIB")
@@ -382,10 +476,18 @@ def build_html(articles: list[dict]) -> str:
     --accent:#60a5fa; --green:#4ade80; --amber:#fbbf24; --rose:#f87171;
     --radius:10px; --font:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   }}
-  html {{ font-size:15px; }}
+  html {{ font-size:15px; scroll-behavior:smooth; }}
   body {{ font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.6; min-height:100vh; }}
 
   .container {{ max-width:1360px; margin:0 auto; padding:0 20px; }}
+
+  /* ─── Premium animations ─── */
+  .card {{ will-change:transform,opacity; }}
+  .hero-card {{ will-change:transform,opacity; }}
+  .hero-team {{ will-change:transform,opacity; }}
+  .cs-card {{ will-change:transform,opacity; }}
+  .stat-card {{ will-change:transform,opacity; }}
+  .tab {{ will-change:color,border-color; }}
 
   /* ─── HEADER ─── */
   header {{ padding:28px 0 16px; border-bottom:1px solid var(--border); margin-bottom:0; }}
@@ -439,6 +541,11 @@ def build_html(articles: list[dict]) -> str:
   .badge-id {{ background:#1f6feb44; color:#60a5fa; }}
   .badge-en {{ background:#4ade8044; color:#4ade80; }}
   .card-date {{ margin-left:auto; font-size:11px; color:var(--text-muted); white-space:nowrap; }}
+  .rt-badge {{ font-size:10px; color:var(--text-muted); margin-left:4px; }}
+  .card-kws {{ display:flex; flex-wrap:wrap; gap:3px; margin-bottom:8px; }}
+  .kw-badge {{ font-size:9px; background:var(--surface-2); color:var(--text-muted); padding:1px 5px; border-radius:3px; border:1px solid var(--border); }}
+  .card-secs {{ display:flex; flex-wrap:wrap; gap:3px; margin-bottom:6px; }}
+  .sec-badge {{ font-size:9px; background:#60a5fa22; color:#60a5fa; padding:1px 5px; border-radius:3px; font-weight:600; }}
   .card-title {{ font-size:15px; font-weight:600; line-height:1.4; margin-bottom:6px; color:var(--text); text-decoration:none; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }}
   .card-title:hover {{ color:var(--accent); }}
   .card-excerpt {{ font-size:13px; color:var(--text-muted); line-height:1.55; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; flex:1; margin-bottom:10px; }}
@@ -528,6 +635,8 @@ def build_html(articles: list[dict]) -> str:
 
   @media (max-width:800px) {{ .stats {{ grid-template-columns:repeat(2,1fr); }} .grid {{ grid-template-columns:1fr; }} .hero-match {{ flex-direction:column; gap:16px; }} .hero-team {{ min-width:auto; }} .head-row {{ flex-direction:column; align-items:flex-start; }} .head-info {{ text-align:left; }} .tabs {{ overflow-x:auto; }} .tab {{ padding:10px 14px; white-space:nowrap; }} .hero-content {{ padding:20px 16px; }} .odds-book {{ grid-template-columns:1fr 50px 50px 50px; font-size:12px; }} }}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -564,13 +673,9 @@ def build_html(articles: list[dict]) -> str:
 </div>
 
 <script>
-// ─── Tab switching ───
-function switchTab(name) {{
-  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
-  document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
-}}
-
-// ─── World News filters ───
+{GSAP_JS}
+</script>
+<!-- World News filters -->
 const state = {{ source:'all', cat:'all', search:'' }};
 
 function toggleFilter(btn, group) {{
@@ -638,7 +743,7 @@ def main():
 
     total = get_article_count()
     fb = get_football_count()
-    articles = get_articles(limit=200)
+    articles = get_articles_with_metadata(limit=200)
     print(f"  News: {total} articles, Football: {fb} events")
 
     html = build_html(articles)

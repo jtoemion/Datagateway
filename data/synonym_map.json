@@ -1,0 +1,114 @@
+{
+  "AS": [
+    "Amerika Serikat",
+    "United States",
+    "USA",
+    "U.S.",
+    "America"
+  ],
+  "RI": [
+    "Indonesia",
+    "Republik Indonesia",
+    "NKRI"
+  ],
+  "UK": [
+    "Inggris",
+    "United Kingdom",
+    "Britain",
+    "Great Britain",
+    "GB"
+  ],
+  "UAE": [
+    "Uni Emirat Arab",
+    "United Arab Emirates",
+    "Emirat",
+    "Dubai"
+  ],
+  "Korsel": [
+    "Korea Selatan",
+    "South Korea",
+    "ROK"
+  ],
+  "Korut": [
+    "Korea Utara",
+    "North Korea",
+    "DPRK"
+  ],
+  "RRT": [
+    "Republik Rakyat Tiongkok",
+    "China",
+    "Tiongkok",
+    "PRC"
+  ],
+  "Prabowo": [
+    "Presiden Prabowo",
+    "Prabowo Subianto",
+    "Menhan"
+  ],
+  "Gibran": [
+    "Gibran Rakabuming",
+    "Wapres",
+    "Wakil Presiden"
+  ],
+  "Mega": [
+    "Megawati",
+    "Megawati Sukarnoputri",
+    "PDI-P"
+  ],
+  "Jkw": [
+    "Joko Widodo",
+    "Jokowi",
+    "President Jokowi"
+  ],
+  "PDIP": [
+    "PDI-P",
+    "PDI Perjuangan"
+  ],
+  "Golkar": [
+    "Partai Golkar"
+  ],
+  "Gerindra": [
+    "Partai Gerinda"
+  ],
+  "Nasdem": [
+    "Partai NasDem"
+  ],
+  "PKS": [
+    "Partai Keadilan Sejahtera"
+  ],
+  "PKB": [
+    "Partai Kebangkitan Bangsa"
+  ],
+  "DPR": [
+    "Dewan Perwakilan Rakyat"
+  ],
+  "DPRD": [
+    "DPRD Provinsi",
+    "DPRD Kota"
+  ],
+  "MK": [
+    "Mahakam Konstitusi"
+  ],
+  "KPK": [
+    "Komisi Pemberantasan Korupsi"
+  ],
+  "BNN": [
+    "Badan Narkotika Nasional"
+  ],
+  "POLRI": [
+    "Kepolisian Republik Indonesia"
+  ],
+  "TNI": [
+    "Tentara Nasional Indonesia"
+  ],
+  "US$": [
+    "dollar AS",
+    "dolar AS",
+    "US dollar",
+    "USD"
+  ],
+  "Rp": [
+    "Rupiah",
+    "IDR"
+  ]
+}
