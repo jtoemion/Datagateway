@@ -15,6 +15,9 @@ Thumbs.db
 # SQLite database (regenerated on each fetch)
 datagateway.db
 
+# TheRundown API key (gitignored, loaded at runtime)
+.therundown_key
+
 # News data (auto-generated from RSS)
 # news/
 

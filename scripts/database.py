@@ -66,7 +66,48 @@ CREATE TABLE IF NOT EXISTS meta (
     key   TEXT PRIMARY KEY,
     value TEXT
 );
-"""
+
+CREATE TABLE IF NOT EXISTS football_events (
+    event_id      TEXT PRIMARY KEY,
+    sport_id      INTEGER DEFAULT 18,
+    event_date    TEXT NOT NULL,
+    event_status  TEXT DEFAULT 'STATUS_SCHEDULED',
+    status_detail TEXT DEFAULT 'Scheduled',
+    team_away_id  INTEGER,
+    team_away     TEXT,
+    team_away_abbr TEXT,
+    team_home_id  INTEGER,
+    team_home     TEXT,
+    team_home_abbr TEXT,
+    score_away    INTEGER DEFAULT 0,
+    score_home    INTEGER DEFAULT 0,
+    venue_name    TEXT,
+    venue_location TEXT,
+    broadcast     TEXT,
+    season_type   TEXT,
+    attendance    TEXT,
+    espn_uid      TEXT,
+    fetched_at    TEXT DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_football_date ON football_events(event_date);
+
+CREATE TABLE IF NOT EXISTS football_odds (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    event_id      TEXT NOT NULL REFERENCES football_events(event_id),
+    market_id     INTEGER NOT NULL,
+    market_name   TEXT,
+    affiliate_id  INTEGER,
+    affiliate_name TEXT,
+    participant_type TEXT,
+    participant_name TEXT,
+    price_american INTEGER,
+    price_decimal  REAL,
+    is_main_line   INTEGER DEFAULT 0,
+    line_value    REAL,
+    updated_at    TEXT,
+    UNIQUE(event_id, market_id, affiliate_id, participant_name, line_value)
+);"""
 
 # Default sources — sync with config.yaml
 DEFAULT_SOURCES = [
@@ -271,3 +312,105 @@ def get_latest_date() -> str:
 def close():
     """Cleanup expired cache."""
     cache_clear()
+
+
+# ─── Football helpers ───
+
+def football_upsert_event(e: dict) -> bool:
+    """Insert or update a football event."""
+    db = get_db()
+    try:
+        db.execute("""INSERT OR REPLACE INTO football_events
+           (event_id, sport_id, event_date, event_status, status_detail,
+            team_away_id, team_away, team_away_abbr,
+            team_home_id, team_home, team_home_abbr,
+            score_away, score_home, venue_name, venue_location,
+            broadcast, season_type, attendance, espn_uid)
+           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (e["event_id"], e.get("sport_id", 18), e["event_date"],
+             e.get("event_status", "STATUS_SCHEDULED"), e.get("status_detail", ""),
+             e.get("team_away_id"), e.get("team_away"), e.get("team_away_abbr"),
+             e.get("team_home_id"), e.get("team_home"), e.get("team_home_abbr"),
+             e.get("score_away", 0), e.get("score_home", 0),
+             e.get("venue_name"), e.get("venue_location"),
+             e.get("broadcast"), e.get("season_type"), e.get("attendance"),
+             e.get("espn_uid")))
+        db.commit()
+        db.close()
+        return True
+    except Exception:
+        db.close()
+        return False
+
+
+def football_upsert_odds(odds: dict) -> bool:
+    """Insert a single odds row."""
+    db = get_db()
+    try:
+        db.execute("""INSERT OR IGNORE INTO football_odds
+           (event_id, market_id, market_name, affiliate_id, affiliate_name,
+            participant_type, participant_name, price_american, price_decimal,
+            is_main_line, line_value, updated_at)
+           VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (odds["event_id"], odds["market_id"], odds.get("market_name"),
+             odds.get("affiliate_id"), odds.get("affiliate_name"),
+             odds.get("participant_type"), odds.get("participant_name"),
+             odds.get("price_american"), odds.get("price_decimal"),
+             odds.get("is_main_line", 0), odds.get("line_value"),
+             odds.get("updated_at")))
+        db.commit()
+        db.close()
+        return True
+    except Exception:
+        db.close()
+        return False
+
+
+def get_football_events(status: str = None) -> list[dict]:
+    """Get football events, ordered by date. Optionally filter by status."""
+    db = get_db()
+    if status:
+        rows = db.execute(
+            "SELECT * FROM football_events WHERE event_status = ? ORDER BY event_date ASC",
+            (status,)).fetchall()
+    else:
+        rows = db.execute(
+            "SELECT * FROM football_events ORDER BY event_date ASC").fetchall()
+    db.close()
+    return [dict(r) for r in rows]
+
+
+def get_football_odds(event_id: str, market_id: int = None) -> list[dict]:
+    """Get odds for an event, optionally filtered by market."""
+    db = get_db()
+    if market_id:
+        rows = db.execute(
+            "SELECT * FROM football_odds WHERE event_id = ? AND market_id = ? ORDER BY affiliate_id",
+            (event_id, market_id)).fetchall()
+    else:
+        rows = db.execute(
+            "SELECT * FROM football_odds WHERE event_id = ? ORDER BY market_id, affiliate_id",
+            (event_id,)).fetchall()
+    db.close()
+    return [dict(r) for r in rows]
+
+
+def get_football_count() -> int:
+    """Total football events count."""
+    db = get_db()
+    row = db.execute("SELECT COUNT(*) as cnt FROM football_events").fetchone()
+    db.close()
+    return row["cnt"] if row else 0
+
+
+def get_next_football_match() -> dict | None:
+    """Get the next upcoming scheduled match."""
+    db = get_db()
+    row = db.execute(
+        """SELECT * FROM football_events
+           WHERE event_status = 'STATUS_SCHEDULED'
+           ORDER BY event_date ASC LIMIT 1"""
+    ).fetchone()
+    db.close()
+    return dict(row) if row else None
+

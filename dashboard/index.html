@@ -14,9 +14,11 @@
   }
   html { font-size:15px; }
   body { font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.6; min-height:100vh; }
+
   .container { max-width:1360px; margin:0 auto; padding:0 20px; }
 
-  header { padding:28px 0 16px; border-bottom:1px solid var(--border); margin-bottom:24px; }
+  /* ─── HEADER ─── */
+  header { padding:28px 0 16px; border-bottom:1px solid var(--border); margin-bottom:0; }
   .head-row { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
   .head-logo { display:flex; align-items:center; gap:14px; }
   .head-logo .icon { width:40px; height:40px; border-radius:10px; background:linear-gradient(135deg,#60a5fa,#4ade80); display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; color:#0b0f15; }
@@ -24,16 +26,26 @@
   .head-logo h1 span { background:linear-gradient(135deg,var(--accent),var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
   .head-info { text-align:right; font-size:13px; color:var(--text-muted); line-height:1.5; }
 
+  /* ─── TABS ─── */
+  .tabs { display:flex; gap:2px; border-bottom:2px solid var(--border); margin-bottom:24px; background:var(--surface); border-radius:0 0 var(--radius) var(--radius); padding:0 4px; }
+  .tab { padding:12px 24px; font-size:13px; font-weight:600; color:var(--text-muted); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:all .15s; user-select:none; position:relative; }
+  .tab:hover { color:var(--text); }
+  .tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+  .tab .tab-badge { display:inline-flex; align-items:center; justify-content:center; min-width:18px; height:18px; background:var(--surface-2); border-radius:9px; padding:0 5px; font-size:10px; margin-left:6px; color:var(--text-muted); }
+  .tab.active .tab-badge { background:var(--accent); color:#0b0f15; }
+  .tab-more { opacity:.5; cursor:default !important; }
+  .tab-pane { display:none; }
+  .tab-pane.active { display:block; }
+
+  /* ─── WORLD NEWS STYLES ─── */
   .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:24px; }
   .stat-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px; text-align:center; }
   .stat-card .num { font-size:30px; font-weight:700; color:var(--accent); line-height:1.2; }
   .stat-card .stat-label { font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px; }
-
   .toolbar { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px; align-items:center; }
   .toolbar .srch { flex:1; min-width:200px; padding:9px 14px; border-radius:var(--radius); border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:13px; outline:none; transition:border .2s; }
   .toolbar .srch:focus { border-color:var(--accent); }
   .toolbar .srch::placeholder { color:var(--text-muted); }
-
   .flt-group { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
   .flt-group .flt-glabel { font-size:10px; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); padding:6px 8px 0 0; min-width:50px; }
   .flt { display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:20px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:12px; cursor:pointer; transition:all .15s; white-space:nowrap; }
@@ -42,14 +54,11 @@
   .flt.on .flt-c { background:rgba(0,0,0,.2); color:#0b0f15; }
   .flt .flt-c { display:inline-flex; align-items:center; justify-content:center; min-width:18px; height:18px; border-radius:9px; background:var(--surface-2); padding:0 5px; font-size:10px; color:var(--text-muted); }
   .flt-clear { border-style:dashed; color:var(--text-muted); }
-
   .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:14px; margin-bottom:28px; }
-
   .card { display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; transition:transform .15s,box-shadow .15s; position:relative; }
   .card:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.3); }
   .card-accent { height:3px; flex-shrink:0; }
   .card-body { padding:14px 16px 12px; display:flex; flex-direction:column; flex:1; }
-
   .card-top { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
   .card-glyph { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; border:1.5px solid; flex-shrink:0; }
   .card-source { font-size:12px; font-weight:600; letter-spacing:0.2px; }
@@ -57,42 +66,96 @@
   .badge-id { background:#1f6feb44; color:#60a5fa; }
   .badge-en { background:#4ade8044; color:#4ade80; }
   .card-date { margin-left:auto; font-size:11px; color:var(--text-muted); white-space:nowrap; }
-
   .card-title { font-size:15px; font-weight:600; line-height:1.4; margin-bottom:6px; color:var(--text); text-decoration:none; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
   .card-title:hover { color:var(--accent); }
-
   .card-excerpt { font-size:13px; color:var(--text-muted); line-height:1.55; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; flex:1; margin-bottom:10px; }
-
   .card-meta { display:flex; gap:10px; font-size:11px; color:var(--text-muted); margin-bottom:8px; }
   .meta-cat { background:#d2992233; color:var(--amber); padding:1px 7px; border-radius:3px; font-weight:500; }
   .meta-id { font-family:monospace; color:var(--text-muted); opacity:.6;}
-
   .card-wiki { display:flex; align-items:center; gap:6px; background:var(--surface-2); border-radius:5px; padding:5px 8px; cursor:pointer; transition:background .15s; margin-bottom:8px; user-select:none; }
   .card-wiki:hover { background:var(--border); }
   .card-wiki.copied { background:#4ade8022; }
   .wiki-label { font-size:9px; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); font-weight:600; }
   .wiki-link { font-size:11px; font-family:monospace; color:var(--accent); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1; }
   .wiki-copy { font-size:9px; text-transform:uppercase; color:var(--text-muted); font-weight:600; flex-shrink:0; }
-
   .card-actions { display:flex; gap:6px; margin-top:auto; }
   .act { display:inline-flex; align-items:center; gap:4px; padding:6px 12px; border-radius:5px; font-size:12px; font-weight:500; text-decoration:none; transition:all .15s; }
   .act-ext { background:var(--accent); color:#0b0f15; }
   .act-ext:hover { background:#7bb9ff; }
   .act-md { background:var(--surface-2); color:var(--text); border:1px solid var(--border); }
   .act-md:hover { border-color:var(--accent); color:var(--accent); }
-
   .no-r { display:none; text-align:center; padding:60px 20px; color:var(--text-muted); grid-column:1/-1; }
   .no-r.show { display:block; }
 
+  /* ─── HERO CARD ─── */
+  .hero-card { position:relative; border-radius:16px; overflow:hidden; margin-bottom:28px; background:linear-gradient(135deg,#1a2332,#0f1923); border:1px solid var(--border); }
+  .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse at 20% 50%, rgba(96,165,250,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(74,222,128,0.05) 0%, transparent 60%); }
+  .hero-content { position:relative; padding:28px 32px; }
+  .hero-meta-top { display:flex; align-items:center; gap:12px; margin-bottom:20px; flex-wrap:wrap; }
+  .hero-badge { display:inline-flex; padding:4px 12px; border-radius:20px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; }
+  .hero-scheduled { background:var(--accent); color:#0b0f15; }
+  .hero-live { background:var(--rose); color:#fff; animation:pulse 1.5s ease-in-out infinite; }
+  .hero-ft { background:var(--surface-2); color:var(--text-muted); }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.7; } }
+  .hero-season { font-size:12px; color:var(--text-muted); }
+  .hero-date { margin-left:auto; font-size:13px; color:var(--text-muted); }
+
+  .hero-match { display:flex; align-items:center; justify-content:center; gap:40px; margin-bottom:20px; }
+  .hero-team { display:flex; flex-direction:column; align-items:center; gap:6px; min-width:140px; }
+  .ht-abbr { font-size:48px; font-weight:800; letter-spacing:-1px; line-height:1; }
+  .hero-away .ht-abbr { color:var(--accent); }
+  .hero-home .ht-abbr { color:var(--green); }
+  .ht-name { font-size:14px; color:var(--text); font-weight:500; }
+  .hero-score { display:flex; align-items:center; gap:12px; }
+  .hs-away,.hs-home { font-size:48px; font-weight:800; line-height:1; }
+  .hs-away { color:var(--accent); }
+  .hs-home { color:var(--green); }
+  .hs-colon { font-size:32px; font-weight:300; color:var(--text-muted); }
+
+  .hero-venue { display:flex; align-items:center; justify-content:center; gap:8px; font-size:13px; color:var(--text-muted); margin-bottom:16px; }
+  .hero-odds-label { font-size:11px; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:8px; }
+  .odds-book { display:grid; grid-template-columns:1fr 60px 60px 60px; gap:8px; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px; }
+  .odds-book:last-child { border-bottom:none; }
+  .ob-name { color:var(--text); font-weight:500; }
+  .ob-cell { text-align:center; font-family:monospace; font-weight:600; color:var(--amber); }
+  .ob-draw { color:var(--text-muted); }
+  .odds-empty { font-size:12px; color:var(--text-muted); padding:8px 0; }
+
+  /* ─── CAROUSEL ─── */
+  .carousel-section { margin-bottom:28px; }
+  .carousel-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+  .carousel-header h3 { font-size:16px; font-weight:600; }
+  .carousel-count { font-size:12px; color:var(--text-muted); }
+  .carousel { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px; }
+  .carousel::-webkit-scrollbar { height:4px; }
+  .carousel::-webkit-scrollbar-track { background:var(--surface); border-radius:2px; }
+  .carousel::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+
+  .cs-card { flex:0 0 220px; scroll-snap-align:start; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px; position:relative; transition:border .15s; }
+  .cs-card:hover { border-color:var(--accent); }
+  .cs-badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:700; margin-bottom:8px; }
+  .cs-sched { background:var(--accent); color:#0b0f15; }
+  .cs-ft { background:var(--surface-2); color:var(--text-muted); }
+  .cs-match { display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; margin-bottom:6px; }
+  .cs-abbr { font-weight:700; }
+  .cs-vs { color:var(--text-muted); font-size:12px; }
+  .cs-meta { font-size:11px; color:var(--text-muted); display:flex; flex-direction:column; gap:2px; margin-bottom:4px; }
+  .cs-date { font-size:11px; color:var(--text-muted); }
+  .cs-odds { font-size:11px; color:var(--amber); font-family:monospace; margin-top:4px; }
+
+  /* ─── EMPTY STATE ─── */
+  .empty-state { text-align:center; padding:60px 20px; color:var(--text-muted); }
+
+  /* ─── FOOTER ─── */
   footer { border-top:1px solid var(--border); padding:20px 0; margin-top:12px; text-align:center; font-size:12px; color:var(--text-muted); }
   footer a { color:var(--accent); text-decoration:none; }
 
-  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } .grid { grid-template-columns:1fr; } }
-  @media (max-width:500px) { .head-row { flex-direction:column; align-items:flex-start; } .head-info { text-align:left; } }
+  @media (max-width:800px) { .stats { grid-template-columns:repeat(2,1fr); } .grid { grid-template-columns:1fr; } .hero-match { flex-direction:column; gap:16px; } .hero-team { min-width:auto; } .head-row { flex-direction:column; align-items:flex-start; } .head-info { text-align:left; } .tabs { overflow-x:auto; } .tab { padding:10px 14px; white-space:nowrap; } .hero-content { padding:20px 16px; } .odds-book { grid-template-columns:1fr 50px 50px 50px; font-size:12px; } }
 </style>
 </head>
 <body>
 <div class="container">
+  <!-- HEADER -->
   <header>
     <div class="head-row">
       <div class="head-logo">
@@ -100,22 +163,30 @@
         <h1><span>Datagateway</span></h1>
       </div>
       <div class="head-info">
-        <div>OSINT News Dashboard</div>
-        <div style="margin-top:2px">2026-06-26 21:32 WIB · 120 articles · 8 sources</div>
+        <div>OSINT Dashboard</div>
+        <div style="margin-top:2px">2026-06-26 21:50 WIB · 120 articles · 8 sources</div>
       </div>
     </div>
   </header>
 
+  <!-- TABS -->
+  <div class="tabs" role="tablist">
+    <div class="tab active" data-tab="news" onclick="switchTab('news')">World News <span class="tab-badge">120</span></div>
+    <div class="tab" data-tab="football" onclick="switchTab('football')">Football <span class="tab-badge">6</span></div>
+    <div class="tab tab-more" onclick="void(0)">More ▸</div>
+  </div>
+
+  <!-- TAB CONTENT -->
+  
+<div class="tab-pane active" id="tab-news">
   <div class="stats">
-    <div class="stat-card"><div class="num">107</div><div class="stat-label">Today</div></div>
-    <div class="stat-card"><div class="num">120</div><div class="stat-label">Total Articles</div></div>
+    <div class="stat-card"><div class="num">111</div><div class="stat-label">Today</div></div>
+    <div class="stat-card"><div class="num">120</div><div class="stat-label">Total</div></div>
     <div class="stat-card"><div class="num">8</div><div class="stat-label">Sources</div></div>
     <div class="stat-card"><div class="num">2026-06-26</div><div class="stat-label">Latest</div></div></div>
-
   <div class="toolbar">
     <input class="srch" id="srch" type="text" placeholder="Search titles, sources, excerpts..." oninput="applyFilters()">
   </div>
-
   <div class="flt-group">
     <span class="flt-glabel">Source</span>
     <button class="flt flt-clear on" data-g="source" data-v="all" onclick="clearGroup('source')">All</button>
@@ -135,8 +206,527 @@
       <button class="flt" data-g="cat" data-v="internasional" onclick="toggleFilter(this,'cat')">Internasional <span class="flt-c">45</span></button>
       <button class="flt" data-g="cat" data-v="bisnis" onclick="toggleFilter(this,'cat')">Bisnis <span class="flt-c">15</span></button>
   </div>
-
   <div class="grid" id="grid">
+    <article class="card" data-source="Republika" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#f7941e"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#f7941e33;color:#f7941e;border-color:#f7941e">R</span>
+          <span class="card-source" style="color:#f7941e">Republika</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:48 WIB</span>
+        </div>
+        <a href="https://ameera.republika.co.id/berita/th8t29425/al-diyakini-nggak-akan-bisa-gantikan-peran-dokter-ini-alasannya" target="_blank" rel="noopener" class="card-title">Al Diyakini Nggak akan Bisa Gantikan Peran Dokter, Ini Alasannya</a>
+        <p class="card-excerpt">REPUBLIKA.CO.ID, JAKARTA -- Teknologi kecerdasan buatan (Al) terus berkembang dan mulai diadaptasi di berbagai sektor, termasuk kesehatan. Bahkan kini, aplikasi chatbot berbasis Al sudah lumrah digunakan sebagai salah satu...</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">8d75a1122e2a</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/republika_al-diyakini-nggak-akan-bisa-gantikan-peran-dokter-ini-alasannya.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://ameera.republika.co.id/berita/th8t29425/al-diyakini-nggak-akan-bisa-gantikan-peran-dokter-ini-alasannya" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/republika_al-diyakini-nggak-akan-bisa-gantikan-peran-dokter-ini-alasannya.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="Republika" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#f7941e"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#f7941e33;color:#f7941e;border-color:#f7941e">R</span>
+          <span class="card-source" style="color:#f7941e">Republika</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:47 WIB</span>
+        </div>
+        <a href="https://rejogja.republika.co.id/berita/th8uft451/jatim-terbanyak-lulus-snbp-khofifah-cara-memutus-mata-rantai-kemiskinan-hanya-lewat-pendidikan" target="_blank" rel="noopener" class="card-title">Jatim Terbanyak Lulus SNBP, Khofifah: Cara Memutus Mata Rantai Kemiskinan Hanya Lewat Pendidikan</a>
+        <p class="card-excerpt">REPUBLIKA.CO.ID,&amp;nbsp;MAKASSAR -- Gubernur Jawa Timur Khofifah Indar Parawansa menegaskan pembangunan sumber daya manusia (SDM) harus menjadi prioritas utama dalam mewujudkan Indonesia Emas 2045. Menurutnya, pendidikan merupakan kunci untuk memutus...</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">e72fd4d69220</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/republika_jatim-terbanyak-lulus-snbp-khofifah-cara-memutus-mata-rantai-kemiskinan-hanya-lewat-pendidikan.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://rejogja.republika.co.id/berita/th8uft451/jatim-terbanyak-lulus-snbp-khofifah-cara-memutus-mata-rantai-kemiskinan-hanya-lewat-pendidikan" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/republika_jatim-terbanyak-lulus-snbp-khofifah-cara-memutus-mata-rantai-kemiskinan-hanya-lewat-pendidikan.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="Antara" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#1b5e20"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#1b5e2033;color:#1b5e20;border-color:#1b5e20">A</span>
+          <span class="card-source" style="color:#1b5e20">Antara</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:47 WIB</span>
+        </div>
+        <a href="https://otomotif.antaranews.com/berita/5624771/luncurkan-kategori-mobil-baru-olx-hardirkan-program-khusus-di-giias" target="_blank" rel="noopener" class="card-title">Luncurkan kategori mobil baru, OLX hardirkan program khusus di GIIAS</a>
+        <p class="card-excerpt">Platform iklan baris digital OLX meluncurkan Sub Kategori Mobil Baru sebagai respons atas perubahan dinamika pasar ...</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">aa55e4090235</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/antara_luncurkan-kategori-mobil-baru-olx-hardirkan-program-khusus-di-giias.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://otomotif.antaranews.com/berita/5624771/luncurkan-kategori-mobil-baru-olx-hardirkan-program-khusus-di-giias" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/antara_luncurkan-kategori-mobil-baru-olx-hardirkan-program-khusus-di-giias.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="Antara" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#1b5e20"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#1b5e2033;color:#1b5e20;border-color:#1b5e20">A</span>
+          <span class="card-source" style="color:#1b5e20">Antara</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:46 WIB</span>
+        </div>
+        <a href="https://www.antaranews.com/berita/5624769/satgas-odc-tangkap-kkb-penembak-briptu-anumerta-alvando-di-sugapa" target="_blank" rel="noopener" class="card-title">Satgas ODC tangkap KKB penembak Briptu Anumerta Alvando di Sugapa</a>
+        <p class="card-excerpt">Satgas Operasi Damai Cartenz&amp;nbsp;(ODC) 2026 menangkap PP (25), anggota Kelompok Kriminal.Bersenjata (KKB) terduga ...</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">c900bfeab53f</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/antara_satgas-odc-tangkap-kkb-penembak-briptu-anumerta-alvando-di-sugapa.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.antaranews.com/berita/5624769/satgas-odc-tangkap-kkb-penembak-briptu-anumerta-alvando-di-sugapa" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/antara_satgas-odc-tangkap-kkb-penembak-briptu-anumerta-alvando-di-sugapa.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="Antara" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#1b5e20"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#1b5e2033;color:#1b5e20;border-color:#1b5e20">A</span>
+          <span class="card-source" style="color:#1b5e20">Antara</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:46 WIB</span>
+        </div>
+        <a href="https://www.antaranews.com/berita/5624768/atr-bpn-perbedaan-luas-alas-hak-dan-sertifikat-tak-berarti-kesalahan" target="_blank" rel="noopener" class="card-title">ATR/BPN: Perbedaan luas alas hak dan sertifikat tak berarti kesalahan</a>
+        <p class="card-excerpt">Kementerian Agraria dan Tata Ruang/Badan Pertanahan Nasional (ATR/BPN) meminta&amp;nbsp;masyarakat tidak perlu khawatir ...</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">3a1e1a7d8be1</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/antara_atrbpn-perbedaan-luas-alas-hak-dan-sertifikat-tak-berarti-kesalahan.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.antaranews.com/berita/5624768/atr-bpn-perbedaan-luas-alas-hak-dan-sertifikat-tak-berarti-kesalahan" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/antara_atrbpn-perbedaan-luas-alas-hak-dan-sertifikat-tak-berarti-kesalahan.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="CNBC Indonesia" data-cat="bisnis" data-lang="id">
+      <div class="card-accent" style="background:#0055a5"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#0055a533;color:#0055a5;border-color:#0055a5">B</span>
+          <span class="card-source" style="color:#0055a5">CNBC Indonesia</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:45 WIB</span>
+        </div>
+        <a href="https://www.cnbcindonesia.com/news/20260626205333-4-746126/apa-kabar-poyek-sky-train-ke-cibubur-menhub-blak-blakan-progresnya" target="_blank" rel="noopener" class="card-title">Apa Kabar Poyek Sky Train ke Cibubur? Menhub Blak-Blakan Progresnya</a>
+        <p class="card-excerpt">Bagaimana nasib wacana pembangunan sky train Cibubur?</p>
+        <div class="card-meta">
+          <span class="meta-cat">Bisnis</span>
+          <span class="meta-id">836119b780a4</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/cnbc-indonesia_apa-kabar-poyek-sky-train-ke-cibubur-menhub-blak-blakan-progresnya.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.cnbcindonesia.com/news/20260626205333-4-746126/apa-kabar-poyek-sky-train-ke-cibubur-menhub-blak-blakan-progresnya" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnbc-indonesia_apa-kabar-poyek-sky-train-ke-cibubur-menhub-blak-blakan-progresnya.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#e31e24"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#e31e2433;color:#e31e24;border-color:#e31e24">C</span>
+          <span class="card-source" style="color:#e31e24">CNN Indonesia</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:45 WIB</span>
+        </div>
+        <a href="https://www.cnnindonesia.com/tv/20260626203605-410-1373828/video-kspsi-sebut-55-ribu-buruh-terancam-phk" target="_blank" rel="noopener" class="card-title">VIDEO: KSPSI Sebut 55 Ribu Buruh Terancam PHK</a>
+        <p class="card-excerpt">Presiden Konfederasi Serikat Pekerja Seluruh Indonesia, Andi Gani Nena Wea, menyebut saat ini ada 55 ribu buruh dari asosiasi...</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">bf44f1a22ce0</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/cnn-indonesia_video-kspsi-sebut-55-ribu-buruh-terancam-phk.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.cnnindonesia.com/tv/20260626203605-410-1373828/video-kspsi-sebut-55-ribu-buruh-terancam-phk" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_video-kspsi-sebut-55-ribu-buruh-terancam-phk.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#e31e24"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#e31e2433;color:#e31e24;border-color:#e31e24">C</span>
+          <span class="card-source" style="color:#e31e24">CNN Indonesia</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:44 WIB</span>
+        </div>
+        <a href="https://www.cnnindonesia.com/nasional/20260626161020-12-1373702/siswi-sd-sukabumi-diperkosa-teman-sebaya-disdik-polisi-turun-tangan" target="_blank" rel="noopener" class="card-title">Siswi SD Sukabumi Diperkosa Teman Sebaya, Disdik-Polisi Turun Tangan</a>
+        <p class="card-excerpt">Kasus memilukan ini diduga melibatkan tiga pelaku di bawah umur. Satu pelaku usia SMP diduga jadi otak intelektual dan merekam aksi bejat tersebut.</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">f705a521c022</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/cnn-indonesia_siswi-sd-sukabumi-diperkosa-teman-sebaya-disdik-polisi-turun-tangan.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.cnnindonesia.com/nasional/20260626161020-12-1373702/siswi-sd-sukabumi-diperkosa-teman-sebaya-disdik-polisi-turun-tangan" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_siswi-sd-sukabumi-diperkosa-teman-sebaya-disdik-polisi-turun-tangan.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#e31e24"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#e31e2433;color:#e31e24;border-color:#e31e24">C</span>
+          <span class="card-source" style="color:#e31e24">CNN Indonesia</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:44 WIB</span>
+        </div>
+        <a href="https://www.cnnindonesia.com/hiburan/20260626213518-220-1373852/rano-karno-luncurkan-jakarta-film-commission-demi-permudah-syuting" target="_blank" rel="noopener" class="card-title">Pemprov DKI Rilis Jakarta Film Commission, Solusi Satu Pintu Syuting</a>
+        <p class="card-excerpt">Pemprov DKI meluncurkan Jakarta Film Commission yang menjadi layanan satu pintu bagi industri perfilman di Jakarta.</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">c41a3d60c07f</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/cnn-indonesia_pemprov-dki-rilis-jakarta-film-commission-solusi-satu-pintu-syuting.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.cnnindonesia.com/hiburan/20260626213518-220-1373852/rano-karno-luncurkan-jakarta-film-commission-demi-permudah-syuting" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_pemprov-dki-rilis-jakarta-film-commission-solusi-satu-pintu-syuting.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#e31e24"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#e31e2433;color:#e31e24;border-color:#e31e24">C</span>
+          <span class="card-source" style="color:#e31e24">CNN Indonesia</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:42 WIB</span>
+        </div>
+        <a href="https://www.cnnindonesia.com/olahraga/20260626201925-178-1373820/hasil-avc-mens-cup-2026-indonesia-ke-semifinal-usai-hajar-oman" target="_blank" rel="noopener" class="card-title">Hasil AVC Men&#39;s Cup 2026: Indonesia ke Semifinal usai Hajar Oman</a>
+        <p class="card-excerpt">Timnas Voli Putra Indonesia lolos ke semifinal AVC Men&#39;s Cup 2026 usai taklukkan Oman 3-1.</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">be3fb0e96d9c</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/cnn-indonesia_hasil-avc-mens-cup-2026-indonesia-ke-semifinal-usai-hajar-oman.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.cnnindonesia.com/olahraga/20260626201925-178-1373820/hasil-avc-mens-cup-2026-indonesia-ke-semifinal-usai-hajar-oman" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_hasil-avc-mens-cup-2026-indonesia-ke-semifinal-usai-hajar-oman.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="Antara" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#1b5e20"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#1b5e2033;color:#1b5e20;border-color:#1b5e20">A</span>
+          <span class="card-source" style="color:#1b5e20">Antara</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:41 WIB</span>
+        </div>
+        <a href="https://www.antaranews.com/berita/5624759/angkutan-lebaran-2026-sukses-korlantas-terima-penghargaan-dari-menhub" target="_blank" rel="noopener" class="card-title">Angkutan Lebaran 2026 sukses, Korlantas terima penghargaan dari Menhub</a>
+        <p class="card-excerpt">Menteri Perhubungan Dudy Purwagandhi memberikan penghargaan kepada Korps Lalu Lintas (Korlantas) Polri atas ...</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">ae369ce5371a</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/antara_angkutan-lebaran-2026-sukses-korlantas-terima-penghargaan-dari-menhub.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.antaranews.com/berita/5624759/angkutan-lebaran-2026-sukses-korlantas-terima-penghargaan-dari-menhub" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/antara_angkutan-lebaran-2026-sukses-korlantas-terima-penghargaan-dari-menhub.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="CNBC Indonesia" data-cat="bisnis" data-lang="id">
+      <div class="card-accent" style="background:#0055a5"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#0055a533;color:#0055a5;border-color:#0055a5">B</span>
+          <span class="card-source" style="color:#0055a5">CNBC Indonesia</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:40 WIB</span>
+        </div>
+        <a href="https://www.cnbcindonesia.com/news/20260626170056-4-746072/berawal-dari-meme-gerakan-pemuda-ini-bikin-pemerintah-ketar-ketir" target="_blank" rel="noopener" class="card-title">Berawal dari Meme, Gerakan Pemuda Ini Bikin Pemerintah Ketar-ketir</a>
+        <p class="card-excerpt">Gerakan ini dipicu kemarahan generasi muda terhadap serangkaian kebocoran soal ujian nasional, tingginya pengangguran usia muda, serta meningkatnya biaya hidup.</p>
+        <div class="card-meta">
+          <span class="meta-cat">Bisnis</span>
+          <span class="meta-id">e2010c6708c6</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/cnbc-indonesia_berawal-dari-meme-gerakan-pemuda-ini-bikin-pemerintah-ketar-ketir.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.cnbcindonesia.com/news/20260626170056-4-746072/berawal-dari-meme-gerakan-pemuda-ini-bikin-pemerintah-ketar-ketir" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnbc-indonesia_berawal-dari-meme-gerakan-pemuda-ini-bikin-pemerintah-ketar-ketir.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="Republika" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#f7941e"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#f7941e33;color:#f7941e;border-color:#f7941e">R</span>
+          <span class="card-source" style="color:#f7941e">Republika</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:39 WIB</span>
+        </div>
+        <a href="https://khazanah.republika.co.id/berita/th8u21483/alasan-jaringan-masyarakat-sipil-pembela-ham-kritik-wacana-pidana-lgbt-versus-dalil-mui" target="_blank" rel="noopener" class="card-title">Alasan Jaringan Masyarakat Sipil Pembela HAM Kritik Wacana Pidana LGBT Versus Dalil MUI</a>
+        <p class="card-excerpt">REPUBLIKA.CO.ID,&amp;nbsp;JAKARTA &amp;mdash;&amp;nbsp; Fenomena mengenai keberadaan Lesbian, Gay, Biseksual dan Transgender (LGBT) kembali menyedot perhatian. Banyaknya aksi kaum &#39;Luthy&#39; yang dinilai berbuat tak pantas di ruang publik bahkan institusi pendidikan...</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">acb506a9e22d</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/republika_alasan-jaringan-masyarakat-sipil-pembela-ham-kritik-wacana-pidana-lgbt-versus-dalil-mui.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://khazanah.republika.co.id/berita/th8u21483/alasan-jaringan-masyarakat-sipil-pembela-ham-kritik-wacana-pidana-lgbt-versus-dalil-mui" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/republika_alasan-jaringan-masyarakat-sipil-pembela-ham-kritik-wacana-pidana-lgbt-versus-dalil-mui.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#e31e24"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#e31e2433;color:#e31e24;border-color:#e31e24">C</span>
+          <span class="card-source" style="color:#e31e24">CNN Indonesia</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:39 WIB</span>
+        </div>
+        <a href="https://www.cnnindonesia.com/nasional/20260626212651-32-1373851/puteri-komarudin-dorong-penguatan-kebijakan-transfer-ke-daerah" target="_blank" rel="noopener" class="card-title">Puteri Komarudin Dorong Penguatan Kebijakan Transfer ke Daerah</a>
+        <p class="card-excerpt">Anggota Badan Anggaran DPR RI Fraksi Partai Golkar Puteri Komarudin mendorong penguatan kebijakan TKD guna menjaga keberlangsungan pembangunan daerah.</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">59b1e17fc1b4</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/cnn-indonesia_puteri-komarudin-dorong-penguatan-kebijakan-transfer-ke-daerah.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.cnnindonesia.com/nasional/20260626212651-32-1373851/puteri-komarudin-dorong-penguatan-kebijakan-transfer-ke-daerah" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_puteri-komarudin-dorong-penguatan-kebijakan-transfer-ke-daerah.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="Detik" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#ffffff"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#ffffff22;color:#ffffff;border-color:#ffffff">D</span>
+          <span class="card-source" style="color:#ffffff">Detik</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:36 WIB</span>
+        </div>
+        <a href="https://news.detik.com/berita/d-8549150/fahira-idris-puji-langkah-polda-jabar-tangkap-tersangka-penganiayaan-berat" target="_blank" rel="noopener" class="card-title">Fahira Idris Puji Langkah Polda Jabar Tangkap Tersangka Penganiayaan Berat</a>
+        <p class="card-excerpt">Fahira Idris apresiasi penangkapan tersangka penyekapan perempuan di Bandung. Ia mendorong penegakan hukum maksimal dan perlindungan bagi korban.</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">296462226deb</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/detik_fahira-idris-puji-langkah-polda-jabar-tangkap-tersangka-penganiayaan-berat.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://news.detik.com/berita/d-8549150/fahira-idris-puji-langkah-polda-jabar-tangkap-tersangka-penganiayaan-berat" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/detik_fahira-idris-puji-langkah-polda-jabar-tangkap-tersangka-penganiayaan-berat.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="CNBC Indonesia" data-cat="bisnis" data-lang="id">
+      <div class="card-accent" style="background:#0055a5"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#0055a533;color:#0055a5;border-color:#0055a5">B</span>
+          <span class="card-source" style="color:#0055a5">CNBC Indonesia</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:35 WIB</span>
+        </div>
+        <a href="https://www.cnbcindonesia.com/news/20260626204928-4-746125/tiba-tiba-menhub-dudy-minta-warga-green-line-sabar-kenapa" target="_blank" rel="noopener" class="card-title">Tiba-tiba Menhub Dudy Minta Warga Green Line Sabar, Kenapa?</a>
+        <p class="card-excerpt">Menteri Perhubungan Dudy Purwaghandi meminta pengguna KRL Green Line bersabar. Proyek elektrifikasi dan peningkatan kapasitas ditargetkan rampung 2027.</p>
+        <div class="card-meta">
+          <span class="meta-cat">Bisnis</span>
+          <span class="meta-id">c8c56ec3f500</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/cnbc-indonesia_tiba-tiba-menhub-dudy-minta-warga-green-line-sabar-kenapa.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.cnbcindonesia.com/news/20260626204928-4-746125/tiba-tiba-menhub-dudy-minta-warga-green-line-sabar-kenapa" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnbc-indonesia_tiba-tiba-menhub-dudy-minta-warga-green-line-sabar-kenapa.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="Antara" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#1b5e20"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#1b5e2033;color:#1b5e20;border-color:#1b5e20">A</span>
+          <span class="card-source" style="color:#1b5e20">Antara</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:34 WIB</span>
+        </div>
+        <a href="https://www.antaranews.com/video/5624715/komitmen-astacita-pemerintah-sita-21484-ton-narkoba-dalam-setahun" target="_blank" rel="noopener" class="card-title">Komitmen Astacita, pemerintah sita 214,84 ton narkoba dalam setahun</a>
+        <p class="card-excerpt">ANTARA - Pemerintah menegaskan komitmen pemberantasan narkoba bukan sekadar retorika, melainkan tindakan nyata yang ...</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">375329c1231a</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/antara_komitmen-astacita-pemerintah-sita-21484-ton-narkoba-dalam-setahun.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.antaranews.com/video/5624715/komitmen-astacita-pemerintah-sita-21484-ton-narkoba-dalam-setahun" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/antara_komitmen-astacita-pemerintah-sita-21484-ton-narkoba-dalam-setahun.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="Antara" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#1b5e20"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#1b5e2033;color:#1b5e20;border-color:#1b5e20">A</span>
+          <span class="card-source" style="color:#1b5e20">Antara</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:33 WIB</span>
+        </div>
+        <a href="https://www.antaranews.com/video/5624620/bareskrim-polri-tetapkan-empat-wni-tersangka-judol-hayam-wuruk" target="_blank" rel="noopener" class="card-title">Bareskrim Polri tetapkan empat WNI tersangka judol Hayam Wuruk</a>
+        <p class="card-excerpt">ANTARA -&amp;nbsp;Bareskrim Kepolisian Republik Indonesia menetapkan empat warga negara Indonesia &amp;nbsp;(WNI) sebagai ...</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">0bd594049d67</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/antara_bareskrim-polri-tetapkan-empat-wni-tersangka-judol-hayam-wuruk.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.antaranews.com/video/5624620/bareskrim-polri-tetapkan-empat-wni-tersangka-judol-hayam-wuruk" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/antara_bareskrim-polri-tetapkan-empat-wni-tersangka-judol-hayam-wuruk.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#e31e24"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#e31e2433;color:#e31e24;border-color:#e31e24">C</span>
+          <span class="card-source" style="color:#e31e24">CNN Indonesia</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:31 WIB</span>
+        </div>
+        <a href="https://www.cnnindonesia.com/ekonomi/20260626211114-92-1373847/kemenhub-atur-tarif-batas-atas-tiket-pesawat-saat-harga-avtur-stabil" target="_blank" rel="noopener" class="card-title">Kemenhub Atur Tarif Batas Atas Tiket Pesawat saat Harga Avtur Stabil</a>
+        <p class="card-excerpt">Kementerian Perhubungan bakal mengatur tarif batas atas (TBA) tiket pesawat setelah harga bahan bakar pesawat avtur dan kondisi geopolitik telah stabil.</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">7ebc9007764a</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/cnn-indonesia_kemenhub-atur-tarif-batas-atas-tiket-pesawat-saat-harga-avtur-stabil.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.cnnindonesia.com/ekonomi/20260626211114-92-1373847/kemenhub-atur-tarif-batas-atas-tiket-pesawat-saat-harga-avtur-stabil" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_kemenhub-atur-tarif-batas-atas-tiket-pesawat-saat-harga-avtur-stabil.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="Detik" data-cat="umum" data-lang="id">
+      <div class="card-accent" style="background:#ffffff"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#ffffff22;color:#ffffff;border-color:#ffffff">D</span>
+          <span class="card-source" style="color:#ffffff">Detik</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:30 WIB</span>
+        </div>
+        <a href="https://news.detik.com/berita/d-8549149/jokowi-ingatkan-kader-psi-harus-dekat-masyarakat-jangan-pas-pemilu-saja" target="_blank" rel="noopener" class="card-title">Jokowi Ingatkan Kader PSI: Harus Dekat Masyarakat, Jangan Pas Pemilu Saja</a>
+        <p class="card-excerpt">Jokowi mengingatkan pengurus dan kader PSI di Lampung agar aktif di masyarakat. Jokowi meminta kader PSI dekat masyarakat tak hanya saat menjelang pemilu.</p>
+        <div class="card-meta">
+          <span class="meta-cat">Umum</span>
+          <span class="meta-id">7efc067be861</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/detik_jokowi-ingatkan-kader-psi-harus-dekat-masyarakat-jangan-pas-pemilu-saja.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://news.detik.com/berita/d-8549149/jokowi-ingatkan-kader-psi-harus-dekat-masyarakat-jangan-pas-pemilu-saja" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/detik_jokowi-ingatkan-kader-psi-harus-dekat-masyarakat-jangan-pas-pemilu-saja.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
     <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
       <div class="card-accent" style="background:#e31e24"></div>
       <div class="card-body">
@@ -186,6 +776,32 @@
         <div class="card-actions">
           <a href="https://www.cnnindonesia.com/internasional/20260626191856-124-1373783/detik-detik-netanyahu-disuruh-mundur-oleh-perwira-militer-israel" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
           <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_detik-detik-netanyahu-disuruh-mundur-oleh-perwira-militer-israel.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="CNBC Indonesia" data-cat="bisnis" data-lang="id">
+      <div class="card-accent" style="background:#0055a5"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#0055a533;color:#0055a5;border-color:#0055a5">B</span>
+          <span class="card-source" style="color:#0055a5">CNBC Indonesia</span>
+          <span class="card-lang badge-id">id</span>
+          <span class="card-date">2026-06-26 21:30 WIB</span>
+        </div>
+        <a href="https://www.cnbcindonesia.com/news/20260626165347-4-746067/momen-langka-netanyahu-diteriaki-mundur-oleh-warga-di-depan-umum" target="_blank" rel="noopener" class="card-title">Momen Langka! Netanyahu Diteriaki &quot;Mundur&quot; oleh Warga di Depan Umum</a>
+        <p class="card-excerpt">Perdana Menteri Israel, Netanyahu, menghadapi tekanan politik saat pidato di upacara kelulusan militer, dengan seruan untuk mundur dari jabatannya.</p>
+        <div class="card-meta">
+          <span class="meta-cat">Bisnis</span>
+          <span class="meta-id">24d2fce66bde</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/cnbc-indonesia_momen-langka-netanyahu-diteriaki-mundur-oleh-warga-di-depan-umum.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.cnbcindonesia.com/news/20260626165347-4-746067/momen-langka-netanyahu-diteriaki-mundur-oleh-warga-di-depan-umum" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnbc-indonesia_momen-langka-netanyahu-diteriaki-mundur-oleh-warga-di-depan-umum.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
@@ -329,7 +945,7 @@
           <span class="card-date">2026-06-26 21:24 WIB</span>
         </div>
         <a href="https://news.detik.com/berita/d-8549101/mentrans-mau-libatkan-dunia-usaha-kampus-sebut-transmigrasi-sudah-mendunia" target="_blank" rel="noopener" class="card-title">Mentrans Mau Libatkan Dunia Usaha-Kampus, Sebut Transmigrasi Sudah Mendunia</a>
-        <p class="card-excerpt">Mentrans mengungkap keinginannya melibatkan kampus dan dunia usaha ke kawasan transmigrasi. Dia menyebut kini transmigrasi sudah mendunia.</p>
+        <p class="card-excerpt">Mentrans mengungkap keinginannya melibatkan kampus dan dunia usaha ke kawasan transmigrasi. Dia menyebutkan kini transmigrasi sudah mendunia.</p>
         <div class="card-meta">
           <span class="meta-cat">Umum</span>
           <span class="meta-id">6cb1de346d67</span>
@@ -709,110 +1325,6 @@
         </div>
       </div>
     </article>
-    <article class="card" data-source="Antara" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#1b5e20"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#1b5e2033;color:#1b5e20;border-color:#1b5e20">A</span>
-          <span class="card-source" style="color:#1b5e20">Antara</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 21:13 WIB</span>
-        </div>
-        <a href="https://www.antaranews.com/berita/5624729/dorong-kapasitas-umkm-dan-kemajuan-ekonomi-daerah-bri-branch-office-bantul-salurkan-kur-rp12-t" target="_blank" rel="noopener" class="card-title">Dorong kapasitas UMKM dan kemajuan ekonomi daerah, BRI Branch Office Bantul salurkan KUR Rp1.2 T</a>
-        <p class="card-excerpt">BRI Branch Office (BO) Bantul, Yogyakarta terus memperkuat perannya sebagai perpanjangan tangan pemerintah dalam ...</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">0c2be90779ba</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/antara_dorong-kapasitas-umkm-dan-kemajuan-ekonomi-daerah-bri-branch-office-bantul-salurkan-kur-rp12-t.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.antaranews.com/berita/5624729/dorong-kapasitas-umkm-dan-kemajuan-ekonomi-daerah-bri-branch-office-bantul-salurkan-kur-rp12-t" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/antara_dorong-kapasitas-umkm-dan-kemajuan-ekonomi-daerah-bri-branch-office-bantul-salurkan-kur-rp12-t.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="Antara" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#1b5e20"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#1b5e2033;color:#1b5e20;border-color:#1b5e20">A</span>
-          <span class="card-source" style="color:#1b5e20">Antara</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 21:13 WIB</span>
-        </div>
-        <a href="https://www.antaranews.com/berita/5624725/marina-mabrey-samai-rekor-poin-individu-tertinggi-wnba" target="_blank" rel="noopener" class="card-title">Marina Mabrey samai rekor poin individu tertinggi WNBA</a>
-        <p class="card-excerpt">Pebasket Toronto Tempo Marina Mabrey berhasil menyamai rekor poin tertinggi dalam sejarah WNBA, setelah mencetak 53 ...</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">de322fe6cdd0</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/antara_marina-mabrey-samai-rekor-poin-individu-tertinggi-wnba.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.antaranews.com/berita/5624725/marina-mabrey-samai-rekor-poin-individu-tertinggi-wnba" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/antara_marina-mabrey-samai-rekor-poin-individu-tertinggi-wnba.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="Antara" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#1b5e20"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#1b5e2033;color:#1b5e20;border-color:#1b5e20">A</span>
-          <span class="card-source" style="color:#1b5e20">Antara</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 21:12 WIB</span>
-        </div>
-        <a href="https://www.antaranews.com/berita/5624721/cynosure-lutronic-tampilkan-inovasi-pengencangan-kulit-struktural-di-imcas-asia-2026-bangkok" target="_blank" rel="noopener" class="card-title">Cynosure Lutronic Tampilkan Inovasi Pengencangan Kulit Struktural di IMCAS Asia 2026 Bangkok</a>
-        <p class="card-excerpt">Pemimpin pasar global dalam segmen peralatan estetika medis&amp;nbsp;Cynosure Lutronic&amp;nbsp;memperkenalkan inovasi ...</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">b4a244b185cb</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/antara_cynosure-lutronic-tampilkan-inovasi-pengencangan-kulit-struktural-di-imcas-asia-2026-bangkok.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.antaranews.com/berita/5624721/cynosure-lutronic-tampilkan-inovasi-pengencangan-kulit-struktural-di-imcas-asia-2026-bangkok" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/antara_cynosure-lutronic-tampilkan-inovasi-pengencangan-kulit-struktural-di-imcas-asia-2026-bangkok.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="Antara" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#1b5e20"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#1b5e2033;color:#1b5e20;border-color:#1b5e20">A</span>
-          <span class="card-source" style="color:#1b5e20">Antara</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 21:12 WIB</span>
-        </div>
-        <a href="https://www.antaranews.com/berita/5624720/polda-jabar-ungkap-korban-penyekapan-di-bandung-kenal-pelaku-lewat-tinder" target="_blank" rel="noopener" class="card-title">Polda Jabar ungkap korban penyekapan di Bandung kenal pelaku lewat Tinder</a>
-        <p class="card-excerpt">Kepolisian Daerah Jawa Barat mengungkapkan korban penyekapan dan penganiayaan berinisial YTR (29) mengenal tersangka ...</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">e6c5251945b4</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/antara_polda-jabar-ungkap-korban-penyekapan-di-bandung-kenal-pelaku-lewat-tinder.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.antaranews.com/berita/5624720/polda-jabar-ungkap-korban-penyekapan-di-bandung-kenal-pelaku-lewat-tinder" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/antara_polda-jabar-ungkap-korban-penyekapan-di-bandung-kenal-pelaku-lewat-tinder.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
     <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
       <div class="card-accent" style="background:#e31e24"></div>
       <div class="card-body">
@@ -836,32 +1348,6 @@
         <div class="card-actions">
           <a href="https://www.cnnindonesia.com/nasional/20260626194831-32-1373814/prabowo-kritik-kegaduhan-negara-lain-menuju-kesejahteraan" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
           <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_prabowo-kritik-kegaduhan-negara-lain-menuju-kesejahteraan.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="Antara" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#1b5e20"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#1b5e2033;color:#1b5e20;border-color:#1b5e20">A</span>
-          <span class="card-source" style="color:#1b5e20">Antara</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 21:08 WIB</span>
-        </div>
-        <a href="https://www.antaranews.com/berita/5624716/bittime-nilai-pojk-6-2026-memperkuat-transparansi-industri-kripto" target="_blank" rel="noopener" class="card-title">Bittime nilai POJK 6/2026 memperkuat transparansi industri kripto</a>
-        <p class="card-excerpt">Platform perdagangan aset kripto Bittime&amp;nbsp;menilai POJK Nomor 6 Tahun 2026 tentang Perilaku Penyampai Informasi ...</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">a8bc4b3c4f49</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/antara_bittime-nilai-pojk-62026-memperkuat-transparansi-industri-kripto.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.antaranews.com/berita/5624716/bittime-nilai-pojk-6-2026-memperkuat-transparansi-industri-kripto" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/antara_bittime-nilai-pojk-62026-memperkuat-transparansi-industri-kripto.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
@@ -966,32 +1452,6 @@
         <div class="card-actions">
           <a href="https://news.detik.com/berita/d-8549129/ambruknya-rumah-pinggir-kali-di-benhil-jakpus-gegara-abrasi" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
           <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/detik_ambruknya-rumah-pinggir-kali-di-benhil-jakpus-gegara-abrasi.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="Antara" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#1b5e20"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#1b5e2033;color:#1b5e20;border-color:#1b5e20">A</span>
-          <span class="card-source" style="color:#1b5e20">Antara</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 21:06 WIB</span>
-        </div>
-        <a href="https://www.antaranews.com/berita/5624712/komnas-perempuan-delayed-in-justice-bentuk-perlakuan-tidak-manusiawi" target="_blank" rel="noopener" class="card-title">Komnas Perempuan: Delayed in justice bentuk perlakuan tidak manusiawi</a>
-        <p class="card-excerpt">Komisi Nasional Anti Kekerasan terhadap Perempuan (Komnas Perempuan) memandang delayed in justice sebagai bentuk ...</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">416fd8385f4b</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/antara_komnas-perempuan-delayed-in-justice-bentuk-perlakuan-tidak-manusiawi.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.antaranews.com/berita/5624712/komnas-perempuan-delayed-in-justice-bentuk-perlakuan-tidak-manusiawi" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/antara_komnas-perempuan-delayed-in-justice-bentuk-perlakuan-tidak-manusiawi.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
@@ -1125,58 +1585,6 @@
         </div>
       </div>
     </article>
-    <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#e31e24"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#e31e2433;color:#e31e24;border-color:#e31e24">C</span>
-          <span class="card-source" style="color:#e31e24">CNN Indonesia</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 21:00 WIB</span>
-        </div>
-        <a href="https://www.cnnindonesia.com/hiburan/20260626144009-220-1373654/sinopsis-notes-from-the-last-row-obsesi-kelam-profesor-sastra" target="_blank" rel="noopener" class="card-title">Sinopsis Notes from the Last Row, Drama Korea di Netflix</a>
-        <p class="card-excerpt">Sinopsis Notes from the Last Row: Obsesi kelam, ambisi kreatif yang merusak, serta kompleksitas hubungan antara pendidik dan murid.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">4e38a5bc4019</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/cnn-indonesia_sinopsis-notes-from-the-last-row-drama-korea-di-netflix.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.cnnindonesia.com/hiburan/20260626144009-220-1373654/sinopsis-notes-from-the-last-row-obsesi-kelam-profesor-sastra" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_sinopsis-notes-from-the-last-row-drama-korea-di-netflix.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#e31e24"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#e31e2433;color:#e31e24;border-color:#e31e24">C</span>
-          <span class="card-source" style="color:#e31e24">CNN Indonesia</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 21:00 WIB</span>
-        </div>
-        <a href="https://www.cnnindonesia.com/internasional/20260626192909-120-1373792/pm-netanyahu-makin-dibenci-di-israel-siapa-sosok-kuat-penggantinya" target="_blank" rel="noopener" class="card-title">PM Netanyahu Makin Dibenci di Israel, Siapa Sosok Kuat Penggantinya?</a>
-        <p class="card-excerpt">Perdana Menteri Benjamin Netanyahu kian tak disukai warga Israel dan sejumlah pihak menilai dia tak pantas duduk di kursi PM lagi untuk periode mendatang.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">2515abf49718</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/cnn-indonesia_pm-netanyahu-makin-dibenci-di-israel-siapa-sosok-kuat-penggantinya.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.cnnindonesia.com/internasional/20260626192909-120-1373792/pm-netanyahu-makin-dibenci-di-israel-siapa-sosok-kuat-penggantinya" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_pm-netanyahu-makin-dibenci-di-israel-siapa-sosok-kuat-penggantinya.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
     <article class="card" data-source="CNBC Indonesia" data-cat="bisnis" data-lang="id">
       <div class="card-accent" style="background:#0055a5"></div>
       <div class="card-body">
@@ -1229,32 +1637,6 @@
         </div>
       </div>
     </article>
-    <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#e31e24"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#e31e2433;color:#e31e24;border-color:#e31e24">C</span>
-          <span class="card-source" style="color:#e31e24">CNN Indonesia</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:57 WIB</span>
-        </div>
-        <a href="https://www.cnnindonesia.com/nasional/20260626125053-32-1373587/istana-respons-wacana-prabowo-gibran-2-periode-fokus-kerja-dulu" target="_blank" rel="noopener" class="card-title">Istana Respons Wacana Prabowo-Gibran 2 Periode: Fokus Kerja Dulu</a>
-        <p class="card-excerpt">Mensesneg Prasetyo Hadi menanggapi wacana Prabowo-Gibran untuk Pilpres 2029, menekankan fokus pemerintah pada pekerjaan yang belum selesai.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">fe73b10b46e1</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/cnn-indonesia_istana-respons-wacana-prabowo-gibran-2-periode-fokus-kerja-dulu.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.cnnindonesia.com/nasional/20260626125053-32-1373587/istana-respons-wacana-prabowo-gibran-2-periode-fokus-kerja-dulu" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_istana-respons-wacana-prabowo-gibran-2-periode-fokus-kerja-dulu.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
     <article class="card" data-source="CNBC Indonesia" data-cat="bisnis" data-lang="id">
       <div class="card-accent" style="background:#0055a5"></div>
       <div class="card-body">
@@ -1278,32 +1660,6 @@
         <div class="card-actions">
           <a href="https://www.cnbcindonesia.com/news/20260626202939-4-746116/mrt-tangsel-lewat-pondok-cabe-atau-pondok-aren-ini-jawaban-menhub" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
           <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnbc-indonesia_mrt-tangsel-lewat-pondok-cabe-atau-pondok-aren-ini-jawaban-menhub.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#e31e24"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#e31e2433;color:#e31e24;border-color:#e31e24">C</span>
-          <span class="card-source" style="color:#e31e24">CNN Indonesia</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:55 WIB</span>
-        </div>
-        <a href="https://www.cnnindonesia.com/nasional/20260626204033-20-1373832/hut-ke-499-jakarta-rano-karno-ungkap-fokus-kerja-pemprov-dki" target="_blank" rel="noopener" class="card-title">HUT ke-499 Jakarta, Rano Karno Ungkap Fokus Kerja Pemprov DKI</a>
-        <p class="card-excerpt">Wagub DKI Rano Karno menegaskan fokus Pemprov adalah melanjutkan dan menuntaskan program gubernur-gubernur Jakarta sebelumnya, termasuk normalisasi sungai.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">3d02beec8550</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/cnn-indonesia_hut-ke-499-jakarta-rano-karno-ungkap-fokus-kerja-pemprov-dki.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.cnnindonesia.com/nasional/20260626204033-20-1373832/hut-ke-499-jakarta-rano-karno-ungkap-fokus-kerja-pemprov-dki" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_hut-ke-499-jakarta-rano-karno-ungkap-fokus-kerja-pemprov-dki.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
@@ -1437,32 +1793,6 @@
         </div>
       </div>
     </article>
-    <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#e31e24"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#e31e2433;color:#e31e24;border-color:#e31e24">C</span>
-          <span class="card-source" style="color:#e31e24">CNN Indonesia</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:45 WIB</span>
-        </div>
-        <a href="https://www.cnnindonesia.com/olahraga/20260626201142-178-1373818/pb-ipsi-piala-presiden-2026-perkuat-misi-ke-olimpiade-2028" target="_blank" rel="noopener" class="card-title">PB IPSI: Piala Presiden 2026 Perkuat Misi ke Olimpiade 2028</a>
-        <p class="card-excerpt">Waketum PB IPSI, Mohamad Hasan berharap Kejuaraan Pencak Silat Tingkat Nasional Piala Presiden 2026 dapat membantu persiapan menuju Olimpiade 2028.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">31689408963b</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/cnn-indonesia_pb-ipsi-piala-presiden-2026-perkuat-misi-ke-olimpiade-2028.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.cnnindonesia.com/olahraga/20260626201142-178-1373818/pb-ipsi-piala-presiden-2026-perkuat-misi-ke-olimpiade-2028" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_pb-ipsi-piala-presiden-2026-perkuat-misi-ke-olimpiade-2028.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
     <article class="card" data-source="CNBC Indonesia" data-cat="bisnis" data-lang="id">
       <div class="card-accent" style="background:#0055a5"></div>
       <div class="card-body">
@@ -1512,32 +1842,6 @@
         <div class="card-actions">
           <a href="https://news.detik.com/berita/d-8549112/rumah-ambruk-di-pinggir-kali-benhil-bronjong-dipasang-cegah-longsor-meluas" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
           <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/detik_rumah-ambruk-di-pinggir-kali-benhil-bronjong-dipasang-cegah-longsor-meluas.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="CNN Indonesia" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#e31e24"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#e31e2433;color:#e31e24;border-color:#e31e24">C</span>
-          <span class="card-source" style="color:#e31e24">CNN Indonesia</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:40 WIB</span>
-        </div>
-        <a href="https://www.cnnindonesia.com/nasional/20260626200956-25-1373815/siap-jadi-kota-sinema-pemprov-dki-luncurkan-jakarta-film-commission" target="_blank" rel="noopener" class="card-title">Siap Jadi Kota Sinema, Pemprov DKI Luncurkan Jakarta Film Commission</a>
-        <p class="card-excerpt">Sebagai pusat layanan terpadu, Jakarta Film Commission siap memfasilitasi proyek industri film di DKI, mulai birokrasi aset hingga koordinasi dengan kepolisian.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">fa19940315f2</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/cnn-indonesia_siap-jadi-kota-sinema-pemprov-dki-luncurkan-jakarta-film-commission.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.cnnindonesia.com/nasional/20260626200956-25-1373815/siap-jadi-kota-sinema-pemprov-dki-luncurkan-jakarta-film-commission" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnn-indonesia_siap-jadi-kota-sinema-pemprov-dki-luncurkan-jakarta-film-commission.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
@@ -1723,32 +2027,6 @@
         </div>
       </div>
     </article>
-    <article class="card" data-source="CNBC Indonesia" data-cat="bisnis" data-lang="id">
-      <div class="card-accent" style="background:#0055a5"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#0055a533;color:#0055a5;border-color:#0055a5">B</span>
-          <span class="card-source" style="color:#0055a5">CNBC Indonesia</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:30 WIB</span>
-        </div>
-        <a href="https://www.cnbcindonesia.com/tech/20260626123307-37-745948/cara-nonton-piala-dunia-spanyol-vs-uruguay-live-streaming-gratis-tvri" target="_blank" rel="noopener" class="card-title">Cara Nonton Piala Dunia Spanyol vs Uruguay, Live Streaming-Gratis TVRI</a>
-        <p class="card-excerpt">Piala Dunia FIFA 2026 akan diikuti 48 tim, dengan 104 pertandingan di AS, Kanada, dan Meksiko. Saksikan laga seru dan cara menontonnya di sini!</p>
-        <div class="card-meta">
-          <span class="meta-cat">Bisnis</span>
-          <span class="meta-id">14c35cc7b54b</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/cnbc-indonesia_cara-nonton-piala-dunia-spanyol-vs-uruguay-live-streaming-gratis-tvri.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.cnbcindonesia.com/tech/20260626123307-37-745948/cara-nonton-piala-dunia-spanyol-vs-uruguay-live-streaming-gratis-tvri" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnbc-indonesia_cara-nonton-piala-dunia-spanyol-vs-uruguay-live-streaming-gratis-tvri.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
     <article class="card" data-source="Detik" data-cat="umum" data-lang="id">
       <div class="card-accent" style="background:#ffffff"></div>
       <div class="card-body">
@@ -1772,32 +2050,6 @@
         <div class="card-actions">
           <a href="https://news.detik.com/berita/d-8549098/mendagri-sebut-parade-tenun-belu-jaga-warisan-budaya-gerakkan-ekonomi" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
           <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/detik_mendagri-sebut-parade-tenun-belu-jaga-warisan-budaya-gerakkan-ekonomi.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="CNBC Indonesia" data-cat="bisnis" data-lang="id">
-      <div class="card-accent" style="background:#0055a5"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#0055a533;color:#0055a5;border-color:#0055a5">B</span>
-          <span class="card-source" style="color:#0055a5">CNBC Indonesia</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:25 WIB</span>
-        </div>
-        <a href="https://www.cnbcindonesia.com/news/20260626202330-4-746115/purbaya-buka-suara-soal-pencairan-jht-bpjs-ketenagakerjaan-kena-pajak" target="_blank" rel="noopener" class="card-title">Purbaya Buka Suara Soal Pencairan JHT BPJS Ketenagakerjaan Kena Pajak</a>
-        <p class="card-excerpt">Menteri Keuangan Purbaya Yudhi Sadewa angkat bicara soal isu JHT BPJS Ketenagakerjaan kena pajak penghasilan atau PPh 21.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Bisnis</span>
-          <span class="meta-id">d00cac3ce337</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/cnbc-indonesia_purbaya-buka-suara-soal-pencairan-jht-bpjs-ketenagakerjaan-kena-pajak.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.cnbcindonesia.com/news/20260626202330-4-746115/purbaya-buka-suara-soal-pencairan-jht-bpjs-ketenagakerjaan-kena-pajak" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnbc-indonesia_purbaya-buka-suara-soal-pencairan-jht-bpjs-ketenagakerjaan-kena-pajak.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
@@ -1879,84 +2131,6 @@
         </div>
       </div>
     </article>
-    <article class="card" data-source="Detik" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#ffffff"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#ffffff22;color:#ffffff;border-color:#ffffff">D</span>
-          <span class="card-source" style="color:#ffffff">Detik</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:17 WIB</span>
-        </div>
-        <a href="https://news.detik.com/berita/d-8549090/skor-pelayanan-jadi-8-37-versi-litbang-kompas-polri-amanah-yang-harus-dijaga" target="_blank" rel="noopener" class="card-title">Skor Pelayanan Jadi 8,37 Versi Litbang Kompas, Polri: Amanah yang Harus Dijaga</a>
-        <p class="card-excerpt">Survei Litbang Kompas menunjukkan peningkatan signifikan kepercayaan publik terhadap Polri, dari 7,76 menjadi 8,37. Polri berkomitmen tingkatkan pelayanan.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">eb41e8b777f1</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/detik_skor-pelayanan-jadi-837-versi-litbang-kompas-polri-amanah-yang-harus-dijaga.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://news.detik.com/berita/d-8549090/skor-pelayanan-jadi-8-37-versi-litbang-kompas-polri-amanah-yang-harus-dijaga" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/detik_skor-pelayanan-jadi-837-versi-litbang-kompas-polri-amanah-yang-harus-dijaga.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="Detik" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#ffffff"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#ffffff22;color:#ffffff;border-color:#ffffff">D</span>
-          <span class="card-source" style="color:#ffffff">Detik</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:16 WIB</span>
-        </div>
-        <a href="https://news.detik.com/berita/d-8549087/merah-putih-bond-dibahas-di-mpr-ibas-tekankan-pentingnya-akuntabilitas" target="_blank" rel="noopener" class="card-title">Merah Putih Bond Dibahas di MPR, Ibas Tekankan Pentingnya Akuntabilitas</a>
-        <p class="card-excerpt">Waka MPR Ibas menekankan pentingnya instrumen investasi nasional untuk dukung pembangunan berkelanjutan dan meningkatkan kepercayaan masyarakat terhadap ekonomi</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">271d5bbaf69b</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/detik_merah-putih-bond-dibahas-di-mpr-ibas-tekankan-pentingnya-akuntabilitas.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://news.detik.com/berita/d-8549087/merah-putih-bond-dibahas-di-mpr-ibas-tekankan-pentingnya-akuntabilitas" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/detik_merah-putih-bond-dibahas-di-mpr-ibas-tekankan-pentingnya-akuntabilitas.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="CNBC Indonesia" data-cat="bisnis" data-lang="id">
-      <div class="card-accent" style="background:#0055a5"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#0055a533;color:#0055a5;border-color:#0055a5">B</span>
-          <span class="card-source" style="color:#0055a5">CNBC Indonesia</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:15 WIB</span>
-        </div>
-        <a href="https://www.cnbcindonesia.com/market/20260626200940-17-746113/alasan-purbaya-guyur-bank-rp400-t-indikator-likuiditas-di-kssk-ilusif" target="_blank" rel="noopener" class="card-title">Alasan Purbaya Guyur Bank Rp400 T: Indikator Likuiditas di KSSK Ilusif</a>
-        <p class="card-excerpt">Menteri Keuangan Purbaya Yudhi Sadewa menganggap, indikator kecukupan likuditas yang selama ini digunakan di KSSK bersifat ilusif</p>
-        <div class="card-meta">
-          <span class="meta-cat">Bisnis</span>
-          <span class="meta-id">5b24c3a72be6</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/cnbc-indonesia_alasan-purbaya-guyur-bank-rp400-t-indikator-likuiditas-di-kssk-ilusif.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.cnbcindonesia.com/market/20260626200940-17-746113/alasan-purbaya-guyur-bank-rp400-t-indikator-likuiditas-di-kssk-ilusif" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnbc-indonesia_alasan-purbaya-guyur-bank-rp400-t-indikator-likuiditas-di-kssk-ilusif.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
     <article class="card" data-source="Republika" data-cat="umum" data-lang="id">
       <div class="card-accent" style="background:#f7941e"></div>
       <div class="card-body">
@@ -1983,107 +2157,81 @@
         </div>
       </div>
     </article>
-    <article class="card" data-source="CNBC Indonesia" data-cat="bisnis" data-lang="id">
-      <div class="card-accent" style="background:#0055a5"></div>
+    <article class="card" data-source="NY Times" data-cat="internasional" data-lang="en">
+      <div class="card-accent" style="background:#000000"></div>
       <div class="card-body">
         <div class="card-top">
-          <span class="card-glyph" style="background:#0055a533;color:#0055a5;border-color:#0055a5">B</span>
-          <span class="card-source" style="color:#0055a5">CNBC Indonesia</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:10 WIB</span>
+          <span class="card-glyph" style="background:#33333333;color:#000000;border-color:#000000">N</span>
+          <span class="card-source" style="color:#000000">NY Times</span>
+          <span class="card-lang badge-en">en</span>
+          <span class="card-date">2026-06-26 21:46 WIB</span>
         </div>
-        <a href="https://www.cnbcindonesia.com/news/20260626162831-4-746044/lonjakan-harga-minyak-dunia-picu-kenaikan-harga-lng" target="_blank" rel="noopener" class="card-title">Lonjakan Harga Minyak Dunia Picu Kenaikan Harga LNG</a>
-        <p class="card-excerpt">Harga minyak melonjak turun mengerek kenaikan harga LNG di dunia</p>
+        <a href="https://www.nytimes.com/2026/06/26/world/asia/china-plane-crash-beijing.html" target="_blank" rel="noopener" class="card-title">Small Plane Crashes Into Tallest Building in Beijing</a>
+        <p class="card-excerpt">Crowds in the capital’s central business district fled as the crash sent debris falling into the streets below.</p>
         <div class="card-meta">
-          <span class="meta-cat">Bisnis</span>
-          <span class="meta-id">89fefe7c28d1</span>
+          <span class="meta-cat">Internasional</span>
+          <span class="meta-id">a87f3c303f9b</span>
         </div>
         <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
           <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/cnbc-indonesia_lonjakan-harga-minyak-dunia-picu-kenaikan-harga-lng.md]]</code>
+          <code class="wiki-link">[[news/2026-06-26/ny-times_small-plane-crashes-into-tallest-building-in-beijing.md]]</code>
           <span class="wiki-copy">copy</span>
         </div>
         <div class="card-actions">
-          <a href="https://www.cnbcindonesia.com/news/20260626162831-4-746044/lonjakan-harga-minyak-dunia-picu-kenaikan-harga-lng" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/cnbc-indonesia_lonjakan-harga-minyak-dunia-picu-kenaikan-harga-lng.md" class="act act-md">📄 .md</a>
+          <a href="https://www.nytimes.com/2026/06/26/world/asia/china-plane-crash-beijing.html" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_small-plane-crashes-into-tallest-building-in-beijing.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
-    <article class="card" data-source="Republika" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#f7941e"></div>
+    <article class="card" data-source="NY Times" data-cat="internasional" data-lang="en">
+      <div class="card-accent" style="background:#000000"></div>
       <div class="card-body">
         <div class="card-top">
-          <span class="card-glyph" style="background:#f7941e33;color:#f7941e;border-color:#f7941e">R</span>
-          <span class="card-source" style="color:#f7941e">Republika</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:06 WIB</span>
+          <span class="card-glyph" style="background:#33333333;color:#000000;border-color:#000000">N</span>
+          <span class="card-source" style="color:#000000">NY Times</span>
+          <span class="card-lang badge-en">en</span>
+          <span class="card-date">2026-06-26 21:45 WIB</span>
         </div>
-        <a href="https://news.republika.co.id/berita/th8prb409/sebut-ada-vested-interest-bgn-purbaya-bentuk-tim-khusus-awasi-program-mbg" target="_blank" rel="noopener" class="card-title">Sebut Ada Vested Interest BGN, Purbaya Bentuk Tim Khusus Awasi Program MBG</a>
-        <p class="card-excerpt">REPUBLIKA.CO.ID, JAKARTA --&amp;nbsp;Menteri Keuangan (Menkeu) Purbaya Yudhi Sadewa membentuk tim khusus untuk mengawasi penggunaan anggaran program Makan Bergizi Gratis (MBG) di seluruh daerah. Pengawasan tersebut akan melibatkan jajaran Direktorat...</p>
+        <a href="https://www.nytimes.com/live/2026/06/26/world/venezuela-earthquake" target="_blank" rel="noopener" class="card-title">Venezuela Live Updates: Death Toll Rises to 589 as Rescuers Search for Quake Survivors</a>
+        <p class="card-excerpt">President Delcy Rodríguez said that two powerful earthquakes on Wednesday had left nearly 3,000 injured. The United States and Mexico were among the latest to send support, as hundreds remained missing or trapped under rubble.</p>
         <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">7136fd89818f</span>
+          <span class="meta-cat">Internasional</span>
+          <span class="meta-id">6bab8bd8364b</span>
         </div>
         <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
           <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/republika_sebut-ada-vested-interest-bgn-purbaya-bentuk-tim-khusus-awasi-program-mbg.md]]</code>
+          <code class="wiki-link">[[news/2026-06-26/ny-times_venezuela-live-updates-death-toll-rises-to-589-as-rescuers-search-for-quake-survivors.md]]</code>
           <span class="wiki-copy">copy</span>
         </div>
         <div class="card-actions">
-          <a href="https://news.republika.co.id/berita/th8prb409/sebut-ada-vested-interest-bgn-purbaya-bentuk-tim-khusus-awasi-program-mbg" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/republika_sebut-ada-vested-interest-bgn-purbaya-bentuk-tim-khusus-awasi-program-mbg.md" class="act act-md">📄 .md</a>
+          <a href="https://www.nytimes.com/live/2026/06/26/world/venezuela-earthquake" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_venezuela-live-updates-death-toll-rises-to-589-as-rescuers-search-for-quake-survivors.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
-    <article class="card" data-source="Republika" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#f7941e"></div>
+    <article class="card" data-source="BBC News" data-cat="internasional" data-lang="en">
+      <div class="card-accent" style="background:#bb1919"></div>
       <div class="card-body">
         <div class="card-top">
-          <span class="card-glyph" style="background:#f7941e33;color:#f7941e;border-color:#f7941e">R</span>
-          <span class="card-source" style="color:#f7941e">Republika</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:06 WIB</span>
+          <span class="card-glyph" style="background:#bb191933;color:#bb1919;border-color:#bb1919">B</span>
+          <span class="card-source" style="color:#bb1919">BBC News</span>
+          <span class="card-lang badge-en">en</span>
+          <span class="card-date">2026-06-26 13:42 WIB</span>
         </div>
-        <a href="https://news.republika.co.id/berita/th8pq8393/bertemu-shin-taeyong-pramono-minta-kado-khusus-lima-abad-jakarta" target="_blank" rel="noopener" class="card-title">Bertemu Shin Tae-yong, Pramono Minta Kado Khusus Lima Abad Jakarta</a>
-        <p class="card-excerpt">REPUBLIKA.CO.ID,&amp;nbsp;JAKARTA -- Gubernur DKI Jakarta Pramono Anung bertemu dengan pelatih kepala Persija Jakarta Shin Tae-yong (STY) dalam kegiatan Jakarta Water Hero yang digelar di Balai Kota DKI Jakarta, Jumat...</p>
+        <a href="https://www.bbc.co.uk/news/articles/czxqwg4nrvlo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener" class="card-title">Ex-Trump adviser John Bolton pleads guilty to mishandling classified documents</a>
+        <p class="card-excerpt">Trump&#39;s former national security adviser faces a prison sentence of up to five years and has agreed to pay $2.25m in fine, prosecutors say.</p>
         <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">ea0b54c0027b</span>
+          <span class="meta-cat">Internasional</span>
+          <span class="meta-id">4c7ced0f8267</span>
         </div>
         <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
           <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/republika_bertemu-shin-tae-yong-pramono-minta-kado-khusus-lima-abad-jakarta.md]]</code>
+          <code class="wiki-link">[[news/2026-06-26/bbc-news_ex-trump-adviser-john-bolton-pleads-guilty-to-mishandling-classified-documents.md]]</code>
           <span class="wiki-copy">copy</span>
         </div>
         <div class="card-actions">
-          <a href="https://news.republika.co.id/berita/th8pq8393/bertemu-shin-taeyong-pramono-minta-kado-khusus-lima-abad-jakarta" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/republika_bertemu-shin-tae-yong-pramono-minta-kado-khusus-lima-abad-jakarta.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="Republika" data-cat="umum" data-lang="id">
-      <div class="card-accent" style="background:#f7941e"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#f7941e33;color:#f7941e;border-color:#f7941e">R</span>
-          <span class="card-source" style="color:#f7941e">Republika</span>
-          <span class="card-lang badge-id">id</span>
-          <span class="card-date">2026-06-26 20:05 WIB</span>
-        </div>
-        <a href="https://rejogja.republika.co.id/berita/th8pod282/pelemahan-rupiah-kerek-ongkos-produksi-bi-jateng-pelaku-usaha-masih-optimis" target="_blank" rel="noopener" class="card-title">Pelemahan Rupiah Kerek Ongkos Produksi, BI Jateng: Pelaku Usaha Masih Optimis</a>
-        <p class="card-excerpt">REPUBLIKA.CO.ID,&amp;nbsp;SEMARANG -- Deputi Kepala Perwakilan Bank Indonesia (BI) Provinsi Jawa Tengah (Jateng), Andi Riena Sari, mengakui pelaku usaha, khususnya di Jateng, mengalami tekanan biaya produksi akibat pelemahan rupiah terhadap...</p>
-        <div class="card-meta">
-          <span class="meta-cat">Umum</span>
-          <span class="meta-id">22c07860bab9</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/republika_pelemahan-rupiah-kerek-ongkos-produksi-bi-jateng-pelaku-usaha-masih-optimis.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://rejogja.republika.co.id/berita/th8pod282/pelemahan-rupiah-kerek-ongkos-produksi-bi-jateng-pelaku-usaha-masih-optimis" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/republika_pelemahan-rupiah-kerek-ongkos-produksi-bi-jateng-pelaku-usaha-masih-optimis.md" class="act act-md">📄 .md</a>
+          <a href="https://www.bbc.co.uk/news/articles/czxqwg4nrvlo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/bbc-news_ex-trump-adviser-john-bolton-pleads-guilty-to-mishandling-classified-documents.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
@@ -2120,22 +2268,22 @@
           <span class="card-glyph" style="background:#33333333;color:#000000;border-color:#000000">N</span>
           <span class="card-source" style="color:#000000">NY Times</span>
           <span class="card-lang badge-en">en</span>
-          <span class="card-date">2026-06-26 21:26 WIB</span>
+          <span class="card-date">2026-06-26 21:28 WIB</span>
         </div>
-        <a href="https://www.nytimes.com/live/2026/06/26/world/venezuela-earthquake" target="_blank" rel="noopener" class="card-title">Venezuela Live Updates: Death Toll Rises to 589 as Rescuers Search for Quake Survivors</a>
-        <p class="card-excerpt">President Delcy Rodríguez said that two powerful earthquakes on Wednesday had left nearly 3,000 injured. The United States and Mexico were among the latest to send support, as hundreds remained missing or trapped under rubble.</p>
+        <a href="https://www.nytimes.com/2026/06/26/world/canada/carney-ottawa-24-sussex-drive.html" target="_blank" rel="noopener" class="card-title">Canada’s 24 Sussex Drive Is a Dump. Mark Carney Is Going to Fix It Up.</a>
+        <p class="card-excerpt">The prime minister’s official residence in Ottawa, in disrepair and vacant for more than a decade, has become the country’s most prominent home renovation project.</p>
         <div class="card-meta">
           <span class="meta-cat">Internasional</span>
-          <span class="meta-id">6bab8bd8364b</span>
+          <span class="meta-id">66ae6613fa9f</span>
         </div>
         <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
           <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/ny-times_venezuela-live-updates-death-toll-rises-to-589-as-rescuers-search-for-quake-survivors.md]]</code>
+          <code class="wiki-link">[[news/2026-06-26/ny-times_canadas-24-sussex-drive-is-a-dump-mark-carney-is-going-to-fix-it-up.md]]</code>
           <span class="wiki-copy">copy</span>
         </div>
         <div class="card-actions">
-          <a href="https://www.nytimes.com/live/2026/06/26/world/venezuela-earthquake" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_venezuela-live-updates-death-toll-rises-to-589-as-rescuers-search-for-quake-survivors.md" class="act act-md">📄 .md</a>
+          <a href="https://www.nytimes.com/2026/06/26/world/canada/carney-ottawa-24-sussex-drive.html" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_canadas-24-sussex-drive-is-a-dump-mark-carney-is-going-to-fix-it-up.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
@@ -2162,6 +2310,32 @@
         <div class="card-actions">
           <a href="https://www.nytimes.com/live/2026/06/26/world/venezuela-earthquake/survivors-la-guaira-hospital" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
           <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_survivors-in-quake-hit-la-guaira-tell-of-loss-and-rescue.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="NY Times" data-cat="internasional" data-lang="en">
+      <div class="card-accent" style="background:#000000"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#33333333;color:#000000;border-color:#000000">N</span>
+          <span class="card-source" style="color:#000000">NY Times</span>
+          <span class="card-lang badge-en">en</span>
+          <span class="card-date">2026-06-26 21:14 WIB</span>
+        </div>
+        <a href="https://www.nytimes.com/2026/06/26/world/europe/crimea-ukraine-state-emergency.html" target="_blank" rel="noopener" class="card-title">Ukrainian Attacks Spur State of Emergency Declaration in Crimea</a>
+        <p class="card-excerpt">Weeks of intense strikes by Ukraine have rattled everyday life in Crimea to an extent unseen since Russia illegally annexed the peninsula in 2014.</p>
+        <div class="card-meta">
+          <span class="meta-cat">Internasional</span>
+          <span class="meta-id">7e847bed415d</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/ny-times_ukrainian-attacks-spur-state-of-emergency-declaration-in-crimea.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.nytimes.com/2026/06/26/world/europe/crimea-ukraine-state-emergency.html" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_ukrainian-attacks-spur-state-of-emergency-declaration-in-crimea.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
@@ -2200,20 +2374,46 @@
           <span class="card-lang badge-en">en</span>
           <span class="card-date">2026-06-26 20:55 WIB</span>
         </div>
-        <a href="https://www.nytimes.com/2026/06/26/world/middleeast/strait-of-hormuz-iran-attack.html" target="_blank" rel="noopener" class="card-title">After Attacking Cargo Ship, Iran Presses Its Claim to Authority Over Strait</a>
+        <a href="https://www.nytimes.com/2026/06/26/world/middleeast/strait-of-hormuz-iran-attack.html" target="_blank" rel="noopener" class="card-title">Iran Asserts Authority Over Strait of Hormuz After Attacking Cargo Ship</a>
         <p class="card-excerpt">Iran issued a statement asserting its right to control traffic in the Strait of Hormuz, a day after firing on a container ship that took a route near Oman’s shore.</p>
         <div class="card-meta">
           <span class="meta-cat">Internasional</span>
-          <span class="meta-id">a4c112014d87</span>
+          <span class="meta-id">55cb3ef902bb</span>
         </div>
         <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
           <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/ny-times_after-attacking-cargo-ship-iran-presses-its-claim-to-authority-over-strait.md]]</code>
+          <code class="wiki-link">[[news/2026-06-26/ny-times_iran-asserts-authority-over-strait-of-hormuz-after-attacking-cargo-ship.md]]</code>
           <span class="wiki-copy">copy</span>
         </div>
         <div class="card-actions">
           <a href="https://www.nytimes.com/2026/06/26/world/middleeast/strait-of-hormuz-iran-attack.html" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_after-attacking-cargo-ship-iran-presses-its-claim-to-authority-over-strait.md" class="act act-md">📄 .md</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_iran-asserts-authority-over-strait-of-hormuz-after-attacking-cargo-ship.md" class="act act-md">📄 .md</a>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-source="NY Times" data-cat="internasional" data-lang="en">
+      <div class="card-accent" style="background:#000000"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:#33333333;color:#000000;border-color:#000000">N</span>
+          <span class="card-source" style="color:#000000">NY Times</span>
+          <span class="card-lang badge-en">en</span>
+          <span class="card-date">2026-06-26 20:28 WIB</span>
+        </div>
+        <a href="https://www.nytimes.com/2026/06/26/world/europe/germany-christmas-market-doctor.html" target="_blank" rel="noopener" class="card-title">Psychiatrist Who Killed Six at German Christmas Market Is Jailed for Life</a>
+        <p class="card-excerpt">The man drove into a crowd of shoppers in December 2024, wounding hundreds of people.</p>
+        <div class="card-meta">
+          <span class="meta-cat">Internasional</span>
+          <span class="meta-id">f77fb6331cff</span>
+        </div>
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">[[news/2026-06-26/ny-times_psychiatrist-who-killed-six-at-german-christmas-market-is-jailed-for-life.md]]</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://www.nytimes.com/2026/06/26/world/europe/germany-christmas-market-doctor.html" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_psychiatrist-who-killed-six-at-german-christmas-market-is-jailed-for-life.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
@@ -2562,32 +2762,6 @@
           <span class="card-glyph" style="background:#33333333;color:#000000;border-color:#000000">N</span>
           <span class="card-source" style="color:#000000">NY Times</span>
           <span class="card-lang badge-en">en</span>
-          <span class="card-date">2026-06-26 16:12 WIB</span>
-        </div>
-        <a href="https://www.nytimes.com/2026/06/25/world/middleeast/iraq-militias-state-control.html" target="_blank" rel="noopener" class="card-title">Iraq’s New Leader Faces Resistance Trying to Bring Militias Under State Control</a>
-        <p class="card-excerpt">The Trump administration has demanded that Iraqi leaders distance themselves from Iran and rein in Iran-linked militias that are outside of government control.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Internasional</span>
-          <span class="meta-id">a1732e1d3afc</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/ny-times_iraqs-new-leader-faces-resistance-trying-to-bring-militias-under-state-control.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.nytimes.com/2026/06/25/world/middleeast/iraq-militias-state-control.html" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_iraqs-new-leader-faces-resistance-trying-to-bring-militias-under-state-control.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="NY Times" data-cat="internasional" data-lang="en">
-      <div class="card-accent" style="background:#000000"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#33333333;color:#000000;border-color:#000000">N</span>
-          <span class="card-source" style="color:#000000">NY Times</span>
-          <span class="card-lang badge-en">en</span>
           <span class="card-date">2026-06-26 16:01 WIB</span>
         </div>
         <a href="https://www.nytimes.com/2026/06/26/world/middleeast/gulf-changed-forever-iran-war.html" target="_blank" rel="noopener" class="card-title">How Three Months of War Changed the Gulf Forever</a>
@@ -2926,58 +3100,6 @@
           <span class="card-glyph" style="background:#bb191933;color:#bb1919;border-color:#bb1919">B</span>
           <span class="card-source" style="color:#bb1919">BBC News</span>
           <span class="card-lang badge-en">en</span>
-          <span class="card-date">2026-06-25 22:50 WIB</span>
-        </div>
-        <a href="https://www.bbc.co.uk/news/articles/cj4gyz21wyko?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener" class="card-title">Missing Glastonbury? There&#39;s a festival on your doorstep this weekend</a>
-        <p class="card-excerpt">Stars like Fatboy Slim and Becky Hill will play small local venues to celebrate the UK music scene.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Internasional</span>
-          <span class="meta-id">6d6089579cf7</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/bbc-news_missing-glastonbury-theres-a-festival-on-your-doorstep-this-weekend.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.bbc.co.uk/news/articles/cj4gyz21wyko?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/bbc-news_missing-glastonbury-theres-a-festival-on-your-doorstep-this-weekend.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="NY Times" data-cat="internasional" data-lang="en">
-      <div class="card-accent" style="background:#000000"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#33333333;color:#000000;border-color:#000000">N</span>
-          <span class="card-source" style="color:#000000">NY Times</span>
-          <span class="card-lang badge-en">en</span>
-          <span class="card-date">2026-06-26 05:25 WIB</span>
-        </div>
-        <a href="https://www.nytimes.com/2026/06/25/world/middleeast/iran-strait-of-hormuz-threat-rubio-bahrain.html" target="_blank" rel="noopener" class="card-title">Iran Strikes Ship in Strait of Hormuz, Undermining Efforts to Restore Traffic</a>
-        <p class="card-excerpt">The attack, confirmed by U.S. and Iranian officials, came after Tehran threatened to disrupt shipping in the waterway and as Washington sought regional support for its peace agreement.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Internasional</span>
-          <span class="meta-id">e8307956132c</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/ny-times_iran-strikes-ship-in-strait-of-hormuz-undermining-efforts-to-restore-traffic.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.nytimes.com/2026/06/25/world/middleeast/iran-strait-of-hormuz-threat-rubio-bahrain.html" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_iran-strikes-ship-in-strait-of-hormuz-undermining-efforts-to-restore-traffic.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="BBC News" data-cat="internasional" data-lang="en">
-      <div class="card-accent" style="background:#bb1919"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#bb191933;color:#bb1919;border-color:#bb1919">B</span>
-          <span class="card-source" style="color:#bb1919">BBC News</span>
-          <span class="card-lang badge-en">en</span>
           <span class="card-date">2026-06-25 20:09 WIB</span>
         </div>
         <a href="https://www.bbc.co.uk/news/articles/clyxg76527po?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener" class="card-title">Watch: Driver gives lift to armed officer chasing suspect</a>
@@ -2994,58 +3116,6 @@
         <div class="card-actions">
           <a href="https://www.bbc.co.uk/news/articles/clyxg76527po?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
           <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/bbc-news_watch-driver-gives-lift-to-armed-officer-chasing-suspect.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="NY Times" data-cat="internasional" data-lang="en">
-      <div class="card-accent" style="background:#000000"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#33333333;color:#000000;border-color:#000000">N</span>
-          <span class="card-source" style="color:#000000">NY Times</span>
-          <span class="card-lang badge-en">en</span>
-          <span class="card-date">2026-06-25 23:33 WIB</span>
-        </div>
-        <a href="https://www.nytimes.com/2026/06/25/world/europe/heat-wave.html" target="_blank" rel="noopener" class="card-title">Deadly Heat Wave in Europe Continues to Smash Temperature Records</a>
-        <p class="card-excerpt">The continent’s second heat wave since May continued to disrupt daily life for millions. Officials in Spain said it might have contributed to a spike in deaths.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Internasional</span>
-          <span class="meta-id">e11eb75c56f7</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/ny-times_deadly-heat-wave-in-europe-continues-to-smash-temperature-records.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.nytimes.com/2026/06/25/world/europe/heat-wave.html" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_deadly-heat-wave-in-europe-continues-to-smash-temperature-records.md" class="act act-md">📄 .md</a>
-        </div>
-      </div>
-    </article>
-    <article class="card" data-source="NY Times" data-cat="internasional" data-lang="en">
-      <div class="card-accent" style="background:#000000"></div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-glyph" style="background:#33333333;color:#000000;border-color:#000000">N</span>
-          <span class="card-source" style="color:#000000">NY Times</span>
-          <span class="card-lang badge-en">en</span>
-          <span class="card-date">2026-06-25 20:09 WIB</span>
-        </div>
-        <a href="https://www.nytimes.com/2026/06/25/world/africa/south-sudan-usaid-education.html" target="_blank" rel="noopener" class="card-title">Can a Youth Boom Survive South Sudan’s Education Crisis?</a>
-        <p class="card-excerpt">South Sudan is the world’s newest nation and its education system is on the verge of collapse, putting an entire generation at risk.</p>
-        <div class="card-meta">
-          <span class="meta-cat">Internasional</span>
-          <span class="meta-id">dc081a1beaf8</span>
-        </div>
-        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
-          <span class="wiki-label">wikilink</span>
-          <code class="wiki-link">[[news/2026-06-26/ny-times_can-a-youth-boom-survive-south-sudans-education-crisis.md]]</code>
-          <span class="wiki-copy">copy</span>
-        </div>
-        <div class="card-actions">
-          <a href="https://www.nytimes.com/2026/06/25/world/africa/south-sudan-usaid-education.html" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file:///home/ubuntu/repos/Datagateway/news/2026-06-26/ny-times_can-a-youth-boom-survive-south-sudans-education-crisis.md" class="act act-md">📄 .md</a>
         </div>
       </div>
     </article>
@@ -3258,7 +3328,138 @@
       </div>
     </article></div>
   <div class="no-r" id="noR">No articles match your filters.</div>
+</div>
+  
+<div class="tab-pane" id="tab-football">
+  
+    <div class="hero-card">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="hero-meta-top">
+          <span class="hero-badge hero-scheduled">Up Next</span>
+          <span class="hero-season">Group Stage</span>
+          <span class="hero-date">Sat, 27 Jun 02:00 WIB</span>
+        </div>
+        <div class="hero-match">
+          <div class="hero-team hero-away">
+            <span class="ht-abbr">FRA</span>
+            <span class="ht-name">France</span>
+          </div>
+          <div class="hero-score"><span class="hs-away">FRA</span><span class="hs-colon">vs</span><span class="hs-home">NOR</span></div>
+          <div class="hero-team hero-home">
+            <span class="ht-abbr">NOR</span>
+            <span class="ht-name">Norway</span>
+          </div>
+        </div>
+        <div class="hero-venue">
+          <span class="venue-icon">📍</span>
+          Gillette Stadium — Foxborough, Massachusetts · <strong>FOX</strong>
+        </div>
+        <div class="hero-odds-label">Moneyline Odds</div>
+        
+                <div class="odds-book ob-header">
+                  <span class="ob-name">Sportsbook</span>
+                  <span class="ob-cell ob-away-col">Away</span>
+                  <span class="ob-cell ob-draw-col">Draw</span>
+                  <span class="ob-cell ob-home-col">Home</span>
+                </div>
+                <div class="odds-book">
+                  <span class="ob-name">DraftKings</span>
+                  <span class="ob-cell ob-away-cell">-155</span>
+                  <span class="ob-cell ob-draw-cell">+350</span>
+                  <span class="ob-cell ob-home-cell">+380</span>
+                </div>
+                <div class="odds-book">
+                  <span class="ob-name">BetMGM</span>
+                  <span class="ob-cell ob-away-cell">-150</span>
+                  <span class="ob-cell ob-draw-cell">+333</span>
+                  <span class="ob-cell ob-home-cell">+333</span>
+                </div>
+                <div class="odds-book">
+                  <span class="ob-name">FanDuel</span>
+                  <span class="ob-cell ob-away-cell">-170</span>
+                  <span class="ob-cell ob-draw-cell">+360</span>
+                  <span class="ob-cell ob-home-cell">+380</span>
+                </div>
+      </div>
+    </div>
+  <div class="carousel-section">
+    <div class="carousel-header">
+      <h3>All Matches</h3>
+      <span class="carousel-count">6 events</span>
+    </div>
+    <div class="carousel" id="carousel">
+      
+    <div class="cs-card">
+      <span class="cs-badge cs-sched">Scheduled</span>
+      <div class="cs-match"><span class="cs-abbr">FRA</span><span class="cs-vs">vs</span><span class="cs-abbr">NOR</span></div>
+      <div class="cs-meta">
+        <span>Gillette Stadium</span>
+        <span>FOX</span>
+      </div>
+      <div class="cs-date">Sat, 27 Jun 02:00 WIB</div>
+      <div class="cs-odds">France -150</div>
+    </div>
 
+    <div class="cs-card">
+      <span class="cs-badge cs-sched">Scheduled</span>
+      <div class="cs-match"><span class="cs-abbr">IRQ</span><span class="cs-vs">vs</span><span class="cs-abbr">SEN</span></div>
+      <div class="cs-meta">
+        <span>BMO Field</span>
+        <span>FS1</span>
+      </div>
+      <div class="cs-date">Sat, 27 Jun 02:00 WIB</div>
+      <div class="cs-odds">Senegal -425</div>
+    </div>
+
+    <div class="cs-card">
+      <span class="cs-badge cs-sched">Scheduled</span>
+      <div class="cs-match"><span class="cs-abbr">ESP</span><span class="cs-vs">vs</span><span class="cs-abbr">URU</span></div>
+      <div class="cs-meta">
+        <span>Estadio Akron</span>
+        <span>FOX</span>
+      </div>
+      <div class="cs-date">Sat, 27 Jun 07:00 WIB</div>
+      <div class="cs-odds">Spain -145</div>
+    </div>
+
+    <div class="cs-card">
+      <span class="cs-badge cs-sched">Scheduled</span>
+      <div class="cs-match"><span class="cs-abbr">KSA</span><span class="cs-vs">vs</span><span class="cs-abbr">CPV</span></div>
+      <div class="cs-meta">
+        <span>NRG Stadium</span>
+        <span>FS1</span>
+      </div>
+      <div class="cs-date">Sat, 27 Jun 07:00 WIB</div>
+      <div class="cs-odds">Cape Verde +160</div>
+    </div>
+
+    <div class="cs-card">
+      <span class="cs-badge cs-ft">FT</span>
+      <div class="cs-match"><span class="cs-abbr">AUS 0</span><span class="cs-vs">:</span><span class="cs-abbr">0 PAR</span></div>
+      <div class="cs-meta">
+        <span>Levi&#39;s Stadium</span>
+        <span>FS1</span>
+      </div>
+      <div class="cs-date">Fri, 26 Jun 09:00 WIB</div>
+      <div class="cs-odds">Draw +140</div>
+    </div>
+
+    <div class="cs-card">
+      <span class="cs-badge cs-ft">FT</span>
+      <div class="cs-match"><span class="cs-abbr">USA 2</span><span class="cs-vs">:</span><span class="cs-abbr">3 TUR</span></div>
+      <div class="cs-meta">
+        <span>SoFi Stadium</span>
+        <span>FOX</span>
+      </div>
+      <div class="cs-date">Fri, 26 Jun 09:00 WIB</div>
+      <div class="cs-odds">United States +105</div>
+    </div>
+    </div>
+  </div>
+</div>
+
+  <!-- FOOTER -->
   <footer>
     Datagateway — OSINT Aggregator · Daily fetch 07:00 &amp; 18:00 WIB ·
     <a href="https://github.com/jtoemion/Datagateway" target="_blank">github.com/jtoemion/Datagateway</a>
@@ -3266,6 +3467,13 @@
 </div>
 
 <script>
+// ─── Tab switching ───
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
+}
+
+// ─── World News filters ───
 const state = { source:'all', cat:'all', search:'' };
 
 function toggleFilter(btn, group) {
@@ -3292,18 +3500,21 @@ function renderGroup(group) {
 function applyFilters() {
   const q = (document.getElementById('srch').value || '').toLowerCase();
   state.search = q;
-  const cards = document.querySelectorAll('.card');
+  const tab = document.getElementById('tab-news');
+  if (!tab) return;
+  const cards = tab.querySelectorAll('.card');
   let visible = 0;
   cards.forEach(c => {
     const s = c.dataset.source; const ct = c.dataset.cat;
     const ok = (state.source==='all'||s===state.source) && (state.cat==='all'||ct===state.cat);
     const txt = (c.querySelector('.card-title')?.textContent||'').toLowerCase()
               + ' ' + (c.querySelector('.card-excerpt')?.textContent||'').toLowerCase()
-              + ' ' + (c.querySelector('.card-source')?.textContent||'').toLowerCase();
+              + ' ' + s.toLowerCase();
     const match = !q || txt.includes(q);
     if (ok && match) { c.style.display=''; visible++; } else { c.style.display='none'; }
   });
-  document.getElementById('noR').classList.toggle('show', visible===0);
+  const nr = document.getElementById('noR');
+  if (nr) nr.classList.toggle('show', visible===0);
 }
 
 function copyWiki(el) {
