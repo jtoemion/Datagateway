@@ -550,7 +550,7 @@ def build_html(articles: list[dict]) -> str:
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Datagateway — OSINT Dashboard</title>
 <style>
   *,*::before,*::after {{ box-sizing:border-box; margin:0; padding:0; }}
@@ -720,7 +720,77 @@ def build_html(articles: list[dict]) -> str:
   footer {{ border-top:1px solid var(--border); padding:20px 0; margin-top:12px; text-align:center; font-size:12px; color:var(--text-muted); }}
   footer a {{ color:var(--accent); text-decoration:none; }}
 
-  @media (max-width:800px) {{ .stats {{ grid-template-columns:repeat(2,1fr); }} .grid {{ grid-template-columns:1fr; }} .hero-match {{ flex-direction:column; gap:16px; }} .hero-team {{ min-width:auto; }} .head-row {{ flex-direction:column; align-items:flex-start; }} .head-info {{ text-align:left; }} .tabs {{ overflow-x:auto; }} .tab {{ padding:10px 14px; white-space:nowrap; }} .hero-content {{ padding:20px 16px; }} .odds-book {{ grid-template-columns:1fr 50px 50px 50px; font-size:12px; }} }}
+  /* ─── RESPONSIVE: TABLET ─── */
+  @media (max-width:1024px) {{
+    .container {{ padding: 0 16px; }}
+    .grid {{ grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }}
+    .hero-match {{ gap: 24px; }}
+    .hero-team {{ min-width: 100px; }}
+    .odds-book {{ font-size: 12px; }}
+  }}
+
+  /* ─── RESPONSIVE: MOBILE LARGE ─── */
+  @media (max-width:640px) {{
+    header {{ padding: 16px 0; }}
+    header h1 {{ font-size: 18px; }}
+    .head-logo .icon {{ font-size: 32px; }}
+    .stats {{ grid-template-columns: repeat(2, 1fr); }}
+    .stats .num {{ font-size: 24px; }}
+    .grid {{ grid-template-columns: 1fr; }}
+    .grid .card {{ min-width: 100%; }}
+    .tab {{ padding: 8px 10px; font-size: 11px; }}
+    .tab-badge {{ padding: 1px 5px; font-size: 9px; }}
+    .hero-card {{ flex-direction: column; }}
+    .hero-teams {{ flex-direction: column; gap: 8px; }}
+    .hero-abbr {{ font-size: 32px; }}
+    .hero-score {{ flex-direction: column; gap: 8px; }}
+    .hero-venue {{ font-size: 11px; flex-wrap: wrap; }}
+    .odds-book {{ grid-template-columns: 1fr 40px 40px 40px; font-size: 11px; }}
+    .flt {{ padding: 4px 8px; font-size: 10px; }}
+    .flt-group {{ gap: 4px; }}
+    .toolbar .srch {{ font-size: 12px; }}
+    .carousel {{ -webkit-overflow-scrolling: touch; }}
+    .cs-card {{ flex: 0 0 180px; }}
+    .card-title {{ font-size: 14px; }}
+    .card-excerpt {{ font-size: 12px; }}
+    .fb-news-section {{ margin-top: 16px; padding-top: 16px; }}
+    .head-info {{ font-size: 11px; }}
+  }}
+
+  /* ─── RESPONSIVE: MOBILE SMALL ─── */
+  @media (max-width:420px) {{
+    .container {{ padding: 0 10px; }}
+    header {{ padding: 12px 0; }}
+    header h1 {{ font-size: 16px; }}
+    .head-logo {{ gap: 8px; }}
+    .stats {{ gap: 6px; }}
+    .stats .stat-card {{ padding: 10px; }}
+    .grid {{ gap: 10px; }}
+    .card-body {{ padding: 10px 12px; }}
+    .hero-content {{ padding: 16px 12px; }}
+    .hero-meta-top {{ flex-wrap: wrap; gap: 6px; }}
+    .hero-badge {{ font-size: 9px; }}
+    .hero-abbr {{ font-size: 28px; }}
+    .ht-name {{ font-size: 12px; }}
+    .carousel {{ gap: 8px; }}
+    .cs-card {{ flex: 0 0 160px; padding: 10px; }}
+    .flt-group .flt-glabel {{ display: none; }}
+    .card-footer-actions {{ padding: 0 12px 10px; }}
+    .act {{ padding: 4px 8px; font-size: 10px; }}
+    .wiki-link {{ font-size: 10px; }}
+    .meta-id {{ display: none; }}
+  }}
+
+  /* ─── TOUCH-FRIENDLY HOVER EFFECTS ─── */
+  @media (hover: hover) {{
+    .card:hover {{ border-color: var(--accent); transform: translateY(-2px); }}
+    .cs-card:hover {{ border-color: var(--accent); }}
+    .tab:hover {{ color: var(--accent); }}
+    .act:hover {{ background: var(--accent); color: #0b0f15; }}
+  }}
+
+  /* ─── TOUCH TARGET MINIMUM ─── */
+  .tab, .flt, .act, .cs-card, .card {{ min-height: 44px; }}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
