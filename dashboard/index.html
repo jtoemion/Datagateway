@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datagateway — OSINT News Dashboard</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface-2: #21262d;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-yellow: #d29922;
+    --radius: 8px;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0 16px;
+    margin-bottom: 24px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  header h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+  }
+
+  .stat-card .num {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .stat-card .label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* FILTERS */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .filter-btn {
+    background: var(--surface-2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .filter-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .filter-btn.clear-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px dashed var(--border);
+  }
+
+  .filter-btn.clear-btn:hover {
+    border-color: var(--accent-yellow);
+    color: var(--accent-yellow);
+    background: transparent;
+  }
+
+  /* SEARCH */
+  .search-bar {
+    margin-bottom: 24px;
+  }
+
+  .search-bar input {
+    width: 100%;
+    padding: 10px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s;
+  }
+
+  .search-bar input:focus {
+    border-color: var(--accent);
+  }
+
+  .search-bar input::placeholder {
+    color: var(--text-muted);
+  }
+
+  /* ARTICLE GRID */
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+
+  .article-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 166, 255, 0.15);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .badge-id { background: #1f6feb33; color: #58a6ff; }
+  .badge-en { background: #3fb95033; color: #3fb950; }
+  .badge-cat { background: #d2992233; color: #d29922; font-size: 10px; }
+
+  .card-date {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-excerpt {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .card-footer {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  .card-read {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* NO RESULTS */
+  .no-results {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-muted);
+    grid-column: 1 / -1;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+    margin-top: 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .article-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    header h1 { font-size: 22px; }
+  }
+
+  @media (max-width: 480px) {
+    .filters { flex-direction: column; }
+    .stats { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>◈ <span>Datagateway</span></h1>
+    <div class="subtitle">
+      <span>OSINT News Dashboard</span>
+      <span>Last update: 2026-06-26 19:37 WIB · 120 articles from 8 sources</span>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="num">106</div>
+      <div class="label">Today</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">120</div>
+      <div class="label">Total Articles</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">8</div>
+      <div class="label">Sources</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">2026-06-26</div>
+      <div class="label">Latest</div>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Cari berita..." oninput="filterArticles()">
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="filter-btn clear-btn active" data-filter="all" onclick="setFilter('all')">All (120)</button>
+    <button class="filter-btn" data-filter="source:Antara">Antara (15)</button>
+            <button class="filter-btn" data-filter="source:BBC Indonesia">BBC Indonesia (15)</button>
+            <button class="filter-btn" data-filter="source:BBC News">BBC News (15)</button>
+            <button class="filter-btn" data-filter="source:CNBC Indonesia">CNBC Indonesia (15)</button>
+            <button class="filter-btn" data-filter="source:CNN Indonesia">CNN Indonesia (15)</button>
+            <button class="filter-btn" data-filter="source:Detik">Detik (15)</button>
+            <button class="filter-btn" data-filter="source:NY Times">NY Times (15)</button>
+            <button class="filter-btn" data-filter="source:Republika">Republika (15)</button>
+            
+  </div>
+
+  <div class="filters" id="catFilters">
+    <button class="filter-btn clear-btn active" data-filter="cat:all" onclick="setCategory('all')">All Categories</button>
+    <button class="filter-btn" data-filter="category:bisnis">Bisnis (15)</button>
+            <button class="filter-btn" data-filter="category:internasional">Internasional (45)</button>
+            <button class="filter-btn" data-filter="category:umum">Umum (60)</button>
+            
+  </div>
+
+  <div class="article-grid" id="articleGrid">
+    
+        <a href="https://retizen.republika.co.id/posts/766792/warisan-kolonial-bagaimana-kesultanan-di-nusantara-kehilangan-kedaulatannya" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:24 WIB</span>
+            </div>
+            <h3 class="card-title">Warisan Kolonial: Bagaimana Kesultanan di Nusantara Kehilangan Kedaulatannya</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:24 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://republika.co.id/page/shorts/yt-th8mo21580939390/nikmatnya-berbuka-puasa-di-masjid-nabawi-ada-takjil-gratis" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:00 WIB</span>
+            </div>
+            <h3 class="card-title">Nikmatnya Berbuka Puasa di Masjid Nabawi Ada Takjil Gratis</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:00 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://retizen.republika.co.id/posts/766816/muharram-dan-arah-perubahan-kehidupan" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:35 WIB</span>
+            </div>
+            <h3 class="card-title">Muharram dan Arah Perubahan Kehidupan</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:35 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://ekonomi.republika.co.id/berita/th8nwx423/menhub-tarif-batas-atas-tiket-pesawat-baru-siap-diberlakukan-saat-harga-avtur-stabil" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:26 WIB</span>
+            </div>
+            <h3 class="card-title">Menhub: Tarif Batas Atas Tiket Pesawat Baru Siap Diberlakukan saat Harga Avtur Stabil</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:26 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://ekonomi.republika.co.id/berita/th8nad423/lima-rekomendasi-sci-agar-rantai-pasok-tetap-tangguh-hadapi-disrupsi-global" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:13 WIB</span>
+            </div>
+            <h3 class="card-title">Lima Rekomendasi SCI agar Rantai Pasok Tetap Tangguh Hadapi Disrupsi Global</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:13 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://republika.co.id/page/shorts/yt-th8mo41963226976/liga-akamsi-rawat-mimpi-anakanak-dari-sudut-sempit-jakarta" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:00 WIB</span>
+            </div>
+            <h3 class="card-title">Liga Akamsi Rawat Mimpi Anakanak dari Sudut Sempit Jakarta</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:00 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://retizen.republika.co.id/posts/766849/ketika-hasrat-eropa-mengubah-takdir-nusantara" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:28 WIB</span>
+            </div>
+            <h3 class="card-title">Ketika Hasrat Eropa Mengubah Takdir Nusantara</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:28 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://retizen.republika.co.id/posts/766864/ketika-hallyu-menjadi-gaya-hidup-membaca-fenomena-korea-dari-perspektif-sosiologi" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:25 WIB</span>
+            </div>
+            <h3 class="card-title">Ketika Hallyu Menjadi Gaya Hidup: Membaca Fenomena Korea dari Perspektif Sosiologi</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:25 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.republika.co.id/berita/th8nuh484/ikut-latsarmir-4-calon-manajer-kopdes-merah-putih-meninggal" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:25 WIB</span>
+            </div>
+            <h3 class="card-title">Ikut Latsarmir, 4 Calon Manajer Kopdes Merah Putih Meninggal</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:25 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://ekonomi.republika.co.id/berita/th8mpf423/efisiensi-anggaran-mbg-berlanjut-rupiah-ditutup-menguat-ke-rp-17922-per-dolar-as" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:00 WIB</span>
+            </div>
+            <h3 class="card-title">Efisiensi Anggaran MBG Berlanjut, Rupiah Ditutup Menguat ke Rp 17.922 per Dolar AS</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:00 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://retizen.republika.co.id/posts/766796/di-balik-ramainya-coffee-shop-panggung-sosial-generasi-yang-sedang-bertahan" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:23 WIB</span>
+            </div>
+            <h3 class="card-title">Di Balik Ramainya Coffee Shop: Panggung Sosial Generasi yang Sedang Bertahan</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:23 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.republika.co.id/berita/th8o3a409/data-lalu-lintas-selat-hormuz-pada-jumat-usai-kapal-singapura-alami-serangan-proyektil" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:30 WIB</span>
+            </div>
+            <h3 class="card-title">Data Lalu Lintas Selat Hormuz pada Jumat Usai Kapal Singapura Alami Serangan Proyektil</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:30 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://rejabar.republika.co.id/berita/th8ndk472/bocah-pemulung-temukan-cahaya-terang-di-sekolah-rakyat" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:15 WIB</span>
+            </div>
+            <h3 class="card-title">Bocah Pemulung Temukan Cahaya Terang di Sekolah Rakyat</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:15 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://retizen.republika.co.id/posts/766854/belajar-bersyukur-dari-hari-asyura" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:27 WIB</span>
+            </div>
+            <h3 class="card-title">Belajar Bersyukur dari Hari Asyura</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:27 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.republika.co.id/berita/th8n8f409/arda-guler-turki-bisa-pulang-dengan-bangga-usai-bungkam-tuan-rumah-as" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Republika</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:12 WIB</span>
+            </div>
+            <h3 class="card-title">Arda Guler: Turki Bisa Pulang dengan Bangga Usai Bungkam Tuan Rumah AS</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:12 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/26/world/europe/zelensky-belarus-drones-relay.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 15:38 WIB</span>
+            </div>
+            <h3 class="card-title">Zelensky Steps Up Threats Against Belarus for Aiding Drone Attacks</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 15:38 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/26/world/asia/world-cup-myanmar-junta.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 11:00 WIB</span>
+            </div>
+            <h3 class="card-title">World Cups Fans in Myanmar Boycott Junta-Linked Broadcasts</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 11:00 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/live/2026/06/26/world/venezuela-earthquake" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 19:28 WIB</span>
+            </div>
+            <h3 class="card-title">Venezuela Live Updates: More Rescuers Join Urgent Search for Quake Survivors</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:28 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/25/world/middleeast/iraq-militias-state-control.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 16:12 WIB</span>
+            </div>
+            <h3 class="card-title">Iraq’s New Leader Faces Resistance Trying to Bring Militias Under State Control</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 16:12 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/26/world/middleeast/world-cup-iran-mexico.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 16:01 WIB</span>
+            </div>
+            <h3 class="card-title">Iran’s Long World Cup Journey Defined by War and Political Tension</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 16:01 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/25/world/middleeast/iran-strait-of-hormuz-threat-rubio-bahrain.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 05:25 WIB</span>
+            </div>
+            <h3 class="card-title">Iran Strikes Ship in Strait of Hormuz, Undermining Efforts to Restore Traffic</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 05:25 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/26/world/middleeast/gulf-changed-forever-iran-war.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 16:01 WIB</span>
+            </div>
+            <h3 class="card-title">How Three Months of War Changed the Gulf Forever</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 16:01 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/26/world/europe/france-heat-alcohol-paris-ban.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 19:27 WIB</span>
+            </div>
+            <h3 class="card-title">Heat Wave Prompts Paris to Suspend Sports Events and Public Drinking</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:27 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/26/weather/europe-heat-wave-temperatures.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 18:49 WIB</span>
+            </div>
+            <h3 class="card-title">Europe’s Scorching Heat Is Gradually Moving East</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:49 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/25/world/europe/heat-wave.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-25 23:33 WIB</span>
+            </div>
+            <h3 class="card-title">Deadly Heat Wave in Europe Continues to Smash Temperature Records</h3>
+            <p class="card-excerpt">Waktu: 2026-06-25 23:33 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/26/world/europe/crimea-ukraine-state-emergency.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 19:24 WIB</span>
+            </div>
+            <h3 class="card-title">Crimea’s Moscow-Installed Leaders Declare State of Emergency After Ukrainian Attacks</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:24 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/25/world/africa/south-sudan-usaid-education.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-25 20:09 WIB</span>
+            </div>
+            <h3 class="card-title">Can a Youth Boom Survive South Sudan’s Education Crisis?</h3>
+            <p class="card-excerpt">Waktu: 2026-06-25 20:09 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/26/world/europe/europe-heat-climate-change-politics.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 19:23 WIB</span>
+            </div>
+            <h3 class="card-title">As Europe Sweats, Some Politicians Talk of Air-Conditioning, Not Climate Action</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:23 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/26/world/middleeast/strait-of-hormuz-iran-attack.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 18:17 WIB</span>
+            </div>
+            <h3 class="card-title">After Attacking Cargo Ship, Iran Presses Its Claim to Authority Over Strait</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:17 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.nytimes.com/2026/06/26/world/europe/jaguar-russia-hack.html" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-en">NY Times</span> <span class="badge badge-cat">internasional</span>
+                <span class="card-date">2026-06-26 14:03 WIB</span>
+            </div>
+            <h3 class="card-title">A $2.5 Billion Whodunit: The Hack That Dented the U.K. Economy</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 14:03 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8549002/waka-mpr-dorong-partisipasi-masyarakat-dalam-pencegahan-kekerasan-seksual" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:02 WIB</span>
+            </div>
+            <h3 class="card-title">Waka MPR Dorong Partisipasi Masyarakat dalam Pencegahan Kekerasan Seksual</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:02 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8548958/polda-metro-ungkap-pabrik-pil-jin-di-semarang-dan-jakarta-4-pelaku-dijerat" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:40 WIB</span>
+            </div>
+            <h3 class="card-title">Polda Metro Ungkap Pabrik Pil Jin di Semarang dan Jakarta, 4 Pelaku Dijerat</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:40 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8548910/polda-metro-soroti-fenomena-vape-narkoba-jadi-tren-di-kalangan-remaja" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:16 WIB</span>
+            </div>
+            <h3 class="card-title">Polda Metro Soroti Fenomena Vape Narkoba Jadi Tren di Kalangan Remaja</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:16 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8548972/niat-terselubung-pelaku-tawuran-di-balik-kasus-2-jasad-di-selokan-bekasi" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:49 WIB</span>
+            </div>
+            <h3 class="card-title">Niat Terselubung Pelaku Tawuran di Balik Kasus 2 Jasad di Selokan Bekasi</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:49 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8548962/mentrans-ungkap-arahan-prabowo-di-balik-transmigrasi-patriot" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:45 WIB</span>
+            </div>
+            <h3 class="card-title">Mentrans Ungkap Arahan Prabowo di Balik 'Transmigrasi Patriot</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:45 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8548908/menteri-lh-sampaikan-salam-hangat-prabowo-ke-raja-charles-iii-di-istana-st-james" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:15 WIB</span>
+            </div>
+            <h3 class="card-title">Menteri LH Sampaikan Salam Hangat Prabowo ke Raja Charles III di Istana St James</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:15 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8548903/kepercayaan-publik-ke-polri-82-4-sahroni-buah-kerja-keras-jenderal-sigit" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:10 WIB</span>
+            </div>
+            <h3 class="card-title">Kepercayaan Publik ke Polri 82,4%, Sahroni: Buah Kerja Keras Jenderal Sigit</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:10 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8548961/dirut-pam-jaya-minta-maaf-soal-kemacetan-imbas-proyek-pipa" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:45 WIB</span>
+            </div>
+            <h3 class="card-title">Dirut PAM Jaya Minta Maaf soal Kemacetan Imbas Proyek Pipa</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:45 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8548906/dirjen-imigrasi-ungkap-tiga-pilar-penguatan-keamanan-perbatasan-indonesia" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:11 WIB</span>
+            </div>
+            <h3 class="card-title">Dirjen Imigrasi Ungkap Tiga Pilar Penguatan Keamanan Perbatasan Indonesia</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:11 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8549004/di-depan-shin-tae-yong-pramono-harap-persija-beri-hadiah-spesial-di-hut-jakarta" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:03 WIB</span>
+            </div>
+            <h3 class="card-title">Di Depan Shin Tae-yong, Pramono Harap Persija Beri Hadiah Spesial di HUT Jakarta</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:03 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8548999/daftar-4-peserta-sppi-kdmp-knmp-meninggal-saat-latihan-militer" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:59 WIB</span>
+            </div>
+            <h3 class="card-title">Daftar 4 Peserta SPPI KDMP-KNMP Meninggal Saat Latihan Militer</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:59 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/foto-news/d-8548911/coretan-vandalisme-dibersihkan-halte-patra-kuningan-2-kembali-rapi" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:30 WIB</span>
+            </div>
+            <h3 class="card-title">Coretan Vandalisme Dibersihkan, Halte Patra Kuningan 2 Kembali Rapi</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:30 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8548934/bareskrim-temukan-15-perusahaan-sponsor-wna-tersangka-judol-hayam-wuruk" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:24 WIB</span>
+            </div>
+            <h3 class="card-title">Bareskrim Temukan 15 Perusahaan Sponsor WNA Tersangka Judol Hayam Wuruk</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:24 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8548997/69-tersangka-diringkus-polisi-ungkap-modus-penyebaran-judi-berkedok-timezone" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:58 WIB</span>
+            </div>
+            <h3 class="card-title">69 Tersangka Diringkus, Polisi Ungkap Modus Penyebaran Judi Berkedok Timezone</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:58 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://news.detik.com/berita/d-8548937/2-perempuan-di-serang-ditangkap-buntut-tipu-paket-haji-kerugian-rp-7-65-m" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">Detik</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:27 WIB</span>
+            </div>
+            <h3 class="card-title">2 Perempuan di Serang Ditangkap Buntut Tipu Paket Haji, Kerugian Rp 7,65 M</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:27 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.cnnindonesia.com/nasional/20260626191007-20-1373780/wagub-rano-sebut-jakarta-fair-penggerak-umkm-target-transaksi-rp8-t" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">CNN Indonesia</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:23 WIB</span>
+            </div>
+            <h3 class="card-title">Wagub Rano Sebut Jakarta Fair Penggerak UMKM, Target Transaksi Rp8 T</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:23 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.cnnindonesia.com/tv/20260626180210-407-1373761/video-ribuan-atlet-unjuk-kemampuan-di-piala-presiden-2026" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">CNN Indonesia</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 19:00 WIB</span>
+            </div>
+            <h3 class="card-title">VIDEO: Ribuan Atlet Unjuk Kemampuan di Piala Presiden 2026</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 19:00 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+        <a href="https://www.cnnindonesia.com/tv/20260626180136-407-1373760/video-persaingan-ketat-warnai-kategori-tanding-dan-jurus" target="_blank" rel="noopener" class="article-card">
+            <div class="card-header">
+                <span class="badge badge-id">CNN Indonesia</span> <span class="badge badge-cat">umum</span>
+                <span class="card-date">2026-06-26 18:45 WIB</span>
+            </div>
+            <h3 class="card-title">VIDEO: Persaingan Ketat Warnai Kategori Tanding dan Jurus</h3>
+            <p class="card-excerpt">Waktu: 2026-06-26 18:45 WIB</p>
+            <div class="card-footer">
+                <span class="card-read">Baca →</span>
+            </div>
+        </a>
+  </div>
+
+  <div class="no-results" id="noResults" style="display:none">
+    Tidak ada berita yang cocok dengan filter yang dipilih.
+  </div>
+
+  <footer>
+    Datagateway — OSINT News Aggregator · Data dari portal berita terbuka · Updates: pagi & sore
+  </footer>
+</div>
+
+<script>
+let activeFilter = 'all';
+let activeCategory = 'cat:all';
+
+function filterArticles() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const grid = document.getElementById('articleGrid');
+  const cards = grid.querySelectorAll('.article-card');
+  let visible = 0;
+
+  cards.forEach(card => {
+    const source = card.querySelector('.badge:first-child')?.textContent?.trim()?.toLowerCase() || '';
+    const catEl = card.querySelector('.badge-cat');
+    const category = catEl?.textContent?.trim()?.toLowerCase() || '';
+    const title = card.querySelector('.card-title')?.textContent?.toLowerCase() || '';
+    const excerpt = card.querySelector('.card-excerpt')?.textContent?.toLowerCase() || '';
+
+    const matchSource = activeFilter === 'all' || source.includes(activeFilter.replace('source:', ''));
+    const matchCat = activeCategory === 'cat:all' || category.includes(activeCategory.replace('category:', ''));
+    const matchSearch = !search || title.includes(search) || excerpt.includes(search);
+
+    if (matchSource && matchCat && matchSearch) {
+      card.style.display = '';
+      visible++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  document.getElementById('noResults').style.display = visible === 0 ? '' : 'none';
+}
+
+function setFilter(filter) {
+  activeFilter = filter;
+  document.querySelectorAll('#filters .filter-btn').forEach(btn => {
+    const val = btn.dataset.filter || 'all';
+    btn.classList.toggle('active', val === filter || (filter === 'all' && val === 'all'));
+  });
+  filterArticles();
+}
+
+function setCategory(cat) {
+  activeCategory = cat;
+  document.querySelectorAll('#catFilters .filter-btn').forEach(btn => {
+    const val = btn.dataset.filter || 'cat:all';
+    btn.classList.toggle('active', val === cat || (cat === 'cat:all' && val === 'cat:all'));
+  });
+  filterArticles();
+}
+</script>
+</body>
+</html>

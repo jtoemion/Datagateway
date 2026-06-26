@@ -1,0 +1,55 @@
+# Datagateway — OSINT Daily News Aggregator
+# Sumber RSS feed portal berita Indonesia & internasional
+
+sources:
+  - name: CNN Indonesia
+    url: https://www.cnnindonesia.com/rss
+    lang: id
+    category: umum
+
+  - name: Detik
+    url: https://news.detik.com/rss
+    lang: id
+    category: umum
+
+  - name: CNBC Indonesia
+    url: https://www.cnbcindonesia.com/rss
+    lang: id
+    category: bisnis
+
+  - name: Antara
+    url: https://www.antaranews.com/rss/terkini
+    lang: id
+    category: umum
+
+  - name: Republika
+    url: https://www.republika.co.id/rss
+    lang: id
+    category: umum
+
+  - name: BBC Indonesia
+    url: https://feeds.bbci.co.uk/indonesia/rss.xml
+    lang: id
+    category: internasional
+
+  - name: BBC News
+    url: https://feeds.bbci.co.uk/news/rss.xml
+    lang: en
+    category: internasional
+
+  - name: NY Times
+    url: https://rss.nytimes.com/services/xml/rss/nyt/World.xml
+    lang: en
+    category: internasional
+
+# Dir relative ke repo root
+news_dir: news
+dashboard_dir: dashboard
+max_articles_per_source: 15
+
+# GNews API (opsional, isi key untuk aktifkan)
+gnews:
+  api_key: ""
+  max_articles: 20
+  lang: id
+  country: id

@@ -1,0 +1,21 @@
+# Datagateway — .gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# News data (auto-generated, but keep in git for tracking)
+# Uncomment below if you don't want news in git:
+# news/
+
+# Dashboard (regenerated on each build)
+# Uncomment if you serve from elsewhere:
+# dashboard/
