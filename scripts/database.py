@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS articles (
     title       TEXT NOT NULL,
     url         TEXT NOT NULL,
     description TEXT DEFAULT '',
+    image_url   TEXT DEFAULT '',
     date        TEXT NOT NULL,
     date_wib    TEXT,
     category    TEXT DEFAULT 'umum',
@@ -91,6 +92,18 @@ CREATE TABLE IF NOT EXISTS football_events (
 );
 
 CREATE INDEX IF NOT EXISTS idx_football_date ON football_events(event_date);
+
+CREATE TABLE IF NOT EXISTS scraped_articles (
+    article_id  TEXT PRIMARY KEY REFERENCES articles(id),
+    url         TEXT NOT NULL,
+    title       TEXT,
+    author      TEXT DEFAULT '',
+    full_html   TEXT,
+    full_text   TEXT,
+    images_json TEXT DEFAULT '[]',
+    scraped_at  TEXT DEFAULT (datetime('now')),
+    fetch_count INTEGER DEFAULT 1
+);
 
 CREATE TABLE IF NOT EXISTS football_odds (
     id            INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -189,14 +202,15 @@ def article_upsert(art: dict) -> bool:
     try:
         db.execute(
             """INSERT OR IGNORE INTO articles
-               (id, source, title, url, description, date, date_wib, category, lang, filepath, wikilink)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+               (id, source, title, url, description, image_url, date, date_wib, category, lang, filepath, wikilink)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
             (
                 art["id"],
                 art["source"],
                 art["title"],
                 art["url"],
                 art.get("description", ""),
+                art.get("image_url", ""),
                 art["date"],
                 art.get("date_wib", ""),
                 art.get("category", "umum"),
@@ -227,7 +241,7 @@ def get_articles(limit: int = 200, offset: int = 0) -> list[dict]:
     db = get_db()
     rows = db.execute(
         """SELECT id, source, title, url, description as excerpt,
-                  date, date_wib, category, lang, filepath, wikilink
+                  image_url, date, date_wib, category, lang, filepath, wikilink
            FROM articles
            ORDER BY date DESC
            LIMIT ? OFFSET ?""",
@@ -312,6 +326,33 @@ def get_latest_date() -> str:
 def close():
     """Cleanup expired cache."""
     cache_clear()
+
+
+def article_scraped_exists(article_id: str) -> bool:
+    db = get_db()
+    row = db.execute("SELECT 1 FROM scraped_articles WHERE article_id = ?", (article_id,)).fetchone()
+    db.close()
+    return row is not None
+
+
+def article_save_scraped(article_id: str, url: str, title: str, author: str, full_html: str, full_text: str, images: list):
+    import json
+    db = get_db()
+    exists = db.execute("SELECT fetch_count FROM scraped_articles WHERE article_id = ?", (article_id,)).fetchone()
+    if exists:
+        db.execute("UPDATE scraped_articles SET fetch_count = fetch_count + 1, scraped_at = datetime('now') WHERE article_id = ?", (article_id,))
+    else:
+        db.execute("""INSERT INTO scraped_articles (article_id, url, title, author, full_html, full_text, images_json) VALUES (?,?,?,?,?,?,?)""",
+            (article_id, url, title, author, full_html, full_text, json.dumps(images)))
+    db.commit()
+    db.close()
+
+
+def get_scraped_article(article_id: str) -> dict | None:
+    db = get_db()
+    row = db.execute("SELECT * FROM scraped_articles WHERE article_id = ?", (article_id,)).fetchone()
+    db.close()
+    return dict(row) if row else None
 
 
 # ─── Football helpers ───

@@ -46,6 +46,31 @@ SOURCE_GLYPH = {
     "BBC News": "B", "NY Times": "N",
 }
 
+# FIFA World Cup team abbreviation → flag country code
+TEAM_FLAGS = {
+    "FRA": "fr", "NOR": "no", "IRQ": "iq", "SEN": "sn",
+    "ESP": "es", "URU": "uy", "KSA": "sa", "CPV": "cv",
+    "AUS": "au", "PAR": "py", "USA": "us", "TUR": "tr",
+    "GER": "de", "ARG": "ar", "BRA": "br", "ENG": "gb-eng",
+    "NED": "nl", "POR": "pt", "BEL": "be", "CRO": "hr",
+    "SUI": "ch", "JPN": "jp", "KOR": "kr", "MEX": "mx",
+    "CAN": "ca", "MAR": "ma", "EGY": "eg", "NGA": "ng",
+    "CMR": "cm", "GHA": "gh", "TUN": "tn", "ALG": "dz",
+    "CIV": "ci", "BFA": "bf", "MLI": "ml", "COD": "cd",
+    "RSA": "za", "SEN": "sn", "CRC": "cr", "URU": "uy",
+    "COL": "co", "CHI": "cl", "ECU": "ec", "PER": "pe",
+    "PAR": "py", "VEN": "ve", "JAM": "jm", "HON": "hn",
+    "NZL": "nz", "IDN": "id",
+}
+
+
+def flag_img(abbr: str) -> str:
+    """SVG flag HTML for team abbreviation."""
+    code = TEAM_FLAGS.get(abbr, "").lower()
+    if code:
+        return f'<img class="flag-icon" src="assets/flags/{code}.svg" alt="{abbr}" loading="lazy">'
+    return ""
+
 
 def esc(text: str) -> str:
     return (
@@ -111,8 +136,13 @@ def build_world_news_html(articles: list[dict]) -> str:
         fp = a.get("filepath", "")
         md_path = f"file://{esc(str(REPO_ROOT / fp))}" if fp else ""
 
+        img_url = a.get("image_url", "")
+        img_html = f'<div class="card-img-wrap"><img class="card-img" src="{esc(img_url)}" alt="" loading="lazy" onerror="this.closest(\'.card-img-wrap\').remove()"></div>' if img_url else ""
+
         cards += f"""
     <article class="card" data-source="{esc(src)}" data-cat="{a.get('category','')}" data-lang="{a.get('lang','')}">
+      <a href="article.html?id={esc(a.get('id',''))}" class="card-link-wrap">
+      {img_html}
       <div class="card-accent" style="background:{fg}"></div>
       <div class="card-body">
         <div class="card-top">
@@ -121,20 +151,23 @@ def build_world_news_html(articles: list[dict]) -> str:
           <span class="card-lang badge-{a.get('lang','id')}">{a.get('lang','id')}</span>
           <span class="card-date">{date_short}</span>
         </div>
-        <a href="{url_esc}" target="_blank" rel="noopener" class="card-title">{title_esc}</a>
+        <div class="card-title">{title_esc}</div>
         <p class="card-excerpt">{excerpt_esc}</p>
         <div class="card-meta">
           <span class="meta-cat">{cat}</span>
           <span class="meta-id">{a.get('id','')}</span>
         </div>
+      </div>
+      </a>
+      <div class="card-footer-actions">
         <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
           <span class="wiki-label">wikilink</span>
           <code class="wiki-link">{wikilink_esc}</code>
           <span class="wiki-copy">copy</span>
         </div>
         <div class="card-actions">
-          <a href="{url_esc}" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          {f'<a href="{md_path}" class="act act-md">📄 .md</a>' if md_path else ''}
+          <a href="article.html?id={esc(a.get('id',''))}" class="act act-md">📖 Read</a>
+          <a href="{url_esc}" target="_blank" rel="noopener" class="act act-ext">Original →</a>
         </div>
       </div>
     </article>"""
@@ -246,11 +279,13 @@ def build_football_html() -> str:
         </div>
         <div class="hero-match">
           <div class="hero-team hero-away">
+            {flag_img(away_abbr)}
             <span class="ht-abbr">{away_abbr}</span>
             <span class="ht-name">{away}</span>
           </div>
           {score_html}
           <div class="hero-team hero-home">
+            {flag_img(home_abbr)}
             <span class="ht-abbr">{home_abbr}</span>
             <span class="ht-name">{home}</span>
           </div>
@@ -278,11 +313,11 @@ def build_football_html() -> str:
 
         if is_sched:
             badge = f'<span class="cs-badge cs-sched">Scheduled</span>'
-            score_line = f'<span class="cs-abbr">{away_abbr}</span><span class="cs-vs">vs</span><span class="cs-abbr">{home_abbr}</span>'
+            score_line = f'<span class="cs-abbr">{flag_img(away_abbr)} {away_abbr}</span><span class="cs-vs">vs</span><span class="cs-abbr">{flag_img(home_abbr)} {home_abbr}</span>'
         else:
             sa, sh = match.get("score_away", 0), match.get("score_home", 0)
             badge = f'<span class="cs-badge cs-ft">FT</span>'
-            score_line = f'<span class="cs-abbr">{away_abbr} {sa}</span><span class="cs-vs">:</span><span class="cs-abbr">{sh} {home_abbr}</span>'
+            score_line = f'<span class="cs-abbr">{flag_img(away_abbr)} {away_abbr} {sa}</span><span class="cs-vs">:</span><span class="cs-abbr">{flag_img(home_abbr)} {sh} {home_abbr}</span>'
 
         # Quick odds — show best price (favorite) moneyline
         odds_rows = get_football_odds(match["event_id"], market_id=1)
@@ -390,8 +425,11 @@ def build_html(articles: list[dict]) -> str:
   .flt .flt-c {{ display:inline-flex; align-items:center; justify-content:center; min-width:18px; height:18px; border-radius:9px; background:var(--surface-2); padding:0 5px; font-size:10px; color:var(--text-muted); }}
   .flt-clear {{ border-style:dashed; color:var(--text-muted); }}
   .grid {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:14px; margin-bottom:28px; }}
-  .card {{ display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; transition:transform .15s,box-shadow .15s; position:relative; }}
+  .card {{ display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; transition:transform .15s,box-shadow .15s; position:relative; cursor:pointer; }}
   .card:hover {{ transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.3); }}
+  .card-link-wrap {{ display:flex; flex-direction:column; flex:1; text-decoration:none; color:inherit; }}
+  .card-img-wrap {{ width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--surface-2); }}
+  .card-img {{ width:100%; height:100%; object-fit:cover; display:block; }}
   .card-accent {{ height:3px; flex-shrink:0; }}
   .card-body {{ padding:14px 16px 12px; display:flex; flex-direction:column; flex:1; }}
   .card-top {{ display:flex; align-items:center; gap:8px; margin-bottom:8px; }}
@@ -413,7 +451,8 @@ def build_html(articles: list[dict]) -> str:
   .wiki-label {{ font-size:9px; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-muted); font-weight:600; }}
   .wiki-link {{ font-size:11px; font-family:monospace; color:var(--accent); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1; }}
   .wiki-copy {{ font-size:9px; text-transform:uppercase; color:var(--text-muted); font-weight:600; flex-shrink:0; }}
-  .card-actions {{ display:flex; gap:6px; margin-top:auto; }}
+  .card-footer-actions {{ padding:0 16px 12px; }}
+  .card-actions {{ display:flex; gap:6px; margin-top:8px; }}
   .act {{ display:inline-flex; align-items:center; gap:4px; padding:6px 12px; border-radius:5px; font-size:12px; font-weight:500; text-decoration:none; transition:all .15s; }}
   .act-ext {{ background:var(--accent); color:#0b0f15; }}
   .act-ext:hover {{ background:#7bb9ff; }}
@@ -441,6 +480,7 @@ def build_html(articles: list[dict]) -> str:
   .hero-away .ht-abbr {{ color:var(--accent); }}
   .hero-home .ht-abbr {{ color:var(--green); }}
   .ht-name {{ font-size:14px; color:var(--text); font-weight:500; }}
+  .hero-team .flag-icon {{ width:32px; height:auto; border-radius:2px; }}
   .hero-score {{ display:flex; align-items:center; gap:12px; }}
   .hs-away,.hs-home {{ font-size:48px; font-weight:800; line-height:1; }}
   .hs-away {{ color:var(--accent); }}
@@ -466,13 +506,14 @@ def build_html(articles: list[dict]) -> str:
   .carousel::-webkit-scrollbar-track {{ background:var(--surface); border-radius:2px; }}
   .carousel::-webkit-scrollbar-thumb {{ background:var(--border); border-radius:2px; }}
 
+  .flag-icon {{ display:inline-block; width:20px; height:15px; vertical-align:middle; border-radius:2px; object-fit:cover; }}
   .cs-card {{ flex:0 0 220px; scroll-snap-align:start; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px; position:relative; transition:border .15s; }}
   .cs-card:hover {{ border-color:var(--accent); }}
   .cs-badge {{ display:inline-block; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:700; margin-bottom:8px; }}
   .cs-sched {{ background:var(--accent); color:#0b0f15; }}
   .cs-ft {{ background:var(--surface-2); color:var(--text-muted); }}
   .cs-match {{ display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; margin-bottom:6px; }}
-  .cs-abbr {{ font-weight:700; }}
+  .cs-abbr {{ font-weight:700; display:inline-flex; align-items:center; gap:4px; }}
   .cs-vs {{ color:var(--text-muted); font-size:12px; }}
   .cs-meta {{ font-size:11px; color:var(--text-muted); display:flex; flex-direction:column; gap:2px; margin-bottom:4px; }}
   .cs-date {{ font-size:11px; color:var(--text-muted); }}

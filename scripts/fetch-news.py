@@ -146,6 +146,26 @@ def fetch_rss(source: dict) -> list[dict]:
         if pd is not None:
             pub_date = pd.text or ""
 
+        # Image from RSS media:thumbnail, media:content, or enclosure
+        image_url = ""
+        media_ns = "http://search.yahoo.com/mrss/"
+        mt = item.find(f"./{{{media_ns}}}thumbnail")
+        if mt is not None:
+            image_url = mt.get("url", "")
+        if not image_url:
+            mc = item.find(f"./{{{media_ns}}}content")
+            if mc is not None and mc.get("medium") in ("image", None):
+                image_url = mc.get("url", "")
+        if not image_url:
+            enc = item.find("enclosure")
+            if enc is not None and enc.get("type", "").startswith("image"):
+                image_url = enc.get("url", "")
+        # Extract from description fallback
+        if not image_url and description:
+            m = re.search(r'<img[^>]+src="([^"]+)"', description)
+            if m:
+                image_url = m.group(1)
+
         # Atom fallback
         if not title:
             t_atom = item.find("atom:title", ns)
@@ -178,6 +198,7 @@ def fetch_rss(source: dict) -> list[dict]:
             "source": name,
             "title": title.strip(),
             "url": link,
+            "image_url": image_url,
             "description": clean_html(description),
             "date": pub_date_iso,
             "date_wib": pub_date_wib,

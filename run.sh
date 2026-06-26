@@ -18,8 +18,20 @@ echo "[3/4] Fetch football..."
 PYTHONPATH=. python3 scripts/fetch-football.py
 
 echo ""
-echo "[4/4] Build dashboard..."
+echo "[4/7] Build dashboard..."
 PYTHONPATH=. python3 scripts/build-dashboard.py
+
+echo ""
+echo "[5/7] Scrape full articles..."
+PYTHONPATH=. python3 scripts/scrape-article.py
+
+echo ""
+echo "[6/7] Build dashboard..."
+PYTHONPATH=. python3 scripts/build-dashboard.py
+
+echo ""
+echo "[7/7] Build article viewer..."
+PYTHONPATH=. python3 scripts/build-article-viewer.py
 
 echo ""
 echo "=== Done ==="
