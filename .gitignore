@@ -12,8 +12,10 @@ venv/
 .DS_Store
 Thumbs.db
 
-# News data (auto-generated, but keep in git for tracking)
-# Uncomment below if you don't want news in git:
+# SQLite database (regenerated on each fetch)
+datagateway.db
+
+# News data (auto-generated from RSS)
 # news/
 
 # Dashboard (regenerated on each build)

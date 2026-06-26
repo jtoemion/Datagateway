@@ -19,4 +19,4 @@ Hampir seperempat pesepak bola di turnamen 2026 tidak bermain untuk negara tempa
 
 ---
 
-*Diambil otomatis oleh Datagateway pada 2026-06-26 19:37 WIB*
+*Diambil otomatis oleh Datagateway pada 2026-06-26 21:31 WIB*

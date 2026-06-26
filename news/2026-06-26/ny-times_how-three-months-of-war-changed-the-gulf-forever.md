@@ -19,4 +19,4 @@ Facing an emerging U.S.-Iran deal that leaves them vulnerable, Gulf Arab countri
 
 ---
 
-*Diambil otomatis oleh Datagateway pada 2026-06-26 19:37 WIB*
+*Diambil otomatis oleh Datagateway pada 2026-06-26 21:31 WIB*

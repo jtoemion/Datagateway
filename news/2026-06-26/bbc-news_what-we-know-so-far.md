@@ -19,4 +19,4 @@ The two quakes have killed at least 235 people and injured more than 4,300, with
 
 ---
 
-*Diambil otomatis oleh Datagateway pada 2026-06-26 19:37 WIB*
+*Diambil otomatis oleh Datagateway pada 2026-06-26 21:31 WIB*

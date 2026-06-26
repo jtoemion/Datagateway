@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Datagateway — OSINT News Fetcher
-Ambil berita dari RSS feeds, simpan sebagai file .md terstruktur.
+Ambil berita dari RSS feeds dengan SQLite cache.
+Cached 30 menit — hemat kuota API.
 """
 
 import hashlib
@@ -13,16 +14,24 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Optional
-from urllib.parse import urlparse
 
 import requests
 
+from scripts.database import (
+    init_db,
+    cache_get,
+    cache_set,
+    article_upsert,
+    article_exists,
+    log_fetch,
+    cache_clear,
+)
+
 WIB = timezone(timedelta(hours=7))
-
 REPO_ROOT = Path(__file__).resolve().parent.parent
-CONFIG_PATH = REPO_ROOT / "config.yaml"
+NEWS_DIR = REPO_ROOT / "news"
 
-# Fallback config inline (biar gak depend PyYAML di awal)
+# Source config — sync with config.yaml
 SOURCES = [
     {"name": "CNN Indonesia", "url": "https://www.cnnindonesia.com/rss", "lang": "id", "category": "umum"},
     {"name": "Detik", "url": "https://news.detik.com/rss", "lang": "id", "category": "umum"},
@@ -35,12 +44,11 @@ SOURCES = [
 ]
 
 MAX_PER_SOURCE = 15
-NEWS_DIR = REPO_ROOT / "news"
-USER_AGENT = "Datagateway/1.0 (OSINT News Aggregator; +https://github.com/jtoemion/Datagateway)"
+CACHE_TTL = 1800  # 30 minutes
+USER_AGENT = "Datagateway/1.0 (OSINT News Aggregator; SQLite cache; +https://github.com/jtoemion/Datagateway)"
 
 
 def slugify(text: str) -> str:
-    """Buat slug dari judul artikel."""
     text = text.lower().strip()
     text = re.sub(r'[^\w\s-]', '', text)
     text = re.sub(r'[-\s]+', '-', text)
@@ -48,7 +56,6 @@ def slugify(text: str) -> str:
 
 
 def parse_rss_date(date_str: str) -> Optional[datetime]:
-    """Parse berbagai format tanggal RSS."""
     if not date_str:
         return None
     formats = [
@@ -66,53 +73,61 @@ def parse_rss_date(date_str: str) -> Optional[datetime]:
     return None
 
 
-def extract_description(entry: dict) -> str:
-    """Extract clean description dari entry."""
-    desc = entry.get("description", "") or entry.get("summary", "") or ""
-    # Bersihin HTML tags
-    desc = re.sub(r'<[^>]+>', '', desc)
+def clean_html(html_text: str) -> str:
+    desc = re.sub(r'<[^>]+>', '', html_text)
     desc = re.sub(r'\s+', ' ', desc).strip()
     return desc[:500]
 
 
 def fetch_rss(source: dict) -> list[dict]:
-    """Fetch dan parse RSS feed."""
+    """Fetch RSS feed with SQLite caching. Returns article dicts."""
     name = source["name"]
     url = source["url"]
-    articles = []
+    cache_key = f"rss:{url}"
 
-    try:
-        resp = requests.get(
-            url,
-            headers={"User-Agent": USER_AGENT},
-            timeout=30,
-        )
-        resp.raise_for_status()
-    except requests.RequestException as e:
-        print(f"  [!] {name}: Gagal fetch — {e}")
-        return articles
+    # Check cache first
+    cached = cache_get(cache_key, ttl_seconds=CACHE_TTL)
+    if cached:
+        raw = cached
+        from_cache = True
+    else:
+        try:
+            resp = requests.get(
+                url,
+                headers={"User-Agent": USER_AGENT},
+                timeout=30,
+            )
+            resp.raise_for_status()
+            raw = resp.text
+            # Store in cache
+            cache_set(cache_key, raw)
+            from_cache = False
+        except requests.RequestException as e:
+            print(f"  [!] {name}: Fetch gagal — {e}")
+            log_fetch(name, 0, "error", str(e))
+            return []
 
+    # Parse XML
     try:
-        root = ET.fromstring(resp.content)
+        root = ET.fromstring(raw.encode("utf-8"))
     except ET.ParseError as e:
-        print(f"  [!] {name}: Gagal parse XML — {e}")
-        return articles
+        print(f"  [!] {name}: Parse gagal — {e}")
+        log_fetch(name, 0, "error", f"ParseError: {e}")
+        # If parse failed but was cached, retry fresh
+        if from_cache:
+            print(f"      → Cache corrupted, skip")
+        return []
 
-    # RSS 2.0 → channel/item
-    # Atom → feed/entry
     ns = {"atom": "http://www.w3.org/2005/Atom"}
-
     items = root.findall(".//item") or root.findall(".//atom:entry", ns)
 
+    articles = []
     for item in items:
-        # Extract fields
         title = ""
         link = ""
         pub_date = ""
         description = ""
-        media_content = ""
 
-        # RSS 2.0
         t = item.find("title")
         if t is not None:
             title = t.text or ""
@@ -120,7 +135,6 @@ def fetch_rss(source: dict) -> list[dict]:
         l = item.find("link")
         if l is not None:
             link = l.text or ""
-            # Atom link punya href attrib
             if not link:
                 link = l.get("href", "")
 
@@ -132,29 +146,23 @@ def fetch_rss(source: dict) -> list[dict]:
         if pd is not None:
             pub_date = pd.text or ""
 
-        # Media:thumbnail
-        mt = item.find(".//{http://search.yahoo.com/mrss/}thumbnail")
-
+        # Atom fallback
         if not title:
-            # Atom: title bisa punya text child
             t_atom = item.find("atom:title", ns)
             if t_atom is not None and t_atom.text:
                 title = t_atom.text
-
         if not pub_date:
             pd_atom = item.find("atom:published", ns) or item.find("atom:updated", ns)
             if pd_atom is not None and pd_atom.text:
                 pub_date = pd_atom.text
-
         if not description:
             desc_atom = item.find("atom:summary", ns) or item.find("atom:content", ns)
             if desc_atom is not None and desc_atom.text:
                 description = desc_atom.text
 
-        if not title:
+        if not title or not link:
             continue
 
-        # Parse date
         parsed_date = parse_rss_date(pub_date)
         if parsed_date:
             pub_date_iso = parsed_date.isoformat()
@@ -163,40 +171,44 @@ def fetch_rss(source: dict) -> list[dict]:
             pub_date_iso = datetime.now(WIB).isoformat()
             pub_date_wib = datetime.now(WIB).strftime("%Y-%m-%d %H:%M WIB")
 
-        # Unique ID
         content_id = hashlib.md5(f"{link}{title}".encode()).hexdigest()[:12]
 
-        article = {
+        articles.append({
             "id": content_id,
             "source": name,
             "title": title.strip(),
             "url": link,
-            "description": extract_description({"description": description}),
-            "pub_date": pub_date_iso,
-            "pub_date_wib": pub_date_wib,
+            "description": clean_html(description),
+            "date": pub_date_iso,
+            "date_wib": pub_date_wib,
             "category": source.get("category", "umum"),
             "lang": source.get("lang", "id"),
-        }
+        })
 
-        articles.append(article)
+    # Dedup by URL
+    seen = set()
+    unique = []
+    for a in articles:
+        if a["url"] not in seen:
+            seen.add(a["url"])
+            unique.append(a)
 
-    print(f"  [✓] {name}: {len(articles)} artikel")
-    return articles[:MAX_PER_SOURCE]
+    cache_label = "cached" if from_cache else "fresh"
+    print(f"  [✓] {name}: {len(unique)}/{len(articles)} artikel ({cache_label})")
+    return unique[:MAX_PER_SOURCE]
 
 
-def save_article(article: dict, date_dir: Path) -> Path:
-    """Simpan satu artikel sebagai file .md."""
+def save_article_md(article: dict, date_dir: Path) -> Path | None:
+    """Save article as .md file. Skip if exists."""
     date_dir.mkdir(parents=True, exist_ok=True)
 
     slug = slugify(article["title"])
     fname = f"{article['source'].lower().replace(' ', '-')}_{slug}.md"
     fpath = date_dir / fname
 
-    # Cegah overwrite — skip kalau udah ada
     if fpath.exists():
         return fpath
 
-    # Bersihin title dari CDATA
     title_clean = re.sub(r'<!\[CDATA\[(.*?)\]\]>', r'\1', article["title"])
 
     content = f"""---
@@ -204,8 +216,8 @@ id: {article['id']}
 source: "{article['source']}"
 title: "{title_clean}"
 url: "{article['url']}"
-date: {article['pub_date']}
-date_wib: {article['pub_date_wib']}
+date: {article['date']}
+date_wib: {article['date_wib']}
 category: {article['category']}
 lang: {article['lang']}
 ---
@@ -213,7 +225,7 @@ lang: {article['lang']}
 # {title_clean}
 
 **Sumber:** [{article['source']}]({article['url']})  
-**Waktu:** {article['pub_date_wib']}  
+**Waktu:** {article['date_wib']}  
 **Kategori:** {article['category']}
 
 {article['description']}
@@ -228,23 +240,57 @@ lang: {article['lang']}
 
 
 def main():
+    init_db()
     print(f"Datagateway — OSINT News Fetch ({datetime.now(WIB).strftime('%Y-%m-%d %H:%M WIB')})")
+    print(f"  DB: {REPO_ROOT / 'datagateway.db'}")
+    print(f"  Cache TTL: {CACHE_TTL//60} menit")
     print("=" * 60)
 
     today = datetime.now(WIB).strftime("%Y-%m-%d")
     date_dir = NEWS_DIR / today
 
-    total = 0
+    total_new = 0
+    total_cache = 0
+    total_skip = 0
+
     for source in SOURCES:
         print(f"\n  [{source['name']}]")
         articles = fetch_rss(source)
+
+        new_count = 0
         for art in articles:
-            save_article(art, date_dir)
-        total += len(articles)
+            # Skip if URL already in DB
+            if article_exists(art["url"]):
+                total_skip += 1
+                continue
+
+            # Generate wikilink/filepath
+            slug = slugify(art["title"])
+            fname = f"{art['source'].lower().replace(' ', '-')}_{slug}.md"
+            filepath = f"news/{today}/{fname}"
+            art["filepath"] = filepath
+            art["wikilink"] = f"[[{filepath}]]"
+
+            # Simpan ke SQLite
+            article_upsert(art)
+
+            # Simpan .md file
+            save_article_md(art, date_dir)
+
+            new_count += 1
+
+        total_new += new_count
+        if new_count > 0:
+            log_fetch(source["name"], new_count, "ok")
+
         time.sleep(1)  # Rate limit antar source
 
     print(f"\n{'=' * 60}")
-    print(f"Selesai. {total} artikel disimpan di news/{today}/")
+    print(f"  New: {total_new} | Skipped (dup): {total_skip} | Total in DB: TODO")
+    print(f"  MD files: news/{today}/")
+    cache_clear_count = cache_clear()
+    if cache_clear_count:
+        print(f"  Cache cleaned: {cache_clear_count} expired entries")
     return 0
 
 

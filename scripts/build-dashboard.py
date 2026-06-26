@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Datagateway — Dashboard Builder v2
-Professional card layout with wikilinks, metadata, and source-colored badges.
+Datagateway — Dashboard Builder v3
+Baca dari SQLite (cepat, tanpa parse ulang .md).
+Card profesional, wikilinks, metadata, filter 3-axis.
 """
 
 import re
@@ -9,9 +10,18 @@ import sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
+from scripts.database import (
+    init_db,
+    get_articles,
+    get_article_count,
+    get_today_count,
+    get_source_stats,
+    get_category_stats,
+    get_latest_date,
+)
+
 WIB = timezone(timedelta(hours=7))
 REPO_ROOT = Path(__file__).resolve().parent.parent
-NEWS_DIR = REPO_ROOT / "news"
 DASHBOARD_DIR = REPO_ROOT / "dashboard"
 
 SOURCE_COLORS = {
@@ -24,91 +34,16 @@ SOURCE_COLORS = {
     "BBC News": ("#bb1919", "#bb191933"),
     "NY Times": ("#000000", "#33333333"),
 }
-DEFAULT_SOURCE_COLOR = ("#58a6ff", "#58a6ff33")
+DEFAULT_COLOR = ("#58a6ff", "#58a6ff33")
 
 SOURCE_GLYPH = {
-    "CNN Indonesia": "C",
-    "Detik": "D",
-    "CNBC Indonesia": "B",
-    "Antara": "A",
-    "Republika": "R",
-    "BBC Indonesia": "B",
-    "BBC News": "B",
-    "NY Times": "N",
+    "CNN Indonesia": "C", "Detik": "D", "CNBC Indonesia": "B",
+    "Antara": "A", "Republika": "R", "BBC Indonesia": "B",
+    "BBC News": "B", "NY Times": "N",
 }
 
 
-def parse_md_article(filepath: Path) -> dict | None:
-    try:
-        content = filepath.read_text(encoding="utf-8")
-    except Exception:
-        return None
-
-    frontmatter = {}
-    body = content
-    if content.startswith("---"):
-        parts = content.split("---", 2)
-        if len(parts) >= 3:
-            fm_text = parts[1].strip()
-            body = parts[2].strip()
-            for line in fm_text.split("\n"):
-                line = line.strip()
-                if ":" in line:
-                    key, _, val = line.partition(":")
-                    key = key.strip()
-                    val = val.strip().strip('"').strip("'")
-                    frontmatter[key] = val
-
-    excerpt = ""
-    lines = body.split("\n")
-    in_body = False
-    for line in lines:
-        if line.startswith("# "):
-            continue
-        if line.startswith("**Sumber:**"):
-            in_body = True
-            continue
-        if in_body and line.strip() and not line.startswith("---"):
-            excerpt = line.strip()
-            excerpt = re.sub(r'\*\*(.*?)\*\*', r'\1', excerpt)
-            excerpt = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', excerpt)
-            break
-    if not excerpt:
-        excerpt = body[:250].replace("\n", " ").strip()
-
-    return {
-        "id": frontmatter.get("id", ""),
-        "source": frontmatter.get("source", ""),
-        "title": frontmatter.get("title", ""),
-        "url": frontmatter.get("url", ""),
-        "date": frontmatter.get("date", ""),
-        "date_wib": frontmatter.get("date_wib", ""),
-        "category": frontmatter.get("category", ""),
-        "lang": frontmatter.get("lang", ""),
-        "excerpt": excerpt[:350],
-        "filename": filepath.name,
-        "relpath": str(filepath.relative_to(REPO_ROOT)),
-        "wikilink": f"[[{filepath.relative_to(REPO_ROOT)}]]",
-    }
-
-
-def collect_articles() -> list[dict]:
-    articles = []
-    if not NEWS_DIR.exists():
-        return articles
-    for date_dir in sorted(NEWS_DIR.iterdir(), reverse=True):
-        if not date_dir.is_dir():
-            continue
-        for f in sorted(date_dir.iterdir(), reverse=True):
-            if f.suffix == ".md":
-                art = parse_md_article(f)
-                if art and art["title"]:
-                    articles.append(art)
-    return articles
-
-
 def esc(text: str) -> str:
-    """HTML-escape all the things."""
     return (
         text.replace("&", "&amp;")
         .replace("<", "&lt;")
@@ -119,71 +54,63 @@ def esc(text: str) -> str:
 
 
 def build_html(articles: list[dict]) -> str:
-    sources = sorted(set(a["source"] for a in articles if a["source"]))
-    categories = sorted(set(a["category"] for a in articles if a["category"]))
-    langs = sorted(set(a["lang"] for a in articles if a["lang"]))
-
     now = datetime.now(WIB)
-    today = now.strftime("%Y-%m-%d")
-    today_count = sum(1 for a in articles if a["date"].startswith(today))
-    source_count = len(sources)
-    total_count = len(articles)
+    today_count = get_today_count()
+    total_count = get_article_count()
+    source_stats = get_source_stats()
+    cat_stats = get_category_stats()
+    source_count = len(source_stats)
     last_update = now.strftime("%Y-%m-%d %H:%M WIB")
-    latest_date = articles[0]["date"][:10] if articles else "—"
+    latest_date = get_latest_date()
 
     # ── STATS ──
     stats_html = f"""
     <div class="stat-card"><div class="num">{today_count}</div><div class="stat-label">Today</div></div>
     <div class="stat-card"><div class="num">{total_count}</div><div class="stat-label">Total Articles</div></div>
     <div class="stat-card"><div class="num">{source_count}</div><div class="stat-label">Sources</div></div>
-    <div class="stat-card"><div class="num">{latest_date}</div><div class="stat-label">Latest</div></div>
-"""
+    <div class="stat-card"><div class="num">{latest_date}</div><div class="stat-label">Latest</div></div>"""
 
     # ── FILTER BUTTONS ──
     def btn(text, count, filter_val, group="source"):
-        return f"""<button class="flt" data-g="{group}" data-v="{filter_val}" onclick="toggleFilter(this,'{group}')">{esc(text)} <span class="flt-c">{count}</span></button>"""
+        return f"""<button class="flt" data-g="{group}" data-v="{esc(filter_val)}" onclick="toggleFilter(this,'{group}')">{esc(text)} <span class="flt-c">{count}</span></button>"""
 
     source_btns = "\n      ".join(
-        btn(s, sum(1 for a in articles if a["source"] == s), s)
-        for s in sources
+        btn(s["source"], s["count"], s["source"]) for s in source_stats
     )
     cat_btns = "\n      ".join(
-        btn(c.title(), sum(1 for a in articles if a["category"] == c), c, "cat")
-        for c in categories
-    )
-    lang_btns = "\n      ".join(
-        btn(l.upper(), sum(1 for a in articles if a["lang"] == l), l, "lang")
-        for l in langs
+        btn(c["category"].title(), c["count"], c["category"], "cat") for c in cat_stats
     )
 
     # ── CARDS ──
     cards_html = ""
     for a in articles:
-        src = a["source"]
-        fg, bg = SOURCE_COLORS.get(src, DEFAULT_SOURCE_COLOR)
-        glyph = SOURCE_GLYPH.get(src, src[0].upper())
-        date_short = a["date_wib"] or a["date"][:10]
-        cat = a["category"].title() if a["category"] else "—"
-        title_esc = esc(a["title"])
-        excerpt_esc = esc(a["excerpt"])
-        wikilink_esc = esc(a["wikilink"])
-        relpath_esc = esc(a["relpath"])
+        src = a.get("source", "")
+        fg, bg = SOURCE_COLORS.get(src, DEFAULT_COLOR)
+        glyph = SOURCE_GLYPH.get(src, src[0].upper() if src else "?")
+        date_short = a.get("date_wib") or a.get("date", "")[:10]
+        cat = a.get("category", "—").title()
+        title_esc = esc(a.get("title", "?"))
+        excerpt_esc = esc(a.get("excerpt", "")[:350])
+        wikilink_esc = esc(a.get("wikilink", ""))
+        url_esc = esc(a.get("url", ""))
+        filepath = a.get("filepath", "")
+        md_path = f"file://{esc(str(REPO_ROOT / filepath))}" if filepath else ""
 
         cards_html += f"""
-    <article class="card" data-source="{esc(src)}" data-cat="{a['category']}" data-lang="{a['lang']}">
+    <article class="card" data-source="{esc(src)}" data-cat="{a.get('category','')}" data-lang="{a.get('lang','')}">
       <div class="card-accent" style="background:{fg}"></div>
       <div class="card-body">
         <div class="card-top">
           <span class="card-glyph" style="background:{bg};color:{fg};border-color:{fg}">{glyph}</span>
           <span class="card-source" style="color:{fg}">{esc(src)}</span>
-          <span class="card-lang badge-{a['lang']}">{a['lang']}</span>
+          <span class="card-lang badge-{a.get('lang','id')}">{a.get('lang','id')}</span>
           <span class="card-date">{date_short}</span>
         </div>
-        <a href="{esc(a['url'])}" target="_blank" rel="noopener" class="card-title">{title_esc}</a>
+        <a href="{url_esc}" target="_blank" rel="noopener" class="card-title">{title_esc}</a>
         <p class="card-excerpt">{excerpt_esc}</p>
         <div class="card-meta">
           <span class="meta-cat">{cat}</span>
-          <span class="meta-id">{a['id']}</span>
+          <span class="meta-id">{a.get('id','')}</span>
         </div>
         <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
           <span class="wiki-label">wikilink</span>
@@ -191,21 +118,13 @@ def build_html(articles: list[dict]) -> str:
           <span class="wiki-copy">copy</span>
         </div>
         <div class="card-actions">
-          <a href="{esc(a['url'])}" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
-          <a href="file://{esc(str(REPO_ROOT / a['relpath']))}" class="act act-md">📄 .md</a>
+          <a href="{url_esc}" target="_blank" rel="noopener" class="act act-ext">Open Original →</a>
+          {f'<a href="{md_path}" class="act act-md">📄 .md</a>' if md_path else ''}
         </div>
       </div>
     </article>"""
 
-    # ── VIEWBOX overlay ──
-    viewbox_html = """
-  <div id="viewbox" class="viewbox" onclick="closeViewbox(event)">
-    <div class="viewbox-content">
-      <button class="viewbox-close" onclick="closeViewbox()">✕</button>
-      <div id="viewbox-body"></div>
-    </div>
-  </div>"""
-
+    # ── FULL HTML ──
     html = f"""<!DOCTYPE html>
 <html lang="id">
 <head>
@@ -224,7 +143,6 @@ def build_html(articles: list[dict]) -> str:
   body {{ font-family:var(--font); background:var(--bg); color:var(--text); line-height:1.6; min-height:100vh; }}
   .container {{ max-width:1360px; margin:0 auto; padding:0 20px; }}
 
-  /* ─── HEADER ─── */
   header {{ padding:28px 0 16px; border-bottom:1px solid var(--border); margin-bottom:24px; }}
   .head-row {{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }}
   .head-logo {{ display:flex; align-items:center; gap:14px; }}
@@ -233,13 +151,11 @@ def build_html(articles: list[dict]) -> str:
   .head-logo h1 span {{ background:linear-gradient(135deg,var(--accent),var(--green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }}
   .head-info {{ text-align:right; font-size:13px; color:var(--text-muted); line-height:1.5; }}
 
-  /* ─── STATS ─── */
   .stats {{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:24px; }}
   .stat-card {{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px; text-align:center; }}
   .stat-card .num {{ font-size:30px; font-weight:700; color:var(--accent); line-height:1.2; }}
   .stat-card .stat-label {{ font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px; }}
 
-  /* ─── TOOLBAR ─── */
   .toolbar {{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px; align-items:center; }}
   .toolbar .srch {{ flex:1; min-width:200px; padding:9px 14px; border-radius:var(--radius); border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:13px; outline:none; transition:border .2s; }}
   .toolbar .srch:focus {{ border-color:var(--accent); }}
@@ -253,12 +169,9 @@ def build_html(articles: list[dict]) -> str:
   .flt.on .flt-c {{ background:rgba(0,0,0,.2); color:#0b0f15; }}
   .flt .flt-c {{ display:inline-flex; align-items:center; justify-content:center; min-width:18px; height:18px; border-radius:9px; background:var(--surface-2); padding:0 5px; font-size:10px; color:var(--text-muted); }}
   .flt-clear {{ border-style:dashed; color:var(--text-muted); }}
-  .flt-clear.on {{ border-style:solid; }}
 
-  /* ─── GRID ─── */
   .grid {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:14px; margin-bottom:28px; }}
 
-  /* ─── CARD ─── */
   .card {{ display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; transition:transform .15s,box-shadow .15s; position:relative; }}
   .card:hover {{ transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.3); }}
   .card-accent {{ height:3px; flex-shrink:0; }}
@@ -295,31 +208,18 @@ def build_html(articles: list[dict]) -> str:
   .act-md {{ background:var(--surface-2); color:var(--text); border:1px solid var(--border); }}
   .act-md:hover {{ border-color:var(--accent); color:var(--accent); }}
 
-  /* ─── NO RESULTS ─── */
   .no-r {{ display:none; text-align:center; padding:60px 20px; color:var(--text-muted); grid-column:1/-1; }}
   .no-r.show {{ display:block; }}
 
-  /* ─── VIEWBOX ─── */
-  .viewbox {{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.7); backdrop-filter:blur(4px); z-index:1000; align-items:center; justify-content:center; }}
-  .viewbox.show {{ display:flex; }}
-  .viewbox-content {{ background:var(--surface); border:1px solid var(--border); border-radius:12px; max-width:680px; width:90%; max-height:80vh; overflow-y:auto; padding:24px; position:relative; }}
-  .viewbox-close {{ position:absolute; top:12px; right:12px; width:32px; height:32px; border-radius:50%; border:none; background:var(--surface-2); color:var(--text); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; }}
-  .viewbox-close:hover {{ background:var(--border); }}
-  .viewbox-body {{ white-space:pre-wrap; font-family:monospace; font-size:13px; line-height:1.6; color:var(--text); }}
-
-  /* ─── FOOTER ─── */
   footer {{ border-top:1px solid var(--border); padding:20px 0; margin-top:12px; text-align:center; font-size:12px; color:var(--text-muted); }}
   footer a {{ color:var(--accent); text-decoration:none; }}
 
-  /* ─── RESPONSIVE ─── */
   @media (max-width:800px) {{ .stats {{ grid-template-columns:repeat(2,1fr); }} .grid {{ grid-template-columns:1fr; }} }}
-  @media (max-width:500px) {{ .head-row {{ flex-direction:column; align-items:flex-start; }} .head-info {{ text-align:left; }} .flt-group {{ gap:4px; }} }}
+  @media (max-width:500px) {{ .head-row {{ flex-direction:column; align-items:flex-start; }} .head-info {{ text-align:left; }} }}
 </style>
 </head>
 <body>
 <div class="container">
-
-  <!-- HEADER -->
   <header>
     <div class="head-row">
       <div class="head-logo">
@@ -333,54 +233,34 @@ def build_html(articles: list[dict]) -> str:
     </div>
   </header>
 
-  <!-- STATS -->
-  <div class="stats">
-    {stats_html}
-  </div>
+  <div class="stats">{stats_html}</div>
 
-  <!-- SEARCH -->
   <div class="toolbar">
     <input class="srch" id="srch" type="text" placeholder="Search titles, sources, excerpts..." oninput="applyFilters()">
   </div>
 
-  <!-- FILTERS -->
   <div class="flt-group">
     <span class="flt-glabel">Source</span>
     <button class="flt flt-clear on" data-g="source" data-v="all" onclick="clearGroup('source')">All</button>
     {source_btns}
   </div>
-  <div class="flt-group">
+  <div class="flt-group" style="margin-bottom:20px">
     <span class="flt-glabel">Category</span>
     <button class="flt flt-clear on" data-g="cat" data-v="all" onclick="clearGroup('cat')">All</button>
     {cat_btns}
   </div>
-  <div class="flt-group" style="margin-bottom:20px">
-    <span class="flt-glabel">Language</span>
-    <button class="flt flt-clear on" data-g="lang" data-v="all" onclick="clearGroup('lang')">All</button>
-    {lang_btns}
-  </div>
 
-  <!-- GRID -->
-  <div class="grid" id="grid">
-    {cards_html}
-  </div>
-
+  <div class="grid" id="grid">{cards_html}</div>
   <div class="no-r" id="noR">No articles match your filters.</div>
 
-  <!-- VIEWBOX -->
-  {viewbox_html}
-
-  <!-- FOOTER -->
   <footer>
     Datagateway — OSINT Aggregator · Daily fetch 07:00 &amp; 18:00 WIB ·
     <a href="https://github.com/jtoemion/Datagateway" target="_blank">github.com/jtoemion/Datagateway</a>
   </footer>
-
 </div>
 
 <script>
-// ─── Filter state ───
-const state = {{ source:'all', cat:'all', lang:'all', search:'' }};
+const state = {{ source:'all', cat:'all', search:'' }};
 
 function toggleFilter(btn, group) {{
   const val = btn.dataset.v;
@@ -409,20 +289,17 @@ function applyFilters() {{
   const cards = document.querySelectorAll('.card');
   let visible = 0;
   cards.forEach(c => {{
-    const s = c.dataset.source; const ct = c.dataset.cat; const l = c.dataset.lang;
-    const ok = (state.source==='all'||s===state.source)
-           && (state.cat==='all'||ct===state.cat)
-           && (state.lang==='all'||l===state.lang);
+    const s = c.dataset.source; const ct = c.dataset.cat;
+    const ok = (state.source==='all'||s===state.source) && (state.cat==='all'||ct===state.cat);
     const txt = (c.querySelector('.card-title')?.textContent||'').toLowerCase()
               + ' ' + (c.querySelector('.card-excerpt')?.textContent||'').toLowerCase()
-              + ' ' + s.toLowerCase();
+              + ' ' + (c.querySelector('.card-source')?.textContent||'').toLowerCase();
     const match = !q || txt.includes(q);
     if (ok && match) {{ c.style.display=''; visible++; }} else {{ c.style.display='none'; }}
   }});
   document.getElementById('noR').classList.toggle('show', visible===0);
 }}
 
-// ─── Copy wikilink ───
 function copyWiki(el) {{
   const code = el.querySelector('.wiki-link');
   const txt = code.textContent.trim();
@@ -434,50 +311,6 @@ function copyWiki(el) {{
     setTimeout(() => {{ lbl.textContent=orig; el.classList.remove('copied'); }}, 1200);
   }}).catch(() => {{}});
 }}
-
-// ─── Viewbox (show .md content) ───
-let viewMeta = {{}};
-
-function openViewbox(filePath) {{
-  // We store metadata in data attributes or fetch via a simple approach:
-  // For now, show the wikilink and metadata of the article.
-  const card = event?.target?.closest?.('.card');
-  if (!card) return;
-  const title = card.querySelector('.card-title')?.textContent || '';
-  const source = card.querySelector('.card-source')?.textContent || '';
-  const date = card.querySelector('.card-date')?.textContent || '';
-  const wikilink = card.querySelector('.wiki-link')?.textContent || '';
-  const id = card.querySelector('.meta-id')?.textContent || '';
-  const cat = card.querySelector('.meta-cat')?.textContent || '';
-  const url = card.querySelector('.act-ext')?.getAttribute('href') || '';
-
-  document.getElementById('viewbox-body').innerHTML = `
-    <div style="font-size:13px;color:var(--text-muted);margin-bottom:12px">
-      source: <strong>${{source}}</strong> · category: ${{cat}} · id: ${{id}}
-    </div>
-    <div style="margin-bottom:12px">
-      <code style="background:var(--surface-2);padding:4px 8px;border-radius:4px;font-size:13px">${{wikilink}}</code>
-    </div>
-    <div style="margin-bottom:16px">
-      <a href="${{url}}" target="_blank" class="act act-ext" style="display:inline-flex">Open Original →</a>
-    </div>
-    <hr style="border:none;border-top:1px solid var(--border);margin:12px 0">
-    <div style="font-size:14px;font-weight:600;margin-bottom:8px">${{title}}</div>
-    <div style="font-size:12px;color:var(--text-muted)">${{date}}</div>
-  `;
-  document.getElementById('viewbox').classList.add('show');
-}}
-
-function closeViewbox(e) {{
-  if (!e || e.target === e.currentTarget) {{
-    document.getElementById('viewbox').classList.remove('show');
-  }}
-}}
-
-// ─── Keyboard shortcut ───
-document.addEventListener('keydown', e => {{
-  if (e.key==='Escape') closeViewbox();
-}});
 </script>
 </body>
 </html>"""
@@ -485,11 +318,13 @@ document.addEventListener('keydown', e => {{
 
 
 def main():
-    print(f"Datagateway — Build Dashboard v2 ({datetime.now(WIB).strftime('%Y-%m-%d %H:%M WIB')})")
+    init_db()
+    print(f"Datagateway — Build Dashboard v3 ({datetime.now(WIB).strftime('%Y-%m-%d %H:%M WIB')})")
     print("=" * 60)
 
-    articles = collect_articles()
-    print(f"  Collected: {len(articles)} articles")
+    total = get_article_count()
+    articles = get_articles(limit=200)
+    print(f"  DB: {total} total articles, fetching {len(articles)} for dashboard")
 
     html = build_html(articles)
 
@@ -497,7 +332,6 @@ def main():
     outpath = DASHBOARD_DIR / "index.html"
     outpath.write_text(html, encoding="utf-8")
     print(f"  Dashboard: {outpath} ({len(html)} bytes)")
-
     print(f"\n{'=' * 60}")
     print("Done.")
     return 0

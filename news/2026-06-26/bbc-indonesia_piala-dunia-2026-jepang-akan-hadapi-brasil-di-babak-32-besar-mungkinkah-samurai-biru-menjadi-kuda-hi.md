@@ -19,4 +19,4 @@ Jepang bisa menjadi tim yang mengejutkan banyak kalangan pada Piala Dunia 2026.
 
 ---
 
-*Diambil otomatis oleh Datagateway pada 2026-06-26 19:37 WIB*
+*Diambil otomatis oleh Datagateway pada 2026-06-26 21:31 WIB*
