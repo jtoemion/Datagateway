@@ -30,15 +30,19 @@ echo "[6/9] Enrich metadata (sections, keywords, entities)..."
 PYTHONPATH=. python3 scripts/enrich-metadata.py
 
 echo ""
-echo "[7/9] Build BM25 search index..."
+echo "[7/10] Auto-generate metadata..."
+PYTHONPATH=. python3 scripts/auto-meta.py --pipeline
+
+echo ""
+echo "[8/10] Build BM25 search index..."
 PYTHONPATH=. python3 scripts/search-index.py
 
 echo ""
-echo "[8/9] Rebuild dashboard with metadata..."
+echo "[9/10] Rebuild dashboard with metadata..."
 PYTHONPATH=. python3 scripts/build-dashboard.py
 
 echo ""
-echo "[9/9] Build article viewer..."
+echo "[10/10] Build article viewer..."
 PYTHONPATH=. python3 scripts/build-article-viewer.py
 
 echo ""
