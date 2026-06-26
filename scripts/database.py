@@ -142,6 +142,12 @@ DEFAULT_SOURCES = [
     ("BBC Indonesia", "https://feeds.bbci.co.uk/indonesia/rss.xml", "id", "internasional"),
     ("BBC News", "https://feeds.bbci.co.uk/news/rss.xml", "en", "internasional"),
     ("NY Times", "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", "en", "internasional"),
+    # Football news
+    ("BBC Football", "https://feeds.bbci.co.uk/sport/football/rss.xml", "en", "football"),
+    ("Sky Sports Football", "https://www.skysports.com/rss/12040", "en", "football"),
+    ("The Guardian Football", "https://www.theguardian.com/football/rss", "en", "football"),
+    ("Fox Sports Soccer", "https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8MjLy&tag=soccer", "en", "football"),
+    ("NY Times Soccer", "https://rss.nytimes.com/services/xml/rss/nyt/Soccer.xml", "en", "football"),
 ]
 
 

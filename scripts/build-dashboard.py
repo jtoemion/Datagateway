@@ -39,12 +39,20 @@ SOURCE_COLORS = {
     "BBC Indonesia": ("#bb1919", "#bb191933"),
     "BBC News": ("#bb1919", "#bb191933"),
     "NY Times": ("#000000", "#33333333"),
+    "BBC Football": ("#ff6b35", "#ff6b3533"),
+    "Sky Sports Football": ("#00b050", "#00b05033"),
+    "The Guardian Football": ("#052962", "#05296233"),
+    "Fox Sports Soccer": ("#c8102e", "#c8102e33"),
+    "NY Times Soccer": ("#000000", "#33333333"),
 }
 DEFAULT_COLOR = ("#58a6ff", "#58a6ff33")
 SOURCE_GLYPH = {
     "CNN Indonesia": "C", "Detik": "D", "CNBC Indonesia": "B",
     "Antara": "A", "Republika": "R", "BBC Indonesia": "B",
     "BBC News": "B", "NY Times": "N",
+    "BBC Football": "⚽", "Sky Sports Football": "S",
+    "The Guardian Football": "G", "Fox Sports Soccer": "F",
+    "NY Times Soccer": "N",
 }
 
 # FIFA World Cup team abbreviation → flag country code
@@ -104,27 +112,36 @@ def format_dt(dt_str: str) -> str:
 
 
 def build_world_news_html(articles: list[dict]) -> str:
-    """Build World News tab content (same as v3 but without outer layout)."""
-    source_stats = get_source_stats()
-    cat_stats = get_category_stats()
-    today_count = get_today_count()
-    total_count = get_article_count()
+    """Build World News tab content — exclude football articles."""
+    # Filter out football
+    world_articles = [a for a in articles if a.get("category") != "football"]
+    world_sources = sorted(set(a["source"] for a in world_articles if a["source"]))
+    world_cats = sorted(set(a["category"] for a in world_articles if a["category"]))
+
+    today = datetime.now(WIB).strftime("%Y-%m-%d")
+    today_count = sum(1 for a in world_articles if a["date"].startswith(today))
+    total_count = len(world_articles)
+    source_count = len(world_sources)
 
     # Stats
+    latest_date = world_articles[0]["date"][:10] if world_articles else "—"
     stats = f"""
     <div class="stat-card"><div class="num">{today_count}</div><div class="stat-label">Today</div></div>
     <div class="stat-card"><div class="num">{total_count}</div><div class="stat-label">Total</div></div>
-    <div class="stat-card"><div class="num">{len(source_stats)}</div><div class="stat-label">Sources</div></div>
-    <div class="stat-card"><div class="num">{get_latest_date()}</div><div class="stat-label">Latest</div></div>"""
+    <div class="stat-card"><div class="num">{source_count}</div><div class="stat-label">Sources</div></div>
+    <div class="stat-card"><div class="num">{latest_date}</div><div class="stat-label">Latest</div></div>"""
 
     def btn(text, count, val, group="source"):
         return f"""<button class="flt" data-g="{group}" data-v="{esc(val)}" onclick="toggleFilter(this,'{group}')">{esc(text)} <span class="flt-c">{count}</span></button>"""
 
-    src_btns = "\n      ".join(btn(s["source"], s["count"], s["source"]) for s in source_stats)
-    cat_btns = "\n      ".join(btn(c["category"].title(), c["count"], c["category"], "cat") for c in cat_stats)
+    # Source counts from filtered articles
+    src_counts = {s: sum(1 for a in world_articles if a["source"] == s) for s in world_sources}
+    cat_counts = {c: sum(1 for a in world_articles if a["category"] == c) for c in world_cats}
+    src_btns = "\n      ".join(btn(s, src_counts[s], s) for s in world_sources)
+    cat_btns = "\n      ".join(btn(c.title(), cat_counts[c], c, "cat") for c in world_cats)
 
     cards = ""
-    for a in articles:
+    for a in world_articles:
         src = a.get("source", "")
         fg, bg = SOURCE_COLORS.get(src, DEFAULT_COLOR)
         glyph = SOURCE_GLYPH.get(src, src[0].upper() if src else "?")
@@ -215,8 +232,9 @@ def build_world_news_html(articles: list[dict]) -> str:
 </div>"""
 
 
-def build_football_html() -> str:
-    """Build Football tab content — hero + carousel."""
+def build_football_html(fb_news: list = None) -> str:
+    """Build Football tab content — hero + carousel + football news cards."""
+    fb_news = fb_news or []
     events = get_football_events()
     if not events:
         return '<div class="tab-pane" id="tab-football"><div class="empty-state">No football data yet. Run fetch-football.py.</div></div>'
@@ -377,6 +395,70 @@ def build_football_html() -> str:
       {carousel}
     </div>
   </div>
+</div>
+
+{football_news_section(fb_news)}
+</div>"""
+
+
+def football_news_section(fb_news: list) -> str:
+    """Render football news cards below the hero/carousel."""
+    if not fb_news:
+        return '<div class="fb-news-section"><div class="fb-news-header"><h3>Latest Football News</h3><span class="carousel-count">0 articles</span></div><div class="empty-state" style="padding:24px">No football news yet.</div></div>'
+
+    cards = ""
+    for a in fb_news:
+        src = a.get("source", "")
+        fg, bg = SOURCE_COLORS.get(src, DEFAULT_COLOR)
+        glyph = SOURCE_GLYPH.get(src, src[0].upper() if src else "?")
+        date_short = a.get("date_wib") or a.get("date", "")[:10]
+        title_esc = esc(a.get("title", "?"))
+        excerpt_esc = esc(a.get("excerpt", "")[:350])
+        wikilink_esc = esc(a.get("wikilink", ""))
+        url_esc = esc(a.get("url", ""))
+        img_url = a.get("image_url", "")
+        img_html = f'<div class="card-img-wrap"><img class="card-img" src="{esc(img_url)}" alt="" loading="lazy" onerror="this.closest(\'.card-img-wrap\').remove()"></div>' if img_url else ""
+
+        cards += f"""
+    <article class="card" data-source="{esc(src)}" data-cat="football" data-lang="{a.get('lang','')}">
+      <a href="article.html?id={esc(a.get('id',''))}" class="card-link-wrap">
+      {img_html}
+      <div class="card-accent" style="background:{fg}"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-glyph" style="background:{bg};color:{fg};border-color:{fg}">{glyph}</span>
+          <span class="card-source" style="color:{fg}">{esc(src)}</span>
+          <span class="card-lang badge-{a.get('lang','id')}">{a.get('lang','id')}</span>
+          <span class="card-date">{date_short}</span>
+        </div>
+        <div class="card-title">{title_esc}</div>
+        <p class="card-excerpt">{excerpt_esc}</p>
+        <div class="card-meta">
+          <span class="meta-cat">Football</span>
+          <span class="meta-id">{a.get('id','')}</span>
+        </div>
+      </div>
+      </a>
+      <div class="card-footer-actions">
+        <div class="card-wiki" onclick="copyWiki(this)" title="Click to copy wikilink">
+          <span class="wiki-label">wikilink</span>
+          <code class="wiki-link">{wikilink_esc}</code>
+          <span class="wiki-copy">copy</span>
+        </div>
+        <div class="card-actions">
+          <a href="article.html?id={esc(a.get('id',''))}" class="act act-md">📖 Read</a>
+          <a href="{url_esc}" target="_blank" rel="noopener" class="act act-ext">Original →</a>
+        </div>
+      </div>
+    </article>"""
+
+    return f"""
+<div class="fb-news-section">
+  <div class="fb-news-header">
+    <h3>Latest Football News</h3>
+    <span class="carousel-count">{len(fb_news)} articles</span>
+  </div>
+  <div class="grid">{cards}</div>
 </div>"""
 
 
@@ -456,11 +538,13 @@ def build_html(articles: list[dict]) -> str:
     now = datetime.now(WIB)
     last_update = now.strftime("%Y-%m-%d %H:%M WIB")
     total_count = get_article_count()
+    fb_news = [a for a in articles if a.get("category") == "football"]
+    fb_count_news = len(fb_news)
     source_count = len(get_source_stats())
     fb_count = get_football_count()
 
     news_tab = build_world_news_html(articles)
-    football_tab = build_football_html()
+    football_tab = build_football_html(fb_news)
 
     return f"""<!DOCTYPE html>
 <html lang="id">
@@ -608,6 +692,9 @@ def build_html(articles: list[dict]) -> str:
   .carousel-header {{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }}
   .carousel-header h3 {{ font-size:16px; font-weight:600; }}
   .carousel-count {{ font-size:12px; color:var(--text-muted); }}
+  .fb-news-section {{ margin-top:32px; padding-top:24px; border-top:2px solid var(--border); }}
+  .fb-news-header {{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }}
+  .fb-news-header h3 {{ font-size:16px; font-weight:600; }}
   .carousel {{ display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px; }}
   .carousel::-webkit-scrollbar {{ height:4px; }}
   .carousel::-webkit-scrollbar-track {{ background:var(--surface); border-radius:2px; }}
@@ -649,7 +736,7 @@ def build_html(articles: list[dict]) -> str:
       </div>
       <div class="head-info">
         <div>OSINT Dashboard</div>
-        <div style="margin-top:2px">{last_update} · {total_count} articles · {source_count} sources</div>
+        <div style="margin-top:2px">{last_update} · {total_count} articles · {source_count} sources{f' · ⚽ {fb_count_news} football' if fb_count_news else ''}</div>
       </div>
     </div>
   </header>

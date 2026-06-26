@@ -41,6 +41,12 @@ SOURCES = [
     {"name": "BBC Indonesia", "url": "https://feeds.bbci.co.uk/indonesia/rss.xml", "lang": "id", "category": "internasional"},
     {"name": "BBC News", "url": "https://feeds.bbci.co.uk/news/rss.xml", "lang": "en", "category": "internasional"},
     {"name": "NY Times", "url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml", "lang": "en", "category": "internasional"},
+    # Football news
+    {"name": "BBC Football", "url": "https://feeds.bbci.co.uk/sport/football/rss.xml", "lang": "en", "category": "football"},
+    {"name": "Sky Sports Football", "url": "https://www.skysports.com/rss/12040", "lang": "en", "category": "football"},
+    {"name": "The Guardian Football", "url": "https://www.theguardian.com/football/rss", "lang": "en", "category": "football"},
+    {"name": "Fox Sports Soccer", "url": "https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8MjLy&tag=soccer", "lang": "en", "category": "football"},
+    {"name": "NY Times Soccer", "url": "https://rss.nytimes.com/services/xml/rss/nyt/Soccer.xml", "lang": "en", "category": "football"},
 ]
 
 MAX_PER_SOURCE = 15
