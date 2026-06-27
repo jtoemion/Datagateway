@@ -19,6 +19,7 @@ from scripts.database import (
 )
 from scripts.fetch.extractor import extract
 from scripts.fetch.web_fetcher import fetch as web_fetcher
+from scripts.sources.gateway import should_scrape
 
 WIB = timezone(timedelta(hours=7))
 MIN_WORD_COUNT = 150
@@ -26,10 +27,10 @@ MAX_RETRIES = 2
 
 
 def get_unscraped_articles() -> list[dict]:
-    """Return articles that have no scraped_articles entry."""
+    """Return articles that have no scraped_articles entry, excluding scrape:false sources."""
     db = get_db()
     rows = db.execute("""
-        SELECT a.id, a.url, a.title, a.image_url
+        SELECT a.id, a.url, a.title, a.image_url, a.source
         FROM articles a
         LEFT JOIN scraped_articles s ON a.id = s.article_id
         WHERE s.article_id IS NULL
@@ -99,6 +100,17 @@ def run() -> dict:
         article_id = art["id"]
         url = art["url"]
         title = (art["title"] or "")[:60]
+        source_name = art.get("source", "")
+
+        # Skip sources configured with scrape: false
+        if not should_scrape(source_name):
+            print(f"    [SKIP] {article_id} ({title}) from {source_name} — scrape disabled in config")
+            # Write a stub so it won't be retried
+            article_save_scraped(
+                article_id=article_id, url=url, title=title,
+                author="", full_html="", full_text="", images=[],
+            )
+            continue
 
         data = extract_with_retry(article_id, url, title)
         word_count = data.get("word_count", 0)

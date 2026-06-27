@@ -1,7 +1,6 @@
 """
 Datagateway — Sources Gateway (GATEWAY)
-Placeholder that reads the hardcoded source list and dispatches to rss or football.
-DR-0002 will wire config.yaml next.
+Reads config.yaml for the authoritative source list and dispatches to rss or football.
 
 Dispatches:
   - category='football' → fetch/football.fetch_events (TheRundown API)
@@ -9,12 +8,14 @@ Dispatches:
 """
 
 import sys
+import json
+import yaml
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 
-from scripts.fetch.rss import SOURCES as RSS_SOURCES, fetch_rss
+from scripts.fetch.rss import fetch_rss
 from scripts.fetch.football import FOOTBALL_SPORTS, fetch_events
 from scripts.database import (
     init_db,
@@ -27,6 +28,24 @@ from scripts.database import (
 WIB = timezone(timedelta(hours=7))
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 NEWS_DIR = REPO_ROOT / "news"
+
+
+def load_sources() -> list[dict]:
+    """Load sources from config.yaml. Authoritative source list."""
+    config_path = REPO_ROOT / "config.yaml"
+    if not config_path.exists():
+        raise FileNotFoundError(f"config.yaml not found at {config_path}")
+    with open(config_path, encoding="utf-8") as f:
+        config = yaml.safe_load(f)
+    return config.get("sources", [])
+
+
+def should_scrape(source_name: str) -> bool:
+    """Check if a source should be scraped (config.yaml scrape field)."""
+    for s in load_sources():
+        if s["name"] == source_name:
+            return s.get("scrape", True)
+    return True
 
 
 def slugify(text: str) -> str:
@@ -81,7 +100,9 @@ lang: {article['lang']}
 def fetch_rss_sources() -> dict:
     """Fetch all RSS sources. Returns {source_name: [articles]}."""
     results = {}
-    for source in RSS_SOURCES:
+    for source in load_sources():
+        if source.get("category") == "football":
+            continue
         articles = fetch_rss(source)
         results[source["name"]] = articles
     return results
