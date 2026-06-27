@@ -26,17 +26,30 @@ from scripts.database import (
 WIB = timezone(timedelta(hours=7))
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
-# TheRundown API key — fallback from env, otherwise prompt
-API_KEY = os.environ.get("THEDERUNDOWN_KEY")
+# TheRundown API key — env var → .therundown_key file
+API_KEY = os.environ.get("THEDERUNDOWN_KEY", "")
 if not API_KEY:
     key_file = REPO_ROOT / ".therundown_key"
     if key_file.exists():
         API_KEY = key_file.read_text().strip()
 if not API_KEY:
     print("  ⚠ THEDERUNDOWN_KEY not set. Create .therundown_key or export it.")
-    API_KEY = ""
 
 BASE_URL = "https://therundown.io/api/v2"
+
+# football-data.org API v4 — env var → config.yaml
+FOOTBALL_DATA_KEY = os.environ.get("FOOTBALL_DATA_KEY", "")
+FOOTBALL_DATA_COMPETITIONS: list[str] = []
+if not FOOTBALL_DATA_KEY:
+    try:
+        import yaml
+        _cfg = yaml.safe_load((REPO_ROOT / "config.yaml").read_text())
+        _fdo = _cfg.get("football_data_org", {})
+        FOOTBALL_DATA_KEY = _fdo.get("api_key", "")
+        FOOTBALL_DATA_COMPETITIONS = _fdo.get("competitions", [])
+    except Exception:
+        pass
+FOOTBALL_DATA_BASE = "https://api.football-data.org/v4"
 
 FOOTBALL_SPORTS = [
     (18, "FIFA World Cup"),
