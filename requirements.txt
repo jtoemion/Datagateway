@@ -1,0 +1,13 @@
+# Datagateway — Python dependencies
+# Generated: 2026-06-27
+trafilatura          # content extraction (DR-0004)
+datasketch           # MinHash LSH for provenance (DR-0012)
+rank_bm25            # BM25 search + clustering (DR-0001/0006)
+rapidfuzz            # fuzzy alias matching (DR-0012 §6)
+anthropic            # Hermes writer (DR-0007) — Haiku 4.5
+PyYAML               # config.yaml (DR-0002)
+readability-lxml     # fallback content extraction
+requests             # HTTP
+beautifulsoup4       # HTML parsing
+lxml                 # XML/RSS parsing
+pytest               # test harness
