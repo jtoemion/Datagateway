@@ -11,27 +11,27 @@ image_url: https://akcdn.detik.net.id/community/media/visual/2026/06/08/ilustras
 scraped: true
 ---
 
-# Gempa M 4,7 Guncang Kepulauan Sangihe Sulut
+# Gempa M 4,7 [[Guncang Kepulauan Sangihe Sulut]]
 
-Gempa M 4,7 Guncang Kepulauan Sangihe Sulut
+Gempa M 4,7 Guncang [[Kepulauan Sangihe]] Sulut
 
-Matius Alfons Hutajulu -
+[[Matius Alfons Hutajulu]] -
 
 detikNews
 
 Sabtu, 27 Jun 2026 04:01 WIB
 
-Foto: Getty Images/iStockphoto/Petrovich9
+Foto: [[Getty Images]]/iStockphoto/Petrovich9
 
-Jakarta
+[[Jakarta]]
 
 -
 
 Gempa
 
-berkekuatan magnitudo (M) 4,7 terjadi di Kepulauan Sangihe, Sulawesi Utara. Gempa terjadi pada kedalaman 10 kilometer.
+berkekuatan magnitudo (M) 4,7 terjadi di Kepulauan Sangihe, [[Sulawesi Utara]]. Gempa terjadi pada kedalaman 10 kilometer.
 
-BMKG melaporkan gempa terjadi pada, SAbtu (27/6/2026), sekitar pukul 03.07 WIB. Ia memastikan gempa berpusat di laut.
+[[BMKG]] melaporkan gempa terjadi pada, SAbtu (27/6/2026), sekitar pukul 03.07 WIB. Ia memastikan gempa berpusat di laut.
 
 "230 km BaratLaut Tahuna-Ke.Sangihe-Sulut," tulis @infoBMKG.
 
@@ -39,7 +39,7 @@ SCROLL TO CONTINUE WITH CONTENT
 
 Baca juga:
 
-Karhutla di Lahan Calon Perumahan Kotim. Satu Hektare Gambut Menyala
+Karhutla di [[Lahan Calon Perumahan Kotim]]. [[Satu Hektare Gambut Menyala]]
 
 Titik koordinat gempa trcatat di 5,67 lintang utara (LU) dan 125,25 bujur timur (BT). Ia memastikan sampai saat ini belum jelas terkait dmpak gempa tersebut.
 

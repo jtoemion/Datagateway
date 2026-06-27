@@ -11,13 +11,13 @@ image_url: https://img.antaranews.com/cache/800x533/2026/06/23/Polda-Jabar-Tangk
 scraped: true
 ---
 
-# Cek fakta, foto tersangka Taufik Hidayat di kantor polisi
+# Cek fakta, foto tersangka [[Taufik Hidayat]] di kantor polisi
 
-Jakarta (ANTARA/JACX) – Sebuah unggahan di
+[[Jakarta]] (ANTARA/JACX) – Sebuah unggahan di
 
 Instagram
 
-mengklaim bahwa penyidik Polda Jawa Barat telah menangkap Taufik Hidayat (30), terduga pelaku penyekapan dan penganiayaan terhadap kekasihnya, YTR (29), yang diduga berlangsung selama tiga tahun.
+mengklaim bahwa penyidik [[Polda Jawa Barat]] telah menangkap Taufik Hidayat (30), terduga pelaku penyekapan dan penganiayaan terhadap kekasihnya, YTR (29), yang diduga berlangsung selama tiga tahun.
 
 Unggahan tersebut menampilkan foto seorang pria mengenakan hoodie hitam dengan tangan diborgol, didampingi seorang anggota polisi yang memegang papan identitas berisi nama, jenis kasus, lokasi, dan tanggal penangkapan.
 
@@ -29,15 +29,15 @@ Unggahan foto yang dinarasikan sebagai tersangka Taufik Hidayat di kantor polisi
 
 Penjelasan:
 
-Berdasarkan penelusuran, informasi mengenai penangkapan Taufik Hidayat (TH) oleh Kepolisian Daerah Jawa Barat memang benar.
+Berdasarkan penelusuran, informasi mengenai penangkapan Taufik Hidayat (TH) oleh [[Kepolisian Daerah Jawa Barat]] memang benar.
 
-Taufik ditangkap sebagai terduga pelaku penyekapan dan penganiayaan terhadap perempuan berinisial YTR (29) di Kabupaten Bandung yang diduga berlangsung selama tiga tahun.
+Taufik ditangkap sebagai terduga pelaku penyekapan dan penganiayaan terhadap perempuan berinisial YTR (29) di [[Kabupaten Bandung]] yang diduga berlangsung selama tiga tahun.
 
 Namun, foto yang memperlihatkan Taufik Hidayat duduk dengan tangan diborgol didampingi seorang anggota polisi bukan merupakan dokumentasi asli penangkapan tersebut.
 
-Hasil pemeriksaan menggunakan AI Detector Hive Moderation menunjukkan gambar tersebut memiliki probabilitas 99,9 persen sebagai hasil kecerdasan buatan (AI) atau deepfake.
+Hasil pemeriksaan menggunakan AI [[Detector Hive Moderation]] menunjukkan gambar tersebut memiliki probabilitas 99,9 persen sebagai hasil kecerdasan buatan (AI) atau deepfake.
 
-Hasil pemeriksaan menggunakan AI Detector. (Hive Moderation)
+Hasil pemeriksaan menggunakan AI Detector. ([[Hive Moderation]])
 
 Dalam video resmi
 
@@ -59,7 +59,7 @@ Hoaks
 
 Cek fakta:
 
-Hoaks! Video penangkapan Taufik Hidayat terduga penyekapan wanita di Bandung
+Hoaks! Video penangkapan Taufik Hidayat terduga penyekapan wanita di [[Bandung]]
 
 Baca juga:
 
@@ -67,15 +67,15 @@ KSP jenguk korban penyekapan YTR, pastikan negara hadir mendampingi
 
 Baca juga:
 
-Polda Jabar buka peluang ada korban lain dalam kasus Taufik Hidayat
+[[Polda Jabar]] buka peluang ada korban lain dalam kasus Taufik Hidayat
 
 Pewarta: Tim JACX
 
-Editor: M Arief Iskandar
+Editor: M [[Arief Iskandar]]
 
 Copyright © ANTARA 2026
 
-Dilarang keras mengambil konten, melakukan crawling atau pengindeksan otomatis untuk AI di situs web ini tanpa izin tertulis dari Kantor Berita ANTARA.
+Dilarang keras mengambil konten, melakukan crawling atau pengindeksan otomatis untuk AI di situs web ini tanpa izin tertulis dari [[Kantor Berita]] ANTARA.
 
 ---
 

@@ -11,21 +11,21 @@ image_url: https://static.republika.co.id/uploads/images/detailnews/078682900-17
 scraped: true
 ---
 
-# Pemkot Bandarlampung Optimistis Gedong Air Juara Lomba Kelurahan Tingkat Lampung
+# [[Pemkot Bandarlampung Optimistis Gedong Air Juara Lomba Kelurahan Tingkat Lampung]]
 
 REPUBLIKA.CO.ID, BANDARLAMPUNG,
 
-– Pemerintah Kota (Pemkot) Bandarlampung menyatakan bahwa
+– [[Pemerintah Kota]] (Pemkot) Bandarlampung menyatakan bahwa
 
 lomba kelurahan
 
-tingkat Provinsi Lampung bertujuan untuk mendorong pemberdayaan masyarakat. Ajang ini difokuskan pada penguatan kelembagaan, peningkatan partisipasi warga, serta pelestarian budaya gotong royong.
+tingkat [[Provinsi Lampung]] bertujuan untuk mendorong pemberdayaan masyarakat. Ajang ini difokuskan pada penguatan kelembagaan, peningkatan partisipasi warga, serta pelestarian budaya gotong royong.
 
 Pada tahun ini,
 
-Kelurahan Gedong Air
+[[Kelurahan Gedong Air]]
 
-yang berada di Kecamatan Tanjungkarang Barat resmi menjadi wakil Kota Bandarlampung untuk bersaing di tingkat provinsi. Pemerintah kota pun menaruh harapan besar agar kelurahan ini dapat melaju mewakili Provinsi Lampung ke tingkat nasional.
+yang berada di [[Kecamatan Tanjungkarang Barat]] resmi menjadi wakil [[Kota Bandar Lampung|Kota Bandarlampung]] untuk bersaing di tingkat provinsi. Pemerintah kota pun menaruh harapan besar agar kelurahan ini dapat melaju mewakili Provinsi Lampung ke tingkat nasional.
 
 Menurut penilaian Pemkot, Kelurahan Gedong Air memiliki sejumlah keunggulan signifikan. Selain dihuni oleh masyarakat yang majemuk, terdiri dari suku Jawa, Lampung, Sunda, Tionghoa, dan berbagai etnis lainnya, warga setempat dikenal hidup rukun dengan semangat toleransi dan gotong royong yang masih sangat terjaga.
 
@@ -33,21 +33,21 @@ Keberagaman tersebut turut didukung dengan pelestarian budaya melalui berbagai k
 
 Dari sisi ekonomi, Kelurahan Gedong Air juga menunjukkan potensi yang kuat. Hal ini terlihat dari banyaknya pelaku
 
-Usaha Mikro Kecil Menengah (UMKM)
+[[Usaha Mikro Kecil Menengah]] (UMKM)
 
 yang bergerak di berbagai sektor. Aktivitas ekonomi warga ini menjadi salah satu indikator penilaian penting dalam lomba kelurahan.
 
-Lebih lanjut, kelurahan ini dinilai aktif dalam mendukung program-program pemerintah. Dukungan tersebut diwujudkan melalui penyediaan bahan untuk Program Makanan Bergizi Gratis serta pemberdayaan masyarakat melalui
+Lebih lanjut, kelurahan ini dinilai aktif dalam mendukung program-program pemerintah. Dukungan tersebut diwujudkan melalui penyediaan bahan untuk [[Program Makan Bergizi Gratis|Program Makanan Bergizi Gratis]] serta pemberdayaan masyarakat melalui
 
-Koperasi Merah Putih
+[[Koperasi Desa Merah Putih|Koperasi Merah Putih]]
 
-. Atas dasar berbagai keunggulan tersebut, Wali Kota Bandarlampung optimistis Kelurahan Gedong Air mampu meraih kemenangan.
+. Atas dasar berbagai keunggulan tersebut, [[Wali Kota Bandarlampung]] optimistis Kelurahan Gedong Air mampu meraih kemenangan.
 
 “Harapan kami, tim penilai lomba kelurahan menetapkan Kelurahan Gedong Air sebagai wakil Provinsi Lampung untuk berkompetisi di tingkat nasional pada 2026,” ujar pernyataan resmi yang diterima di Bandarlampung, Jumat (36/6).
 
 Konten ini diolah dengan bantuan AI.
 
-Ikuti Whatsapp Channel Republika
+[[Ikuti Whatsapp Channel Republika]]
 
 sumber : antara
 

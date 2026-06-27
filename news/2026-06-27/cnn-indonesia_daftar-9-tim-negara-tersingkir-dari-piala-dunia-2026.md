@@ -11,7 +11,7 @@ image_url: https://akcdn.detik.net.id/visual/2026/06/27/soccer-worldcup-sen-irq-
 scraped: true
 ---
 
-# Daftar 9 Tim Negara Tersingkir dari Piala Dunia 2026
+# Daftar 9 [[Tim Negara Tersingkir]] dari [[Piala Dunia]] 2026
 
 Olahraga
 
@@ -19,7 +19,7 @@ Sepakbola
 
 Daftar 9 Tim Negara Tersingkir dari Piala Dunia 2026
 
-CNN Indonesia
+CNN [[RI|Indonesia]]
 
 Sabtu, 27 Jun 2026 05:11 WIB
 
@@ -27,9 +27,9 @@ Bagikan:
 
 url telah tercopy
 
-Timnas Irak harus angkat koper dari Piala Dunia 2026 usai kalah dari Senegal. (REUTERS/Piroschka Van De Wouw)
+[[Timnas Irak]] harus angkat koper dari Piala Dunia 2026 usai kalah dari [[Senegal]]. (REUTERS/[[Piroschka Van De Wouw]])
 
-Jakarta, CNN Indonesia
+[[Jakarta]], CNN Indonesia
 
 --
 
@@ -43,23 +43,23 @@ ADVERTISEMENT
 
 SCROLL TO CONTINUE WITH CONTENT
 
-Pilihan Redaksi
+[[Pilihan Redaksi]]
 
-Hasil Piala Dunia: 10 Pemain Irak Jadi Bulan-bulanan Senegal 5-0
+[[Hasil Piala Dunia]]: 10 [[Pemain Irak Jadi Bulan]]-bulanan Senegal 5-0
 
-Hasil Piala Dunia: Hattrick Dembele Bikin Prancis Hajar Norwegia 4-1
+Hasil Piala Dunia: [[Hattrick Dembele Bikin Prancis Hajar Norwegia]] 4-1
 
-Klasemen Akhir Grup I Piala Dunia usai Prancis-Senegal Menang Besar
+[[Klasemen Akhir Grup]] I Piala Dunia usai Prancis-[[Senegal Menang Besar]]
 
 Timnas Irak jadi tim terbaru yang dipastikan angkat koper dari Piala Dunia 2026. Irak tersingkir setelah menelan kekalahan telak 0-5 dari Senegal pada laga terakhir Grup I, Sabtu (27/6) dini hari WIB.
 
-Dalam pertandingan di Stadion Toronto, Irak dihajar Senegal dengan gol-gol dari Habib Diarra, Ismaila Sarr, dua gol Pape Gueye, dan sumbangan dari Illiman Ndiaye.
+Dalam pertandingan di [[Stadion Toronto]], Irak dihajar Senegal dengan gol-gol dari [[Habib Diarra]], [[Ismaila Sarr]], dua gol [[Pape Gueye]], dan sumbangan dari [[Iliman Ndiaye|Illiman Ndiaye]].
 
-Nahas bagi Irak, wakil Asia itu juga harus bermain dengan 10 orang sejak babak pertama setelah Rebin Sulaka dikartu merah pada menit ke-13.
+Nahas bagi Irak, wakil Asia itu juga harus bermain dengan 10 orang sejak babak pertama setelah [[Rebin Sulaka]] dikartu merah pada menit ke-13.
 
-Kekalahan dari Senegal membuat Irak mendekam sebagai juru kunci Grup I dengan tiga kekalahan. Irak menyusul Qatar dan Yordania sebagai wakil AFC yang lebih dulu tersingkir dari Piala Dunia 2026.
+Kekalahan dari Senegal membuat Irak mendekam sebagai juru kunci Grup I dengan tiga kekalahan. Irak menyusul [[Qatar]] dan Yordania sebagai wakil AFC yang lebih dulu tersingkir dari Piala Dunia 2026.
 
-Sebelum Irak, beberapa tim lebih dulu gagal ke babak gugur, seperti Tunisia, Curacao, Turki, Haiti, Ceko. Bahkan tim-tim seperti Panama, Qatar, dan Yordania dipastikan tersingkir meski masih menyisakan laga terakhir di babak grup.
+[[Sebelum Irak]], beberapa tim lebih dulu gagal ke babak gugur, seperti [[Tunisia]], Curacao, Turki, Haiti, Ceko. Bahkan tim-tim seperti Panama, Qatar, dan Yordania dipastikan tersingkir meski masih menyisakan laga terakhir di babak grup.
 
 Daftar 9 Tim Negara Tersingkir dari Piala Dunia 2026:
 

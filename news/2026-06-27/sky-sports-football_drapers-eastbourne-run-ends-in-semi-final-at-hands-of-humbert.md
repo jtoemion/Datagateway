@@ -13,23 +13,23 @@ scraped: true
 
 # Draper’s Eastbourne run ends in semi-final at hands of Humbert
 
-Jack Draper's Eastbourne run ends in semi-final at hands of Ugo Humbert as Briton prepares for daunting Wimbledon draw
+[[Jack Draper]]'s Eastbourne run ends in semi-final at hands of [[Ugo Humbert]] as Briton prepares for daunting Wimbledon draw
 
-Ugo Humbert, Zizou Bergs spoil home party to set Eastbourne final clash as Jack Draper and lucky loser Toby Samuel crash out;
+Ugo Humbert, [[Zizou Bergs]] spoil home party to set Eastbourne final clash as Jack Draper and lucky loser [[Toby Samuel]] crash out;
 
-watch the ATP and WTA Tours live on Sky Sports Tennis and Sky Sports+, streaming service NOW and the Sky Sports app
+watch the ATP and WTA Tours live on [[Sky Sports Tennis]] and [[Sky Sports]]+, streaming service NOW and the Sky Sports app
 
 Friday 26 June 2026 23:15, UK
 
 Image:
 
-Jack Draper suffered a semi-final exit at the hands of Ugo Humbert at the Eastbourne Open
+Jack Draper suffered a semi-final exit at the hands of Ugo Humbert at the [[Eastbourne Open]]
 
-Jack Draper's daunting Wimbledon draw was followed by disappointment at the Lexus Eastbourne Open as he suffered a semi-final exit at the hands of Ugo Humbert.
+Jack Draper's daunting Wimbledon draw was followed by disappointment at the [[Lexus Eastbourne Open]] as he suffered a semi-final exit at the hands of Ugo Humbert.
 
-The 24-year-old discovered on Friday morning he will face world No 7 Taylor Fritz in the first round at the All England Club after an injury-ravaged year left him unseeded.
+The 24-year-old discovered on Friday morning he will face [[World No]] 7 [[Taylor Fritz]] in the first round at the [[All England Club]] after an injury-ravaged year left him unseeded.
 
-He was then denied a place in the final at Devonshire Park as he slipped to a 7-5 6-3 loss to sixth seed Humbert in an hour and 42 minutes.
+He was then denied a place in the final at [[Devonshire Park]] as he slipped to a 7-5 6-3 loss to sixth seed Humbert in an hour and 42 minutes.
 
 Jack Draper's path to Wimbledon glory
 
@@ -43,17 +43,17 @@ R4 - Bublik / Tiafoe
 
 QF - Zverev / Lehecka / Cerundolo
 
-SF - Shelton / De Minaur / Cobolli
+SF - Shelton / [[De Minaur]] / Cobolli
 
 F - Sinner / FAA / Djokovic
 
 Latest scores, results and upcoming matches
 
-Download Sky Sports app for analysis, news and video
+[[Download Sky Sports]] app for analysis, news and video
 
 Not got Sky?
 
-Get Sky Sports
+[[Get Sky Sports]]
 
 or
 
@@ -77,7 +77,7 @@ cookies or to allow those cookies just once.
 
 You can change your settings at any time via the
 
-Privacy Options
+[[Privacy Options]]
 
 .
 
@@ -93,19 +93,19 @@ Instagram
 
 cookies for this session only.
 
-Enable Cookies
+[[Enable Cookies]]
 
-Allow Cookies Once
+[[Allow Cookies Once]]
 
-"It's the best gift I could have today. Thanks so much for the birthday wishes," Humbert said after the Eastbourne crowd sang 'Happy Birthday' to him following his win.
+"It's the best gift I could have today. Thanks so much for the birthday wishes," Humbert said after the Eastbourne crowd sang '[[Happy Birthday]]' to him following his win.
 
 "It's nice to see Jack back on court. The level was really impressive and I was a bit lucky in the second set. I had [four] break points to save. I'm super happy to be in the final."
 
 While the defeat dashed Draper's hopes of securing a maiden ATP title on home soil, he can take confidence from a promising week on grass following a year disrupted by injury.
 
-The former world No 4 had been bidding to reach a first final since losing to Casper Ruud at last year's Madrid Open - the event which marked the start of a persistent problem with his racket arm.
+The former world No 4 had been bidding to reach a first final since losing to [[Casper Ruud]] at last year's [[Madrid Open]] - the event which marked the start of a persistent problem with his racket arm.
 
-Also See:
+[[Also See]]:
 
 Stream tennis contract-free with NOW
 
@@ -117,9 +117,9 @@ Tennis videos, highlights and best shots
 
 He had a chance to seize the initiative at 30-0 on Humbert's serve in the opening game but neither player could find a breakthrough until the Frenchman converted his fourth break point to clinch the first set.
 
-Following straight-sets victories over Marcos Giron, Jack Pinnington Jones and Gabriel Diallo, Draper was faced with the prospect of having to come from behind for the first time in the tournament.
+Following straight-sets victories over [[Marcos Giron]], [[Jack Pinnington Jones]] and [[Gabriel Diallo]], Draper was faced with the prospect of having to come from behind for the first time in the tournament.
 
-He saw four break points come and go in a tight third game of the second set and then decisively failed to hold serve in game six en route to suffering a first defeat since teaming up with new coach Andy Murray.
+He saw four break points come and go in a tight third game of the second set and then decisively failed to hold serve in game six en route to suffering a first defeat since teaming up with new coach [[Andy Murray]].
 
 Instagram
 
@@ -159,9 +159,9 @@ Enable Cookies
 
 Allow Cookies Once
 
-World No 30 Humbert will play Belgium's Zizou Bergs in Saturday's final.
+World No 30 Humbert will play [[Belgium]]'s Zizou Bergs in Saturday's final.
 
-Bergs, who is ranked 48th in the world, earlier extinguished the prospect of an all-British final in East Sussex by battling back from a set down to defeat lucky loser Toby Samuel 4-6 7-6 (7-5) 6-2.
+Bergs, who is ranked 48th in the world, earlier extinguished the prospect of an all-British final in [[East Sussex]] by battling back from a set down to defeat lucky loser Toby Samuel 4-6 7-6 (7-5) 6-2.
 
 Despite his semi-final defeat, Samuel can reflect on a breakthrough showing on home soil.
 
@@ -211,19 +211,19 @@ Speaking of the draw, he said: "It's definitely a tricky one, isn't it? I was pr
 
 "I've lost my ranking and I've lost my seeded place in the slam so I have to work up the rankings to get that back, so it's a lottery really.
 
-"Obviously Taylor is a great player. We've played multiple times already, and it's going to be a really, really good battle. It's going to be a tough match. I'm looking forward to it."
+"[[Obviously Taylor]] is a great player. We've played multiple times already, and it's going to be a really, really good battle. It's going to be a tough match. I'm looking forward to it."
 
 Keys and Maria set up Eastbourne final after opponents quit
 
 Image:
 
-Tatjana Maria is the oldest ever finalist at the Eastbourne WTA event
+[[Tatjana Maria]] is the oldest ever finalist at the Eastbourne WTA event
 
-American Madison Keys and German veteran Tatjana Maria set ‌up an Eastbourne final as they both benefited from their opponents retiring ‌mid-match in the semi-finals on Friday.
+[[American Madison Keys]] and German veteran Tatjana Maria set ‌up an Eastbourne final as they both benefited from their opponents retiring ‌mid-match in the semi-finals on Friday.
 
-Maria was leading 6-1 1-2 against ​former French Open champion Jelena Ostapenko when her opponent retired feeling unwell during a ​rain delay at Devonshire Park.
+Maria was leading 6-1 1-2 against ​former [[French Open]] champion [[Jelena Ostapenko]] when her opponent retired feeling unwell during a ​rain delay at Devonshire Park.
 
-Second seed ‌Keys took the first set 6-1 against Croatian 20-year-old Petra Marcinko ​who then quit with an abdominal injury.
+Second seed ‌Keys took the first set 6-1 against Croatian 20-year-old [[Petra Marcinko]] ​who then quit with an abdominal injury.
 
 The 31-year-old has dropped only 14 games in reaching the final, spending ​just four hours on court as she ⁠bids for a third ⁠title at the south coast tournament.
 
@@ -243,15 +243,15 @@ Osaka, Muchova reach new heights on grass
 
 Image:
 
-Naomi Osaka has reached the first non-hardcourt final of her career
+[[Naomi Osaka]] has reached the first non-hardcourt final of her career
 
-Naomi Osaka defeated Wang Xinyu 6-3 6-3 in Bad Homburg to reach her first grass-court final.
+Naomi Osaka defeated [[Wang Xinyu]] 6-3 6-3 in [[Bad Homburg]] to reach her first grass-court final.
 
 She needed just 70 minutes to close out her first career meeting with Wang.
 
 "It's funny to still be (achieving) milestones at my old age," Osaka said afterward with a laugh. "For me, it's really fun and I'm really happy."
 
-Osaka will face Karolina Muchova, another first-time grass-court finalist in Saturday's championship match. The No 4 seed advanced with a 6-4 6-4 win over qualifier Elena-Gabriela Ruse.
+Osaka will face [[Karolina Muchova]], another first-time grass-court finalist in Saturday's championship match. [[The No]] 4 seed advanced with a 6-4 6-4 win over qualifier Elena-[[Gabriela Ruse]].
 
 Watch the ATP and WTA Tours, live on Sky Sports or
 
@@ -265,7 +265,7 @@ Sky Sports app
 
 Find out more here.
 
-Around Sky
+[[Around Sky]]
 
 Sign up for Sky Sports push notifications
 

@@ -11,7 +11,7 @@ image_url: https://awsimages.detik.net.id/visual/2025/03/22/batang-kayu-pohon-ka
 scraped: true
 ---
 
-# Jadwal Kiamat Bisa Dilihat Dari Batang Pohon, Peneliti Ungkap Buktinya
+# [[Jadwal Kiamat Bisa Dilihat Dari Batang Pohon]], [[Peneliti Ungkap Buktinya]]
 
 Jadwal Kiamat Bisa Dilihat Dari Batang Pohon, Peneliti Ungkap Buktinya
 
@@ -21,29 +21,29 @@ SHARE
 
 url telah tercopy
 
-Novina Putri Bestari,
+[[Novina Putri Bestari]],
 
-CNBC Indonesia
+CNBC [[RI|Indonesia]]
 
 27 June 2026 06:15
 
 Foto: Batang kayu pohon Kamper. (Dok. lindungihutan)
 
-Jakarta, CNBCB Indonesia -
+[[Jakarta]], CNBCB Indonesia -
 
 Sebuah penelitian berhasil menemukan bukti 'kiamat' pemanasan global bisa terlihat dari sebatang pohon. Pendekatan ini berbeda karena bisa mencatat waktu lebih panjang dibandingkan data satelit yang hanya tercatat 50 tahun ke belakang.
 
-Ulf Buntgen dari University of Cambridge dan timnya menganalisa lingkar pohon, yakni garis seperti cincin dari potongan batang pohon. Dari sana terlihat kondisi lingkungan yang dialami pohon pada tahun tertentu.
+[[Ulf Buntgen]] dari University of Cambridge dan timnya menganalisa lingkar pohon, yakni garis seperti cincin dari potongan batang pohon. Dari sana terlihat kondisi lingkungan yang dialami pohon pada tahun tertentu.
 
 Ternyata dari hasil analisis itu, terungkap periode paling panas dalam 2.000 tahun terjadi pada 2023 lalu.
 
-Pilihan Redaksi
+[[Pilihan Redaksi]]
 
-Durian Bisa Jadi Mesin Devisa Baru RI, China Siap Menampung
+[[Durian Bisa Jadi Mesin Devisa Baru]] RI, [[China Siap Menampung]]
 
-Setelah 1.200 Tahun Akhirnya Mati, Inggris Berduka
+Setelah 1.200 [[Tahun Akhirnya Mati]], [[Inggris Berduka]]
 
-Padukan Budaya Bali, MUA Olea Ubud by Swiss-Belhotel Resmi Dibuka
+[[Padukan Budaya Bali]], MUA [[Olea Ubud]] by Swiss-[[Belhotel Resmi Dibuka]]
 
 "Melihat sejarah dengan sangat panjang, Anda bisa lihat betapa luar biasanya pemanasan global di periode sekarang. 2023 adalah tahun yang sangat panas, tren ini akan terus berlanjut jika gas rumah kaca tidak dikurangi secara besar-besaran," kata Buntgen, dikutip dari IFL Science, Sabtu (27/6/2026).
 
@@ -51,11 +51,11 @@ Para peneliti juga menemukan cuaca paling dingin pada tahun 536. Saat itu, musim
 
 Kenaikan temperatur pada awal era revolusi industri tercatat lebih rendah dibandingkan sekarang. Data dari tim Buntgen mencatat suhu musim panas 2023 mencapai 2,03 derajat Celcius lebih panas dibandingkan tahun 1850-1900.
 
-Alhasil, data baru membuat target kenaikan suhu pada Perjanjian Paris 2015 dan pengukuran keparahan pemanasan global berdasarkan kesepakatan itu menjadi tidak tepat.
+Alhasil, data baru membuat target kenaikan suhu pada [[Perjanjian Paris]] 2015 dan pengukuran keparahan pemanasan global berdasarkan kesepakatan itu menjadi tidak tepat.
 
-Pada Perjanjian Paris tercatat 2023 memang lebih panas. Namun angkanya 1,52 derajat Celcius lebih tinggi dibandingkan 1850-1900.
+[[Pada Perjanjian Paris]] tercatat 2023 memang lebih panas. Namun angkanya 1,52 derajat Celcius lebih tinggi dibandingkan 1850-1900.
 
-"Betul iklim selalu berubah, tetapi pemanasan pada 2023, yang disebabkan oleh gas rumah kaca dan diperparah oleh El Nino, menyebabkan gelombang panas dan periode kekeringan yang lebih panjang. Ini menunjukkan sangat penting untuk segera mengurangi emisi gas rumah kaca," kata Jan Esper dari Johannes Gutenberg University Mainz.
+"Betul iklim selalu berubah, tetapi pemanasan pada 2023, yang disebabkan oleh gas rumah kaca dan diperparah oleh [[El Nino]], menyebabkan gelombang panas dan periode kekeringan yang lebih panjang. Ini menunjukkan sangat penting untuk segera mengurangi emisi gas rumah kaca," kata [[Jan Esper]] dari [[Johannes Gutenberg University Mainz]].
 
 (fab/fab)
 
@@ -67,9 +67,9 @@ source on Google
 
 [Gambas:Video CNBC]
 
-Next Article
+[[Next Article]]
 
-Tanda Kiamat Makin Dekat Bertebaran di Udara
+[[Tanda Kiamat Makin Dekat Bertebaran]] di Udara
 
 ---
 

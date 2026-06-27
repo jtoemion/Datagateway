@@ -15,7 +15,7 @@ scraped: false
 
 Rabies menjadi ancaman kesehatan yang mematikan karena hampir selalu berujung fatal setelah gejala muncul. Penanganan cepat setelah paparan dan vaksinasi hewan menjadi langkah utama untuk mencegah fatalitas penyakit ini.
 Copyright © ANTARA 2026
-Dilarang keras mengambil konten, melakukan crawling atau pengindeksan otomatis untuk AI di situs web ini tanpa izin tertulis dari Kantor Berita ANTARA.
+Dilarang keras mengambil konten, melakukan crawling atau pengindeksan otomatis untuk AI di situs web ini tanpa izin tertulis dari [[Kantor Berita]] ANTARA.
 
 ---
 

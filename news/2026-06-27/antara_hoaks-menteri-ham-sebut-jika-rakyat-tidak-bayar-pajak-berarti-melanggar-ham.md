@@ -13,11 +13,11 @@ scraped: true
 
 # Hoaks! Menteri HAM sebut jika rakyat tidak bayar pajak berarti melanggar HAM
 
-Jakarta (ANTARA/JACX) – Sebuah unggahan di
+[[Jakarta]] (ANTARA/JACX) – Sebuah unggahan di
 
 Facebook
 
-mengklaim bahwa Menteri Hak Asasi Manusia (HAM) Natalius Pigai menyatakan rakyat harus bekerja keras agar dapat membayar pajak.
+mengklaim bahwa [[Menteri Hak Asasi Manusia]] (HAM) [[Natalius Pigai]] menyatakan rakyat harus bekerja keras agar dapat membayar pajak.
 
 Unggahan tersebut juga menarasikan bahwa masyarakat yang tidak membayar pajak sama saja dengan melanggar hak asasi manusia (HAM).
 
@@ -47,7 +47,7 @@ Berdasarkan penelusuran, tidak ditemukan pernyataan resmi dari Menteri HAM Natal
 
 Penelusuran menunjukkan foto Natalius Pigai dalam unggahan tersebut berasal dari pemberitaan Metro TV berjudul “
 
-Pigai Sebut Koruptor Masuk Kategori Pelanggar HAM
+[[Pigai Sebut Koruptor Masuk Kategori Pelanggar]] HAM
 
 ”.
 
@@ -71,7 +71,7 @@ Hoaks! Menteri HAM Pigai sebut penangkapan kepala BGN merupakan pelanggaran HAM
 
 Cek fakta:
 
-Hoaks! Pigai tegaskan kematian Prajurit TNI di Lebanon bukan isu HAM
+Hoaks! Pigai tegaskan kematian Prajurit [[TNI]] di [[Lebanon]] bukan isu HAM
 
 Baca juga:
 
@@ -79,11 +79,11 @@ Kementerian HAM tegaskan narasi Pigai soal BGN dan koruptor hoaks
 
 Pewarta: Tim JACX
 
-Editor: M Arief Iskandar
+Editor: M [[Arief Iskandar]]
 
 Copyright © ANTARA 2026
 
-Dilarang keras mengambil konten, melakukan crawling atau pengindeksan otomatis untuk AI di situs web ini tanpa izin tertulis dari Kantor Berita ANTARA.
+Dilarang keras mengambil konten, melakukan crawling atau pengindeksan otomatis untuk AI di situs web ini tanpa izin tertulis dari [[Kantor Berita]] ANTARA.
 
 ---
 

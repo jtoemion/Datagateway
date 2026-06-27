@@ -1,0 +1,26 @@
+---
+entity_id: ent-8551a6c83db5
+canonical: Welcome Dinner
+type: PERSON
+aliases: [Welcome Dinner]
+first_seen: 2026-06-27
+last_seen: 2026-06-27
+article_count: 1
+---
+
+# Welcome Dinner
+
+## Recent Articles
+- 2026-06-27 · `[[news/2026-06-27/republika_pemerintah-terus-perkuat-ekosistem-pariwisata-ramah-muslim]]` — Pemerintah Terus Perkuat Ekosistem Pariwisata Ramah Muslim
+
+## Connected Entities
+- [[Kementerian Pariwisata]] — 2 co-mentions
+- [[Pemerintah Terus Perkuat Ekosistem Pariwisata Ramah Muslim]] — 1 co-mentions
+- [[Penasihat Senior Bidang Transformasi Digital]] — 1 co-mentions
+- [[Inovasi Pariwisata]] — 1 co-mentions
+- [[Iyung Masruroh]] — 1 co-mentions
+- [[International Islamic Expo]] — 1 co-mentions
+- [[Menurut Iyung Indonesia]] — 1 co-mentions
+- [[Global Muslim Travel Index]] — 1 co-mentions
+- [[Bank Syariah Indonesia Tbk]] — 1 co-mentions
+- [[Aliya Kreasindo]] — 1 co-mentions

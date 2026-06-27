@@ -148,13 +148,70 @@ MIGRATIONS = [
          );""",
      ]),
 
-    # Future migrations append here, e.g.:
-    # (4, "Add provenance columns", [
-    #     "ALTER TABLE articles ADD COLUMN wire_origin TEXT DEFAULT ''",
-    #     "ALTER TABLE articles ADD COLUMN provenance_group TEXT",
-    #     "ALTER TABLE articles ADD COLUMN is_originator INTEGER DEFAULT 0",
-    #     "ALTER TABLE articles ADD COLUMN minhash_sig TEXT",
-    # ]),
+    (4, "Entities, article_entities, entity_cooccurrence tables",
+     [
+         """CREATE TABLE IF NOT EXISTS entities (
+             id           TEXT PRIMARY KEY,
+             canonical    TEXT NOT NULL UNIQUE,
+             type         TEXT NOT NULL,
+             aliases_json TEXT DEFAULT '[]',
+             first_seen   TEXT NOT NULL,
+             last_seen    TEXT NOT NULL,
+             article_count INTEGER DEFAULT 0
+         );""",
+         """CREATE TABLE IF NOT EXISTS article_entities (
+             article_id    TEXT NOT NULL REFERENCES articles(id),
+             entity_id     TEXT NOT NULL REFERENCES entities(id),
+             mention_count INTEGER DEFAULT 1,
+             PRIMARY KEY (article_id, entity_id)
+         );""",
+         """CREATE TABLE IF NOT EXISTS entity_cooccurrence (
+             entity_a     TEXT NOT NULL REFERENCES entities(id),
+             entity_b     TEXT NOT NULL REFERENCES entities(id),
+             co_count     INTEGER DEFAULT 1,
+             last_seen    TEXT NOT NULL,
+             PRIMARY KEY (entity_a, entity_b)
+         );""",
+     ]),
+    (5, "Provenance, clusters, signals + article ALTER columns",
+     [
+         "ALTER TABLE articles ADD COLUMN wire_origin TEXT DEFAULT ''",
+         "ALTER TABLE articles ADD COLUMN provenance_group TEXT",
+         "ALTER TABLE articles ADD COLUMN is_originator INTEGER DEFAULT 0",
+         "ALTER TABLE articles ADD COLUMN minhash_sig TEXT",
+         """CREATE TABLE IF NOT EXISTS provenance_groups (
+             id         TEXT PRIMARY KEY,
+             originator_article_id TEXT REFERENCES articles(id),
+             match_type TEXT DEFAULT 'exact',
+             group_size INTEGER DEFAULT 1,
+             created_at TEXT DEFAULT (datetime('now'))
+         );""",
+         """CREATE TABLE IF NOT EXISTS clusters (
+             id         TEXT PRIMARY KEY,
+             lineage_id TEXT,
+             article_count INTEGER DEFAULT 1,
+             top_entities TEXT DEFAULT '[]',
+             consistency REAL DEFAULT 1.0,
+             created_at TEXT DEFAULT (datetime('now'))
+         );""",
+         "CREATE INDEX IF NOT EXISTS idx_clusters_lineage ON clusters(lineage_id);",
+         """CREATE TABLE IF NOT EXISTS signals (
+             id             TEXT PRIMARY KEY,
+             cluster_id     TEXT REFERENCES clusters(id),
+             title          TEXT,
+             summary        TEXT,
+             confidence     TEXT DEFAULT 'UNKNOWN',
+             effective_sources REAL DEFAULT 0,
+             source_count   INTEGER DEFAULT 0,
+             originator_count INTEGER DEFAULT 0,
+             is_contested   INTEGER DEFAULT 0,
+             article_ids    TEXT DEFAULT '[]',
+             entity_ids     TEXT DEFAULT '[]',
+             lineage_id     TEXT,
+             created_at     TEXT DEFAULT (datetime('now'))
+         );""",
+         "CREATE INDEX IF NOT EXISTS idx_signals_confidence ON signals(confidence);",
+     ]),
 ]
 
 

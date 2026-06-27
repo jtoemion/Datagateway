@@ -7,16 +7,20 @@ date: 2026-06-27T09:15:02+07:00
 date_wib: 2026-06-27 09:15 WIB
 category: umum
 lang: id
+image_url: https://static.republika.co.id/uploads/images/detailnews/031999000-1782526502-maxresdefaultjpg.jpg
+scraped: false
 ---
 
-# Restoran Jakarta Obat Kerinduan Masakan Indonesia di Madinah
+# [[Restoran Jakarta Obat Kerinduan Masakan Indonesia]] [[Di Madinah]]
 
-**Sumber:** [Republika](https://republika.co.id/page/shorts/yt-th9q9217783640/restoran-jakarta-obat-kerinduan-masakan-indonesia-di-madinah)
-**Waktu:** 2026-06-27 09:15 WIB
-**Kategori:** umum
-
-Jauh dari Tanah Air bukan berarti harus melupakan cita rasa Indonesia. Di Madinah, terdapat Restoran Jakarta yang menjadi salah satu destinasi favorit jamaah haji dan umrah asal Indonesia. Berlokasi di...
+Memuat video...
+⚠️ Gagal memuat video
+[[Coba Lagi]]
+Komentar
+Kirim
+- [[Daily News]]
+|
 
 ---
 
-*Diambil otomatis oleh Datagateway pada 2026-06-27 09:42 WIB*
+*Sumber: [Republika](https://republika.co.id/page/shorts/yt-th9q9217783640/restoran-[[Jakarta]]-obat-kerinduan-masakan-[[RI|Indonesia]]-di-madinah)*

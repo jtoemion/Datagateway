@@ -18,8 +18,8 @@ Everton transfers, latest news, rumours and gossip: Live updates, goals and high
 Friday 26 June 2026 18:42, UK
 Sorry, this blog is currently unavailable. Please try again later.
 Back to Home
-Around Sky
-Sign up for Sky Sports push notifications
+[[Around Sky]]
+Sign up for [[Sky Sports]] push notifications
 Upgrade to Sky Sports to watch every minute of end of season
 
 ---

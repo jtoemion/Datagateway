@@ -29,6 +29,8 @@ def build_corpus_json(articles: list[dict]) -> str:
             "l": a.get("lang", ""),
             "img": a.get("image_url", ""),
             "fp": a.get("filepath", ""),
+            "kw": a.get("keywords", []),
+            "sec": a.get("sections", []),
         })
     return json.dumps(corpus, ensure_ascii=False)
 

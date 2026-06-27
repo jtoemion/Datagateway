@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entities — Datagateway</title>
+<style>
+:root { --bg:#0a0a0f; --surface:#141420; --border:#2a2a3e; --text:#e8e8f0; --text-muted:#7a7a8e; --accent:#6366f1; --radius:12px; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Inter',system-ui,sans-serif; font-size:14px; }
+.container { max-width:960px; margin:0 auto; padding:24px; }
+header { margin-bottom:24px; }
+h1 { font-size:22px; font-weight:700; }
+h1 small { font-size:13px; color:var(--text-muted); font-weight:400; }
+.back { display:inline-flex; align-items:center; gap:4px; color:var(--accent); text-decoration:none; font-size:13px; margin-bottom:16px; }
+.back:hover { text-decoration:underline; }
+.e-section { margin-bottom:28px; }
+.e-section-title { font-size:16px; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.e-section-title small { font-size:12px; color:var(--text-muted); font-weight:400; }
+.e-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:10px; }
+.e-card { display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:12px; transition:border .12s; }
+.e-card:hover { border-color:var(--accent); }
+.e-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; background:var(--accent); color:#fff; flex-shrink:0; }
+.e-name { font-size:14px; font-weight:600; color:var(--text); text-decoration:none; }
+.e-name:hover { color:var(--accent); }
+.e-meta { font-size:11px; color:var(--text-muted); margin-top:2px; }
+.e-row-break { display:none; }
+footer { border-top:1px solid var(--border); padding:16px 0; margin-top:12px; text-align:center; font-size:12px; color:var(--text-muted); }
+footer a { color:var(--accent); text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <a class="back" href="index.html">&larr; Dashboard</a>
+  <h1>Entities <small>200 tracked</small></h1>
+</header>
+<div class="e-section">
+          <h3 class="e-section-title">People <small>(182)</small></h3>
+          <div class="e-grid"><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-c8939494d4ee">Kantor Berita</a>
+                <div class="e-meta">8 articles · 80 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-21ddbe48a659">Pilihan Redaksi</a>
+                <div class="e-meta">7 articles · 140 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-f2a8f289d868">Piala Dunia</a>
+                <div class="e-meta">5 articles · 60 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-f77f6dafcb59">AS</a>
+                <div class="e-meta">5 articles · 97 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-32e0ce8d8c5b">Selat Hormuz</a>
+                <div class="e-meta">3 articles · 40 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-fd23826bfd0f">Cape Verde</a>
+                <div class="e-meta">3 articles · 44 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-e1706bd2072d">Hasil Piala Dunia</a>
+                <div class="e-meta">3 articles · 44 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-9fd38fabc911">Cape Verde Lolos</a>
+                <div class="e-meta">3 articles · 44 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-706485f1fdbe">Saudi Tersingkir</a>
+                <div class="e-meta">3 articles · 44 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-b6cfa4c599bb">Selandia Baru</a>
+                <div class="e-meta">3 articles · 44 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-f5981d8bbd54">Lihat Juga</a>
+                <div class="e-meta">3 articles · 63 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-29011257b9c5">Berbagi Peluang Baru</a>
+                <div class="e-meta">2 articles · 12 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-f1a094447581">Pembangunan Terbuka</a>
+                <div class="e-meta">2 articles · 12 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-7034fe273ba8">Sharing New Opportunities</a>
+                <div class="e-meta">2 articles · 12 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-c072303e9bd3">Open Development</a>
+                <div class="e-meta">2 articles · 12 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-7e0dc6c6bc77">Xinhua Institute</a>
+                <div class="e-meta">2 articles · 12 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-6df461943fc1">Kantor Berita Xinhua</a>
+                <div class="e-meta">2 articles · 12 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-ea0f9784e8be">Maria Rosari Dwi Putri</a>
+                <div class="e-meta">2 articles · 12 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-dd04dfcbd75c">Donald Trump</a>
+                <div class="e-meta">2 articles · 20 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-5d41042c6f8f">Cindy Frishanti Octavia</a>
+                <div class="e-meta">2 articles · 14 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-ee9f5884cb09">Aditya Eko Sigit Wicaksono</a>
+                <div class="e-meta">2 articles · 14 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-3f4482bad7ff">Arab Saudi</a>
+                <div class="e-meta">2 articles · 30 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-967ee863099d">Tanjung Verde</a>
+                <div class="e-meta">2 articles · 22 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-757d680d916d">Michael Siahaan</a>
+                <div class="e-meta">2 articles · 22 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-79a016e27b81">Gilang Galiartha</a>
+                <div class="e-meta">2 articles · 22 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-09c1aa955bed">Presiden Prabowo Subianto</a>
+                <div class="e-meta">2 articles · 52 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-03d58fb3cc2f">Next Article</a>
+                <div class="e-meta">2 articles · 50 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-f2deaabd62b2">Korps Garda Revolusi Islam Iran</a>
+                <div class="e-meta">2 articles · 36 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-e32c6b83d0f5">DPR</a>
+                <div class="e-meta">2 articles · 32 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PERSON">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-6592e8d97c87">Gempita Bola Dunia</a>
+                <div class="e-meta">2 articles · 32 connections</div>
+              </div>
+            </article></div>
+        </div><div class="e-section">
+          <h3 class="e-section-title">Organizations <small>(4)</small></h3>
+          <div class="e-grid"><article class="e-card" data-type="ORG">
+              <div class="e-icon">O</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-1c592211fcbb">FIFA</a>
+                <div class="e-meta">1 articles · 13 connections</div>
+              </div>
+            </article><article class="e-card" data-type="ORG">
+              <div class="e-icon">O</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-3cadc33a6618">OJK</a>
+                <div class="e-meta">1 articles · 14 connections</div>
+              </div>
+            </article><article class="e-card" data-type="ORG">
+              <div class="e-icon">O</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-0288bde0c2d5">NU</a>
+                <div class="e-meta">1 articles · 30 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="ORG">
+              <div class="e-icon">O</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-5a5f1259b4de">NATO</a>
+                <div class="e-meta">1 articles · 32 connections</div>
+              </div>
+            </article></div>
+        </div><div class="e-section">
+          <h3 class="e-section-title">Places <small>(14)</small></h3>
+          <div class="e-grid"><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-629ab14fab77">Jakarta</a>
+                <div class="e-meta">13 articles · 206 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-cda2c99fbf5e">RI</a>
+                <div class="e-meta">12 articles · 199 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-6f0a7d56c2cd">Iran</a>
+                <div class="e-meta">7 articles · 101 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-8a7d7ba288ca">RRT</a>
+                <div class="e-meta">5 articles · 79 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-9142ac5b229c">Uruguay</a>
+                <div class="e-meta">4 articles · 52 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-0420a206ae8b">Beijing</a>
+                <div class="e-meta">2 articles · 12 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-531ba498ac86">Senegal</a>
+                <div class="e-meta">2 articles · 30 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-e65a612aab88">Venezuela</a>
+                <div class="e-meta">2 articles · 32 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-65e387d9c8b2">Washington DC</a>
+                <div class="e-meta">2 articles · 46 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-7d8ca47bbe17">Qatar</a>
+                <div class="e-meta">1 articles · 21 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-6b07fd4ea837">Tunisia</a>
+                <div class="e-meta">1 articles · 21 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-0e6049dbb2ce">Ghana</a>
+                <div class="e-meta">1 articles · 13 connections</div>
+              </div>
+            </article><div class="e-row-break"></div><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-ef0cc10ff462">Tokyo</a>
+                <div class="e-meta">1 articles · 9 connections</div>
+              </div>
+            </article><article class="e-card" data-type="PLACE">
+              <div class="e-icon">P</div>
+              <div>
+                <a class="e-name" href="entity.html?e=ent-50f2194377ef">Bekasi</a>
+                <div class="e-meta">1 articles · 24 connections</div>
+              </div>
+            </article></div>
+        </div>
+<footer>Datagateway · Entity Layer</footer>
+</div>
+</body>
+</html>

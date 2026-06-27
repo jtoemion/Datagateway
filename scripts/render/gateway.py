@@ -14,13 +14,14 @@ WIB = timezone(timedelta(hours=7))
 sys.path.insert(0, str(REPO_ROOT))
 
 from scripts.database import (
-    get_articles, get_article_count, get_today_count,
+    get_articles_with_meta, get_article_count, get_today_count,
     get_source_stats, get_category_stats, get_latest_date,
     get_scraped_article, get_football_events, get_football_odds,
     get_football_count, get_next_football_match,
 )
 from scripts.render.news import build_world_news_html
 from scripts.render.football import build_football_html
+from scripts.render.health_badge import badge_html
 from scripts.search.corpus import build_corpus_json, build_synonym_json
 
 
@@ -47,6 +48,8 @@ def build_index_html(articles: list[dict]) -> str:
     if fb_count_news:
         title += f" \u2022 {total_count} articles, {fb_count_news} football"
 
+    hb = badge_html()
+
     # Read the CSS/JS template from the existing build
     css = _read_styles()
     gsap_js = _read_gsap_js()
@@ -69,8 +72,8 @@ def build_index_html(articles: list[dict]) -> str:
     <div class="head-logo">
       <span class="icon">DG</span>
       <div>
-        <h1>Datagateway</h1>
-        <div class="head-info">{last_update} \u00b7 {total_count} articles \u00b7 {source_count} sources{f' \u00b7 \u26bd {fb_count_news} football' if fb_count_news else ''}</div>
+        <h1>Datagateway {hb}</h1>
+        <div class="head-info">{last_update} · {total_count} articles · {source_count} sources{' · ⚽ ' + str(fb_count_news) + ' football' if fb_count_news else ''}</div>
       </div>
     </div>
   </div>
@@ -79,7 +82,7 @@ def build_index_html(articles: list[dict]) -> str:
 <div class="tabs" role="tablist">
   <div class="tab active" data-tab="news" onclick="switchTab('news')">World News</div>
   <div class="tab" data-tab="football" onclick="switchTab('football')">Football <small>{get_football_count()}</small></div>
-  <div class="tab" data-tab="more" onclick="switchTab('more')">More \u25b8</div>
+  <div class="tab" data-tab="more" onclick="switchTab('more')">More ▸</div>
 </div>
 
 <div class="tab-pane active" id="tab-news">{news_tab}</div>
@@ -88,8 +91,11 @@ def build_index_html(articles: list[dict]) -> str:
 
 <div class="tab-pane" id="tab-more">
   <div style="padding:40px;text-align:center;color:var(--text-muted)">
-    <h3 style="margin:0 0 12px;color:var(--text)">Coming Soon</h3>
-    <p>Entity profiles, knowledge graph, Hermes analysis briefings.</p>
+    <div class="more-cards">
+      <div class="more-card" onclick="location.href='entity.html'"><div class="more-icon">E</div><div class="more-title">Entities</div><div class="more-desc">278 entity profiles with co-occurrence</div></div>
+      <div class="more-card"><div class="more-icon">S</div><div class="more-title">Signals</div><div class="more-desc">Analytical clusters & provenance grouping</div></div>
+      <div class="more-card"><div class="more-icon">H</div><div class="more-title">Hermes Briefs</div><div class="more-desc">LLM-written analysis articles</div></div>
+    </div>
   </div>
 </div>
 
@@ -201,6 +207,14 @@ header { padding:24px 0 16px; }
 .act { padding:4px 12px; border:1px solid var(--border); border-radius:6px; font-size:11px; color:var(--text-muted); text-decoration:none; transition:all .12s; cursor:pointer; background:var(--surface); display:inline-flex; align-items:center; gap:4px; min-height:28px; }
 .act:hover { border-color:var(--accent); color:var(--accent); }
 
+/* More tab */
+.more-cards { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; max-width:600px; margin:0 auto; }
+.more-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px; flex:1; min-width:150px; cursor:pointer; transition:all .15s; text-align:center; }
+.more-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+.more-icon { width:40px; height:40px; border-radius:10px; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; margin:0 auto 10px; }
+.more-title { font-size:14px; font-weight:600; color:var(--text); margin-bottom:4px; }
+.more-desc { font-size:11px; color:var(--text-muted); }
+
 /* Football */
 .hero-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:20px; }
 .hero-content { padding:24px 24px; }
@@ -250,6 +264,13 @@ header { padding:24px 0 16px; }
 /* Footer */
 footer { border-top:1px solid var(--border); padding:20px 0; margin-top:12px; text-align:center; font-size:12px; color:var(--text-muted); }
 footer a { color:var(--accent); text-decoration:none; }
+
+/* Health badge */
+.health-badge { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:600; padding:2px 8px; border-radius:6px; margin-left:8px; vertical-align:middle; }
+.hb-ok { background:#22c55e22; color:#22c55e; }
+.hb-stale { background:#eab30822; color:#eab308; }
+.hb-missing { background:#6b728022; color:#6b7280; }
+.hb-error { background:#ef444422; color:#ef4444; }
 
 /* Responsive */
 @media (max-width:1024px) {
@@ -328,39 +349,70 @@ function applyFilters() {
   const search = (document.getElementById('search')?.value || '').toLowerCase();
   const activeSrc = document.querySelector('.flt-src.active')?.dataset?.filter || 'all';
   const activeCat = document.querySelector('.flt-cat.active')?.dataset?.filter || 'all';
-  const corpus = document.getElementById('corpus-data');
   const synData = document.getElementById('synonym-data');
   let synonyms = {};
   try { if(synData) synonyms = JSON.parse(synData.textContent); } catch(e) {}
 
-  document.querySelectorAll('.card').forEach(card => {
+  // Expand query terms via synonym map
+  const expandedTerms = search ? [search] : [];
+  if(search && synonyms) {
+    for(const [key,values] of Object.entries(synonyms)) {
+      if(search.includes(key) || values.some(v=>search.includes(v))) {
+        expandedTerms.push(key, ...values);
+      }
+    }
+  }
+  // Deduplicate
+  const uniqueTerms = [...new Set(expandedTerms)];
+
+  // Score and filter each card
+  const grid = document.getElementById('news-grid');
+  if(!grid) return;
+  const cards = grid.querySelectorAll('.card');
+  const results = [];
+
+  cards.forEach(card => {
     const title = card.querySelector('.card-title')?.textContent?.toLowerCase() || '';
     const excerpt = card.querySelector('.card-excerpt')?.textContent?.toLowerCase() || '';
     const source = card.querySelector('.card-source')?.textContent?.toLowerCase() || '';
     const cat = card.querySelector('.card-cat')?.textContent?.toLowerCase() || '';
-    const id = card.dataset?.id || '';
-
-    let match = true;
 
     // Source filter
-    if(activeSrc !== 'all' && !source.includes(activeSrc.toLowerCase())) match = false;
+    if(activeSrc !== 'all' && !source.includes(activeSrc.toLowerCase())) return;
 
     // Category filter
-    if(activeCat !== 'all' && !cat.includes(activeCat.toLowerCase())) match = false;
+    if(activeCat !== 'all' && !cat.includes(activeCat.toLowerCase())) return;
 
-    // Search
-    if(search) {
-      const text = title + ' ' + excerpt + ' ' + source + ' ' + id;
-      const expanded = [search];
-      for(const [key,values] of Object.entries(synonyms)) {
-        if(search.includes(key) || values.some(v=>search.includes(v))) {
-          expanded.push(key, ...values);
-        }
+    // Scoring
+    let score = 0;
+    if(search && uniqueTerms.length > 0) {
+      // Title match: 3 points per term
+      for(const t of uniqueTerms) {
+        if(title.includes(t)) score += 3;
       }
-      match = expanded.some(t => text.includes(t));
+      // Excerpt match: 1 point per term
+      for(const t of uniqueTerms) {
+        if(excerpt.includes(t)) score += 1;
+      }
+      // Keyword match: 2 points
+      for(const t of uniqueTerms) {
+        if(cat.includes(t)) score += 2;
+      }
     }
 
-    card.style.display = match ? '' : 'none';
+    // No search = everything matches
+    if(!search) score = 1;
+
+    results.push({card, score});
+  });
+
+  // Sort by score descending (high relevance first)
+  results.sort((a, b) => b.score - a.score);
+
+  // Hide all, show in order
+  results.forEach((r, i) => {
+    r.card.style.display = r.score > 0 ? '' : 'none';
+    r.card.style.order = -r.score; // visual ordering
   });
 }
 
@@ -391,6 +443,6 @@ def build_dashboard(articles: list[dict] = None) -> str:
 if __name__ == "__main__":
     from scripts.database import init_db
     init_db()
-    articles = get_articles(limit=500)
+    articles = get_articles_with_meta(limit=500)
     path = build_dashboard(articles)
     print(f"  Dashboard: {path}")

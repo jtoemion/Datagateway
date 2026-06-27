@@ -11,17 +11,17 @@ image_url: https://akcdn.detik.net.id/visual/2026/06/26/takut-gempa-susulan-warg
 scraped: false
 ---
 
-# FOTO: Trauma Warga Venezuela Takut Gempa Susulan hingga Tidur di Jalan
+# FOTO: [[Trauma Warga Venezuela Takut Gempa Susulan]] hingga Tidur di Jalan
 
-FOTO: Trauma Warga Venezuela Takut Gempa Susulan hingga Tidur di Jalan
+FOTO: Trauma [[Warga Venezuela]] Takut Gempa Susulan hingga Tidur di Jalan
 AFP dan REUTERS |
-CNN Indonesia
+CNN [[RI|Indonesia]]
 Sabtu, 27 Jun 2026 06:00 WIB
 Bagikan:
 url telah tercopy
-Jakarta, CNN Indonesia
+[[Jakarta]], CNN Indonesia
 -- 
-                            Warga Venezuela masih trauma dengan dua gempa dahsyat yang mengguncang Rabu (24/6) malam waktu setempat hingga memilih untuk mengungsi di lapangan.
+                            Warga [[Venezuela]] masih trauma dengan dua gempa dahsyat yang mengguncang Rabu (24/6) malam waktu setempat hingga memilih untuk mengungsi di lapangan.
 Add
 as a preferred
 source on Google

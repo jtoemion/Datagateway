@@ -11,15 +11,15 @@ image_url: https://akcdn.detik.net.id/visual/2026/06/22/spanyol-vs-arab-saudi-17
 scraped: true
 ---
 
-# Link Live Streaming Uruguay vs Spanyol di Piala Dunia 2026
+# [[Link Live Streaming Uruguay]] vs Spanyol di [[Piala Dunia]] 2026
 
 Olahraga
 
 Sepakbola
 
-Link Live Streaming Uruguay vs Spanyol di Piala Dunia 2026
+Link Live Streaming [[Uruguay]] vs Spanyol di Piala Dunia 2026
 
-CNN Indonesia
+CNN [[RI|Indonesia]]
 
 Sabtu, 27 Jun 2026 05:30 WIB
 
@@ -27,9 +27,9 @@ Bagikan:
 
 url telah tercopy
 
-Uruguay akan menghadapi Spanyol pada laga pemungkas babak penyisihan Grup H Piala Dunia 2026.  (REUTERS/Claudia Greco)
+Uruguay akan menghadapi Spanyol pada laga pemungkas babak penyisihan Grup H Piala Dunia 2026.  (REUTERS/[[Claudia Greco]])
 
-Jakarta, CNN Indonesia
+[[Jakarta]], CNN Indonesia
 
 --
 
@@ -43,33 +43,33 @@ Piala Dunia 2026
 
 . Berikut link live streaming Uruguay vs Spanyol.
 
-Duel Uruguay vs Spanyol merupakan penentu nasib kedua kubu menuju babak 32 besar. Sebab masing-masing tim belum memastikan tiket ke fase gugur.
+[[Duel Uruguay]] vs Spanyol merupakan penentu nasib kedua kubu menuju babak 32 besar. Sebab masing-masing tim belum memastikan tiket ke fase gugur.
 
-Jadwal Uruguay vs Spanyol bergulir di Stadion Guadalajara, Meksiko, Sabtu (27/6) pukul 07.00 WIB. Adapun live streaming Uruguay vs Spanyol dapat disaksikan di Folaplay dan Maxstream.
+[[Jadwal Uruguay]] vs Spanyol bergulir di [[Stadion Guadalajara]], Meksiko, Sabtu (27/6) pukul 07.00 WIB. Adapun live streaming Uruguay vs Spanyol dapat disaksikan di Folaplay dan Maxstream.
 
 ADVERTISEMENT
 
 SCROLL TO CONTINUE WITH CONTENT
 
-Lihat Juga :
+[[Lihat Juga]] :
 
-Own Goal Tragis Bek Timnas Kolombia, Berakhir Dibunuh Kartel Narkoba
+[[Own Goal Tragis Bek Timnas Kolombia]], [[Berakhir Dibunuh Kartel Narkoba]]
 
-Saat ini Spanyol memimpin klasemen sementara Grup H dengan empat poin. Sedangkan Uruguay di posisi kedua dengan dua angka.
+Saat ini Spanyol memimpin klasemen sementara Grup H dengan empat poin. [[Sedangkan Uruguay]] di posisi kedua dengan dua angka.
 
 Spanyol butuh kemenangan untuk mengamankan posisi puncak sekaligus tempat di babak 32 besar. Uruguay juga perlu hasil maksimal untuk membuka peluang ke tahap berikutnya.
 
-Sebab di laga lain ada duel Cape Verde vs Arab Saudi. Pertandingan ini ikut menentukan nasib Spanyol dan Uruguay.
+Sebab di laga lain ada duel [[Cape Verde]] vs [[Arab Saudi]]. Pertandingan ini ikut menentukan nasib Spanyol dan Uruguay.
 
-Banner Gempita Bola 2026 Foto: CNNIndonesia/Alya Hendrahmi
+[[Banner Gempita Bola]] 2026 Foto: CNNIndonesia/[[Alya Hendrahmi]]
 
-Cape Verde ada di peringkat ketiga klasemen Grup H dengan dua poin. Sementara Arab Saudi di posisi keempat dengan satu angka.
+Cape Verde ada di peringkat ketiga klasemen Grup H dengan dua poin. [[Sementara Arab Saudi]] di posisi keempat dengan satu angka.
 
-Jika Cape Verde menang bisa jadi petaka bagi Uruguay apabila kalah kontra Spanyol. Karena itu, setiap tim harus habis-habisan pada laga ini.
+[[Jika Cape Verde]] menang bisa jadi petaka bagi Uruguay apabila kalah kontra Spanyol. Karena itu, setiap tim harus habis-habisan pada laga ini.
 
 Lihat Juga :
 
-Skenario Calon Lawan Argentina di 32 Besar Piala Dunia 2026
+[[Skenario Calon Lawan Argentina]] di 32 [[Besar Piala Dunia]] 2026
 
 Link Live Streaming Uruguay vs Spanyol di Piala Dunia 2026
 

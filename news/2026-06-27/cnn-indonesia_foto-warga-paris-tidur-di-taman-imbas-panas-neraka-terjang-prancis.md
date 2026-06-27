@@ -11,15 +11,15 @@ image_url: https://akcdn.detik.net.id/visual/2026/06/26/paris-40-derajat-ribuan-
 scraped: false
 ---
 
-# FOTO: Warga Paris Tidur di Taman Imbas Panas Neraka Terjang Prancis
+# FOTO: [[Warga Paris Tidur]] di [[Taman Imbas Panas Neraka Terjang Prancis]]
 
-FOTO: Warga Paris Tidur di Taman Imbas Panas Neraka Terjang Prancis
+FOTO: Warga [[Paris]] Tidur di Taman Imbas Panas Neraka Terjang Prancis
 AFP |
-CNN Indonesia
+CNN [[RI|Indonesia]]
 Sabtu, 27 Jun 2026 05:00 WIB
 Bagikan:
 url telah tercopy
-Jakarta, CNN Indonesia
+[[Jakarta]], CNN Indonesia
 -- 
                             Cuaca panas ekstrem masih melanda sejumlah negara Eropa termasuk Prancis hingga suhu terpanas mencapai lebih dari 40 derajat Celsius.
 Add

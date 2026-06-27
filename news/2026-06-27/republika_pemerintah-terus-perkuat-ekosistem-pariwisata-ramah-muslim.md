@@ -11,17 +11,17 @@ image_url: https://static.republika.co.id/uploads/images/detailnews/penasihat-se
 scraped: true
 ---
 
-# Pemerintah Terus Perkuat Ekosistem Pariwisata Ramah Muslim
+# [[Pemerintah Terus Perkuat Ekosistem Pariwisata Ramah Muslim]]
 
-REPUBLIKA.CO.ID, JAKARTA -- Pariwisata bukan hanya soal destinasi, melainkan juga tentang membangun koneksi, menciptakan peluang, dan mewujudkan kesejahteraan bersama. Seiring dengan terus berkembangnya pasar perjalanan Muslim global, destinasi wisata menghadapi tantangan untuk menyediakan layanan berkualitas, pengalaman autentik, dan lingkungan inklusif yang memenuhi kebutuhan wisatawan Muslim yang terus berkembang.
+REPUBLIKA.CO.ID, [[Jakarta]] -- Pariwisata bukan hanya soal destinasi, melainkan juga tentang membangun koneksi, menciptakan peluang, dan mewujudkan kesejahteraan bersama. Seiring dengan terus berkembangnya pasar perjalanan Muslim global, destinasi wisata menghadapi tantangan untuk menyediakan layanan berkualitas, pengalaman autentik, dan lingkungan inklusif yang memenuhi kebutuhan wisatawan Muslim yang terus berkembang.
 
-Hal itu disampaikan Penasihat Senior Bidang Transformasi Digital dan Inovasi Pariwisata, Kementerian Pariwisata, Iyung Masruroh, saat memberikan sambutan Welcome Dinner peserta
+Hal itu disampaikan [[Penasihat Senior Bidang Transformasi Digital]] dan [[Inovasi Pariwisata]], [[Kementerian Pariwisata]], [[Iyung Masruroh]], saat memberikan sambutan [[Welcome Dinner]] peserta
 
-International Islamic Expo 2026
+[[International Islamic Expo]] 2026
 
-di Jakarta, Jumat (26/6/2026). "Indonesia bangga dapat menjadi bagian dari momentum positif ini, berbekal kekayaan warisan budaya, keindahan alam yang memukau, tradisi kuliner yang beragam, serta keramah-tamahan yang hangat," ujarnya mewakil Menteri Pariwisata.
+di Jakarta, Jumat (26/6/2026). "[[RI|Indonesia]] bangga dapat menjadi bagian dari momentum positif ini, berbekal kekayaan warisan budaya, keindahan alam yang memukau, tradisi kuliner yang beragam, serta keramah-tamahan yang hangat," ujarnya mewakil [[Kementerian Pariwisata|Menteri Pariwisata]].
 
-Menurut Iyung Indonesia menawarkan beragam pengalaman wisata bagi pengunjung dari seluruh dunia. Pemerintah merasa terhormat bahwa Indonesia kembali diakui dalam Global Muslim Travel Index 2026 sebagai destinasi ramah Muslim peringkat kedua di dunia. Pencapaian ini mencerminkan upaya bersama pemerintah dan pelaku industri.
+[[Menurut Iyung Indonesia]] menawarkan beragam pengalaman wisata bagi pengunjung dari seluruh dunia. Pemerintah merasa terhormat bahwa Indonesia kembali diakui dalam [[Global Muslim Travel Index]] 2026 sebagai destinasi ramah Muslim peringkat kedua di dunia. Pencapaian ini mencerminkan upaya bersama pemerintah dan pelaku industri.
 
 "Dan saya yakin Anda semua turut berkontribusi dalam meningkatkan kualitas serta daya saing ekosistem pariwisata kita. Bagi kami, pengakuan ini menjadi motivasi untuk terus melangkah maju dan memperkuat kolaborasi dengan para mitra," tuturnya.
 
@@ -33,11 +33,11 @@ Pada saat yang sama, Iyung melanjutkan, pemerintah terus memperkuat ekosistem pa
 
 "Mari kita terus bekerja sama untuk memajukan pariwisata ramah Muslim sebagai penggerak pembangunan berkelanjutan, pertumbuhan ekonomi yang inklusif, serta penguatan hubungan antarwarga," katanya menambahkan.
 
-International Islamic Expo 2026 yang berlangsung Jumat hingga Ahad (28/6/2026) ini merupakan buah kolaborasi antara PT Bank Syariah Indonesia Tbk (BSI), PT Aliya Kreasindo selaku penyelenggara, Kementerian Pariwisata, dan Pemprov DKI Jakarta.
+International Islamic Expo 2026 yang berlangsung Jumat hingga Ahad (28/6/2026) ini merupakan buah kolaborasi antara PT [[Bank Syariah Indonesia Tbk]] (BSI), PT [[Aliya Kreasindo]] selaku penyelenggara, Kementerian Pariwisata, dan Pemprov DKI Jakarta.
 
 Loading...
 
-Ikuti Whatsapp Channel Republika
+[[Ikuti Whatsapp Channel Republika]]
 
 ---
 

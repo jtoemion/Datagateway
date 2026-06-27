@@ -11,37 +11,37 @@ image_url: https://e2.365dm.com/26/06/1920x1080/skysports-ben-duckett-england_72
 scraped: true
 ---
 
-# Duckett and Stokes wrestle Trent Bridge Test back England's way
+# Duckett and Stokes wrestle [[Trent Bridge Test]] back England's way
 
-England vs New Zealand: Ben Duckett and Ben Stokes carry hosts' continued fightback in series-decider at Trent Bridge
+England vs [[New Zealand]]: [[Ben Duckett]] and [[Ben Stokes]] carry hosts' continued fightback in series-decider at [[Trent Bridge]]
 
 Ben Stokes takes 3-13 as part of inspired eight-over spell in morning session; Ben Duckett tonks 88-ball ton in reply to New Zealand's first-innings 438, England closing on 223-2;
 
-Watch day three live on Sky Sports Cricket from 10.15am on Saturday (first ball 11am)
+Watch day three live on [[Sky Sports Cricket]] from 10.15am on Saturday (first ball 11am)
 
-By David Currie at Trent Bridge
+[[By David Currie]] at Trent Bridge
 
 Friday 26 June 2026 19:23, UK
 
 Please use Chrome browser for a more accessible video player
 
-Highlights from day two of the Third Test between England and New Zealand.
+Highlights from day two of the [[Third Test]] between England and New Zealand.
 
 Ben Duckett and Ben Stokes were at the heart of a stirring England fightback on day two of the series-deciding third Test against New Zealand at Trent Bridge.
 
-The visitors, who were bossing proceedings at 317 without loss late into the first day's play, found themselves on the receiving end of some excellent bowling in being bowled out for 438, before Duckett (113 off 99) struck a magnificent 88-ball century to anchor England's reply as they closed on 223-2, still 215 runs behind the Black Caps.
+The visitors, who were bossing proceedings at 317 without loss late into the first day's play, found themselves on the receiving end of some excellent bowling in being bowled out for 438, before Duckett (113 off 99) struck a magnificent 88-ball century to anchor England's reply as they closed on 223-2, still 215 runs behind the [[Black Caps]].
 
 Stokes (4-70) earlier took his 250th wicket in Tests as part of a fiery morning spell to match the searing temperatures in Nottingham - 35 Celsius, making it the second-hottest day's cricket in England.
 
 Please use Chrome browser for a more accessible video player
 
-Ben Stokes takes the wicket of Mitchell Santner on day two of the Third Test between England and New Zealand
+Ben Stokes takes the wicket of [[Mitchell Santner]] on day two of the Third Test between England and New Zealand
 
-Stokes took 3-13 across eight overs in of one of his trademark, tireless spells that reduced New Zealand to 418-7 by lunch, before Shoaib Bashir (2-105) helped wrap things up after the interval.
+Stokes took 3-13 across eight overs in of one of his trademark, tireless spells that reduced New Zealand to 418-7 by lunch, before [[Shoaib Bashir]] (2-105) helped wrap things up after the interval.
 
 Scorecard: England vs New Zealand, third Test, Trent Bridge
 
-Got Sky? Watch England vs NZ live on the Sky Sports app
+[[Got Sky]]? [[Watch England]] vs NZ live on the [[Sky Sports]] app
 
 Not got Sky? Get instant access with NOW - no contract
 
@@ -49,39 +49,39 @@ Please use Chrome browser for a more accessible video player
 
 Take a look at some of Ben Duckett's best shots as he made 100 for England against New Zealand on day two of the third Test
 
-Duckett, who was dropped on eight, then blasted 19 boundaries as part of a majestic seventh Test ton, sharing in a 179-run stand for the second wicket with Jacob Bethell (74no), who will be eyeing a hundred of his own early on day three.
+Duckett, who was dropped on eight, then blasted 19 boundaries as part of a majestic seventh Test ton, sharing in a 179-run stand for the second wicket with [[Jacob Bethell]] (74no), who will be eyeing a hundred of his own early on day three.
 
 Score summary - England vs New Zealand, third Test, Trent Bridge
 
 New Zealand 438 all out in 114.5 overs of first innings (elected to bat):
 
-Devon Conway (157 off 224 balls), Tom Latham (151 off 214); Ben Stokes (4-70), Jofra Archer (2-75), Shoaib Bashir (2-105)
+[[Devon Conway]] (157 off 224 balls), [[Tom Latham]] (151 off 214); Ben Stokes (4-70), [[Jofra Archer]] (2-75), Shoaib Bashir (2-105)
 
 England 223-2 after 45 overs of first innings:
 
-Ben Duckett (113 off 99 balls), Jacob Bethell (74no off 128), Joe Root (21no off 42); Will O'Rourke (1-39), Nathan Smith (1-51)
+Ben Duckett (113 off 99 balls), Jacob Bethell (74no off 128), [[Joe Root]] (21no off 42); Will O'Rourke (1-39), [[Nathan Smith]] (1-51)
 
-England's cause has been aided by an inexperienced New Zealand bowling attack that has also lost Blair Tickner to a concussion following an earlier blow to the head when batting against Jofra Archer. He has been replaced by Zak Foulkes for the remainder of the match.
+England's cause has been aided by an inexperienced New Zealand bowling attack that has also lost [[Blair Tickner]] to a concussion following an earlier blow to the head when batting against Jofra Archer. He has been replaced by [[Zak Foulkes]] for the remainder of the match.
 
 Stokes takes 250th Test wicket during inspired spell
 
 After carrying some momentum into the morning from a four-wicket burst deep into the first evening, nightwatchman Will O'Rourke (19) was a brief source of frustration for England as he comfortably passed his previous Test best of five.
 
-Also See:
+[[Also See]]:
 
 Scorecard: England vs NZ, third Test
 
-Stream England vs NZ without a contract
+[[Stream England]] vs NZ without a contract
 
 Latest cricket highlights and video
 
-Listen to the Sky Sports Cricket Podcast
+Listen to the [[Sky Sports Cricket Podcast]]
 
 Please use Chrome browser for a more accessible video player
 
-Jamie Smith gets in Joe Root's way at first slip and drops the catch on day two of the third Test between England and New Zealand.
+[[Jamie Smith]] gets in Joe Root's way at first slip and drops the catch on day two of the third Test between England and New Zealand.
 
-The first wicket to fall was, in fact, to be top-order batter Daryl Mitchell (11) as he feathered an edge behind off Stokes, with the slightest of scratches detected on review, much to his disbelief.
+The first wicket to fall was, in fact, to be top-order batter [[Daryl Mitchell]] (11) as he feathered an edge behind off Stokes, with the slightest of scratches detected on review, much to his disbelief.
 
 O'Rourke, who had been dropped on 19 by a combination of wicketkeeper Jamie Smith and Joe Root at slip, was finally felled without troubling the scorers further as his dogged resistance made way for a more tailender-suited top-edged hack across the line.
 
@@ -91,7 +91,7 @@ Ben Stokes takes the wicket of Mitchell Santner on day two of the Third Test bet
 
 Stokes then took his 250th Test wicket, with Mitchell Santner (4) his victim, fending a short ball to gully, though it would prove a slightly contentious dismissal as the batter believed the ball deflected off his arm guard - DRS, crucially, didn't and gave him out.
 
-Bashir dropped Tom Blundell in the deep off Jofra Archer shortly after lunch, but swiftly made amends by claiming Nathan Smith (6) - courtesy of a terrific, reflex grab off his own bowling - and Blundell (30) in the same over.
+Bashir dropped [[Tom Blundell]] in the deep off Jofra Archer shortly after lunch, but swiftly made amends by claiming Nathan Smith (6) - courtesy of a terrific, reflex grab off his own bowling - and Blundell (30) in the same over.
 
 Please use Chrome browser for a more accessible video player
 
@@ -101,13 +101,13 @@ A still sulking Archer wasn't initially in the mood to celebrate with the spinne
 
 Duckett cashes in after being dropped on eight
 
-England will have been thrilled at bowling the tourists out for 438, as conditions still seemed ideal for batting, but they got off to a bit of a spluttering start as Emilio Gay departed for a duck in O'Rourke's second over, while Duckett was dropped on eight as Henry Nicholls made a mess of a fairly straightforward offering at third slip.
+England will have been thrilled at bowling the tourists out for 438, as conditions still seemed ideal for batting, but they got off to a bit of a spluttering start as [[Emilio Gay]] departed for a duck in O'Rourke's second over, while Duckett was dropped on eight as [[Henry Nicholls]] made a mess of a fairly straightforward offering at third slip.
 
 Duckett certainly made the most of the reprieve, looking in sublime touch thereafter as he charged through to a 40-ball fifty just prior to tea.
 
 He and Bethell then rattled through the gears in the early part of the evening session, with England flying along at more than six-runs-an-over with boundaries struck in all but four of the first 24 overs of the innings.
 
-In the first 13 overs after tea, Duckett and Bethell smashed 91 runs, with the latter bringing up his 60-ball half century a couple of overs prior to Duckett celebrating - and with some gusto - his first Test hundred in more than a year.
+In the first 13 overs after tea, Duckett and Bethell smashed 91 runs, with the latter bringing up his 60-ball half century a couple of overs prior to Duckett celebrating - and with some gusto - his [[First Test]] hundred in more than a year.
 
 Image:
 
@@ -129,7 +129,7 @@ England's Ben Duckett reflects on hitting 113 on day two of the third Test again
 
 "It was a bit of a shame I wasn't there at the end of the day, but I'd have taken that at the start. I've felt it's been coming.
 
-"I didn't go to the IPL. I've spent a lot of time here working on my game and have scored runs in the County Championship.
+"I didn't go to the IPL. I've spent a lot of time here working on my game and have scored runs in the [[County Championship]].
 
 "It hasn't gone my way in the first couple of Tests but, with the age I'm at now, I try to believe in my game, knowing one is around the corner.
 
@@ -137,7 +137,7 @@ England's Ben Duckett reflects on hitting 113 on day two of the third Test again
 
 'England have given themselves platform to win'
 
-Sky Sports Cricket's Stuart Broad:
+Sky Sports Cricket's [[Stuart Broad]]:
 
 Please use Chrome browser for a more accessible video player
 
@@ -145,27 +145,27 @@ Stuart Broad hails Stokes' relentlessness following his 250th Test wicket, sayin
 
 "England, led by their captain Ben Stokes, have been superb. If you think back to day one, when New Zealand were 317-0, it was almost at a stage where the game was gone.
 
-"But England have had such a brilliant day and the changing room will be thinking they can win this game if they pass New Zealand's score.
+"[[But England]] have had such a brilliant day and the changing room will be thinking they can win this game if they pass New Zealand's score.
 
 "They have given themselves the platform to really control this game, providing they have another good day tomorrow. It's a big saying in cricket, but the next hour is a big hour.
 
-"If New Zealand get a few out in the morning it's a different game, but if Bethell and Root get through that, they can control the rate at which England score."
+"[[New Zealand|If New Zealand]] get a few out in the morning it's a different game, but if Bethell and Root get through that, they can control the rate at which England score."
 
 "England will want to bat all day tomorrow and, of course, surpass New Zealand. But they won't be looking that far ahead.
 
-"If you think of the power and strike-rate they have coming with Harry Brook, Jamie Smith, Ben Stokes, things will accelerate quickly when this bowling attack tires.
+"If you think of the power and strike-rate they have coming with [[Harry Brook]], Jamie Smith, Ben Stokes, things will accelerate quickly when this bowling attack tires.
 
-"Although England are behind on the scoreboard, they have got themselves into a pretty good position."
+"[[Although England]] are behind on the scoreboard, they have got themselves into a pretty good position."
 
 England vs New Zealand - results and schedule
 
-All times UK and Ireland, all games live on Sky Sports
+All times UK and [[Ireland]], all games live on Sky Sports
 
 First Test (Lord's) -
 
 England won by 115 runs
 
-Second Test (The Kia Oval) -
+[[Second Test]] ([[The Kia Oval]]) -
 
 New Zealand won by 253 runs
 
@@ -179,7 +179,7 @@ Stream cricket and more with NOW - no contract
 
 .
 
-Around Sky
+[[Around Sky]]
 
 Sign up for Sky Sports push notifications
 

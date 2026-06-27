@@ -11,7 +11,7 @@ image_url: https://akcdn.detik.net.id/visual/2026/05/20/presiden-prabowo-berpida
 scraped: true
 ---
 
-# Prabowo Sebut Posisi Strategis dalam Kabinetnya Banyak Diisi Profesor
+# [[Prabowo Sebut Posisi Strategis]] dalam [[Kabinetnya Banyak Diisi Profesor]]
 
 Nasional
 
@@ -19,7 +19,7 @@ Politik
 
 Prabowo Sebut Posisi Strategis dalam Kabinetnya Banyak Diisi Profesor
 
-CNN Indonesia
+CNN [[RI|Indonesia]]
 
 Sabtu, 27 Jun 2026 05:55 WIB
 
@@ -27,9 +27,9 @@ Bagikan:
 
 url telah tercopy
 
-Presiden RI Prabowo Subianto. (ANTARA FOTO/Rivan Awal Lingga)
+Presiden RI Prabowo Subianto. (ANTARA FOTO/[[Rivan Awal Lingga]])
 
-Jakarta, CNN Indonesia
+[[Jakarta]], CNN Indonesia
 
 --
 
@@ -47,15 +47,15 @@ ADVERTISEMENT
 
 SCROLL TO CONTINUE WITH CONTENT
 
-"Saya dari awal sangat sadar peran dan penting para ilmuwan, para guru besar. Dan karena itu, kalau saudara simak, hampir di setiap bidang pemerintahan yang kunci, saya ikut sertakan profesor-profesor dalam posisi-posisi yang sangat menentukan," kata Prabowo dalam acara Sarasehan Kebangsaan Konvensi Sains, Teknologi, dan Industri Indonesia (KSTI) 2026 di JCC, Senayan, Jakarta Pusat, Jumat (26/6).
+"Saya dari awal sangat sadar peran dan penting para ilmuwan, para guru besar. Dan karena itu, kalau saudara simak, hampir di setiap bidang pemerintahan yang kunci, saya ikut sertakan profesor-profesor dalam posisi-posisi yang sangat menentukan," kata Prabowo dalam acara [[Sarasehan Kebangsaan Konvensi Sains]], Teknologi, dan [[Industri Indonesia]] (KSTI) 2026 di JCC, Senayan, [[Jakarta Pusat]], Jumat (26/6).
 
-Pilihan Redaksi
+[[Pilihan Redaksi]]
 
-Aksi Masyarakat Sipil Surabaya Digelar hingga Malam, Aparat Bubarkan
+[[Aksi Masyarakat Sipil Surabaya Digelar]] hingga Malam, [[Aparat Bubarkan]]
 
-Prabowo Kritik Kegaduhan: Negara Lain Menuju Kesejahteraan
+[[Prabowo Kritik Kegaduhan]]: [[Negara Lain Menuju Kesejahteraan]]
 
-11 Tuntutan Aksi Masyarakat Sipil Surabaya yang Dibubarkan Aparat
+11 [[Tuntutan Aksi Masyarakat Sipil Surabaya]] yang [[Dibubarkan Aparat]]
 
 Prabowo mengatakan penempatan profesor di sejumlah posisi strategis sejalan dengan pandangannya bahwa keberhasilan suatu organisasi ditentukan oleh kualitas orang-orang yang menjalankan tugasnya, bukan semata-mata teknologi atau peralatan yang dimiliki.
 
@@ -65,7 +65,7 @@ Dia mengibaratkan seorang pemimpin sebagai nakhoda kapal yang membutuhkan awak k
 
 "Salah satu ilmu kepemimpinan yang saya dapat dalam perjalanan saya adalah bahwa seorang pemimpin, seorang nakhoda yang mau aman membawa kapalnya sampai ke tujuan, dia harus punya awak yang handal," ujarnya.
 
-Ia kemudian membandingkan prinsip tersebut dengan dunia olahraga. Menurut Prabowo, sebuah tim sepak bola tak hanya membutuhkan pemain yang baik, tetapi juga manajer, pelatih, hingga seluruh tim pendukung yang kompeten agar mampu meraih kemenangan.
+Ia kemudian membandingkan prinsip tersebut dengan dunia olahraga. [[Menurut Prabowo]], sebuah tim sepak bola tak hanya membutuhkan pemain yang baik, tetapi juga manajer, pelatih, hingga seluruh tim pendukung yang kompeten agar mampu meraih kemenangan.
 
 "Kalau kita mau menang sepak bola, kita harus punya manajer yang baik,
 

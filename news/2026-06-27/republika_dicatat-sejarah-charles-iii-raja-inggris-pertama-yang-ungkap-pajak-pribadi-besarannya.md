@@ -11,25 +11,25 @@ image_url: https://static.republika.co.id/uploads/images/detailnews/042165300-17
 scraped: true
 ---
 
-# Dicatat Sejarah, Charles III Raja Inggris Pertama yang Ungkap Pajak Pribadi, Besarannya...
+# [[Dicatat Sejarah]], Charles III [[Raja Inggris Pertama]] yang [[Ungkap Pajak Pribadi]], Besarannya...
 
-REPUBLIKA.CO.ID, JAKARTA — Raja Charles III mencatat sejarah sebagai penguasa
+REPUBLIKA.CO.ID, JAKARTA — [[Raja Charles]] III mencatat sejarah sebagai penguasa
 
 Inggris
 
-pertama yang mengungkapkan besaran pembayaran pajak pribadinya kepada publik. Istana Buckingham pada Kamis (26/6) mengumumkan bahwa sang raja membayar pajak sebesar 12,9 juta poundsterling, atau sekitar Rp305,1 miliar (kurs Rp23.655 per poundsterling), untuk tahun pajak 2024-2025.
+pertama yang mengungkapkan besaran pembayaran pajak pribadinya kepada publik. [[Istana Buckingham]] pada Kamis (26/6) mengumumkan bahwa sang raja membayar pajak sebesar 12,9 juta poundsterling, atau sekitar Rp305,1 miliar (kurs Rp23.655 per poundsterling), untuk tahun pajak 2024-2025.
 
 Pengungkapan tersebut menjadi kali pertama pembayaran pajak pribadi seorang raja atau ratu Inggris yang sedang bertakhta dipublikasikan secara resmi.
 
-Baca Juga
+[[Baca Juga]]
 
-Krisis Teluk Sulap Pipa Gas Rusia-China Jadi Makin Strategis, Potensinya Rp326 Triliun
+[[Krisis Teluk Sulap Pipa Gas Rusia]]-[[China Jadi Makin Strategis]], Potensinya Rp326 Triliun
 
-Babak Baru Rivalitas Jerman vs Rusia, Berlin Gerebek WN Rusia terkait Sabotase Gas
+[[Babak Baru Rivalitas Jerman]] vs Rusia, [[Berlin Gerebek]] WN Rusia terkait [[Sabotase Gas]]
 
-NATO Genjot Anggaran Militer Rp9.300 T, Putin: Barat Bersiap Perang dengan Rusia
+[[NATO]] [[Genjot Anggaran Militer]] Rp9.300 T, Putin: [[Barat Bersiap Perang]] dengan Rusia
 
-Dalam laporan keuangan terbaru Rumah Tangga Kerajaan, Istana Buckingham juga mengungkapkan bahwa
+Dalam laporan keuangan terbaru [[Rumah Tangga Kerajaan]], Istana Buckingham juga mengungkapkan bahwa
 
 Raja Charles III
 
@@ -55,17 +55,17 @@ pajak keuntungan modal
 
 berdasarkan skema yang diperkenalkan pada era 1990-an.
 
-Tradisi keterbukaan mengenai pembayaran pajak sebenarnya telah dimulai Charles ketika masih menyandang gelar Pangeran Wales. Namun, inilah pertama kalinya rincian pembayaran pajak pribadinya dipublikasikan sejak ia resmi menjadi Raja Inggris.
+Tradisi keterbukaan mengenai pembayaran pajak sebenarnya telah dimulai Charles ketika masih menyandang gelar [[Pangeran Wales]]. Namun, inilah pertama kalinya rincian pembayaran pajak pribadinya dipublikasikan sejak ia resmi menjadi [[Raja Inggris]].
 
-"Meskipun keuangan kerajaan terkadang tampak rumit, sistem yang mendasarinya pada prinsipnya jelas, terstruktur dalam undang-undang, dan disempurnakan dari waktu ke waktu untuk memastikan raja dapat menjalankan tugasnya dengan independensi, akuntabilitas, dan demi kepentingan jangka panjang bangsa," kata James Chalmers, pejabat yang mengelola
+"Meskipun keuangan kerajaan terkadang tampak rumit, sistem yang mendasarinya pada prinsipnya jelas, terstruktur dalam undang-undang, dan disempurnakan dari waktu ke waktu untuk memastikan raja dapat menjalankan tugasnya dengan independensi, akuntabilitas, dan demi kepentingan jangka panjang bangsa," kata [[James Chalmers]], pejabat yang mengelola
 
-Privy Purse
+[[Privy Purse]]
 
-atau pendapatan pribadi penguasa Kerajaan Inggris.
+atau pendapatan pribadi penguasa [[Kerajaan Inggris]].
 
 Loading...
 
-Ikuti Whatsapp Channel Republika
+[[Ikuti Whatsapp Channel Republika]]
 
 sumber : Xinhua
 

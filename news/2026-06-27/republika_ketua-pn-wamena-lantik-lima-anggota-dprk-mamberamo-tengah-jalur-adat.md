@@ -11,15 +11,15 @@ image_url: https://static.republika.co.id/uploads/images/detailnews/023243400-17
 scraped: true
 ---
 
-# Ketua PN Wamena Lantik Lima Anggota DPRK Mamberamo Tengah Jalur Adat
+# Ketua PN [[Wamena Lantik Lima Anggota]] DPRK [[Mamberamo Tengah Jalur Adat]]
 
 REPUBLIKA.CO.ID, WAMENA,
 
-– Ketua Pengadilan Negeri Wamena, Kabupaten Jayawijaya, Papua Pegunungan,
+– [[Ketua Pengadilan Negeri Wamena]], [[Kabupaten Jayawijaya]], [[Papua Pegunungan]],
 
-Hirmawan Agung Wicaksono
+[[Hirmawan Agung Wicaksono]]
 
-, resmi melantik lima anggota Dewan Perwakilan Rakyat Kabupaten (DPRK) Mamberamo Tengah jalur adat atau otonomi khusus (otsus) untuk periode 2025-2030. Pelantikan ini berlangsung dalam rapat paripurna istimewa
+, resmi melantik [[Lima]] anggota [[Dewan Perwakilan Rakyat Kabupaten]] (DPRK) [[Mamberamo Tengah]] jalur adat atau otonomi khusus (otsus) untuk periode 2025-2030. Pelantikan ini berlangsung dalam rapat paripurna istimewa
 
 DPRK Mamberamo Tengah
 
@@ -29,31 +29,31 @@ Prosesi tersebut merupakan rangkaian pengumuman, peresmian, pengangkatan, dan pe
 
 Adapun kelima anggota DPRK jalur pengangkatan otsus yang dilantik adalah
 
-Marmin Yikwa
+[[Marmin Yikwa]]
 
-dari Dapil I Distrik Kelila,
+dari Dapil I [[Distrik Kelila]],
 
-Anis Doga
+[[Anis Doga]]
 
-dari Dapil II Distrik Ilugwa,
+dari Dapil II [[Distrik Ilugwa]],
 
-Emianus Gombo
+[[Emianus Gombo]]
 
-dari Dapil III Distrik Eragayam,
+dari Dapil III [[Distrik Eragayam]],
 
-Yakomina Endaganggok
+[[Yakomina Endaganggok]]
 
-dari Dapil IV Distrik Kobagma, dan
+dari Dapil IV [[Distrik Kobagma]], dan
 
-Yafet Barusa
+[[Yafet Barusa]]
 
-dari Dapil V Distrik Megambilis.
+dari Dapil V [[Distrik Megambilis]].
 
-Hasil Seleksi Ketat
+[[Hasil Seleksi Ketat]]
 
 Ketua DPRK Mamberamo Tengah,
 
-Piter Togodly
+[[Piter Togodly]]
 
 , menjelaskan bahwa kelima anggota yang dilantik merupakan hasil seleksi yang dilakukan oleh panitia seleksi beberapa waktu lalu. Mereka dipilih dari banyak calon yang mendaftar dan telah mengikuti seluruh tahapan seleksi.
 
@@ -61,21 +61,21 @@ Piter Togodly
 
 Piter menegaskan bahwa anggota DPRK jalur pengangkatan memiliki fungsi dan tugas yang sama seperti anggota DPRK yang berasal dari jalur partai politik. Dari kelima anggota tersebut, satu orang akan menduduki unsur pimpinan DPRK Mamberamo Tengah, sementara empat anggota lainnya akan masuk ke dalam alat kelengkapan dewan.
 
-Suara Khusus Orang Asli Papua
+[[Suara Khusus Orang Asli Papua]]
 
 Lebih lanjut, Piter menjelaskan bahwa kelima anggota DPRK jalur adat ini akan memiliki fraksi sendiri yang dinamakan
 
-Fraksi Kelengkapan
+[[Fraksi Kelengkapan]]
 
 . Meski memiliki fungsi yang sama, terdapat perbedaan kapasitas dibandingkan anggota dari jalur partai politik.
 
 "Kelima anggota DPRK jalur pengangkatan ini tidak memiliki kapasitas seperti anggota DPRK jalur partai politik, seperti tidak dapat mencalonkan orang menjadi calon kepala daerah, tetapi hanya menyuarakan harkat dan martabat orang asli Papua (OAP) di Mamberamo Tengah," ujarnya.
 
-Piter menyampaikan rasa syukur kepada Tuhan Yang Maha Esa karena seluruh proses dan tahapan seleksi anggota DPRK jalur adat, dari awal hingga pelantikan, dapat berjalan dengan baik. "Atas nama keluarga besar DPRK Mamberamo Tengah mengucapkan syukur kepada Tuhan karena kegiatan pelantikan DPRK jalur pengangkatan berjalan baik," tutupnya.
+Piter menyampaikan rasa syukur kepada [[Tuhan Yang Maha Esa]] karena seluruh proses dan tahapan seleksi anggota DPRK jalur adat, dari awal hingga pelantikan, dapat berjalan dengan baik. "Atas nama keluarga besar DPRK Mamberamo Tengah mengucapkan syukur kepada Tuhan karena kegiatan pelantikan DPRK jalur pengangkatan berjalan baik," tutupnya.
 
 Konten ini diolah dengan bantuan AI.
 
-Ikuti Whatsapp Channel Republika
+[[Ikuti Whatsapp Channel Republika]]
 
 sumber : antara
 

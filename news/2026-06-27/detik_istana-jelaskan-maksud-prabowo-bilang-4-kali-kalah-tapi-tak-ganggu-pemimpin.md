@@ -11,19 +11,19 @@ image_url: https://akcdn.detik.net.id/community/media/visual/2026/06/26/prabowo-
 scraped: true
 ---
 
-# Istana Jelaskan Maksud Prabowo Bilang 4 Kali Kalah tapi Tak Ganggu Pemimpin
+# [[Istana Jelaskan Maksud Prabowo Bilang]] 4 [[Kali Kalah]] tapi [[Tak Ganggu Pemimpin]]
 
 Istana Jelaskan Maksud Prabowo Bilang 4 Kali Kalah tapi Tak Ganggu Pemimpin
 
-Eva Safitri -
+[[Eva Safitri]] -
 
 detikNews
 
 Jumat, 26 Jun 2026 23:17 WIB
 
-Foto: Presiden Prabowo (Dok. Biro Sekretariat Presiden)
+Foto: [[Prabowo|Presiden Prabowo]] (Dok. [[Sekretariat Presiden|Biro Sekretariat Presiden]])
 
-Jakarta
+[[Jakarta]]
 
 -
 
@@ -35,13 +35,13 @@ bercerita mengenai dirinya 4 kali kalah dalam
 
 pilpres
 
-namun tak mengganggu pemimpin pemegang mandat. Mensesneg Prasetyo Hadi menjelaskan Prabowo ingin pemilu menjadi konsensus bersama.
+namun tak mengganggu pemimpin pemegang mandat. [[Mensesneg Prasetyo Hadi]] menjelaskan Prabowo ingin pemilu menjadi konsensus bersama.
 
-"Oh tidak, tidak. Jadi konteksnya yang ingin beliau sampaikan bahwa perhelatan pemilu lima tahunan itu adalah konsensus kita bersama-sama," kata Pras kepada wartawan di usai Sarasehan Kebangsaan Konvensi Sains, Teknologi, dan Industri Indonesia (KSTI) 2026, di JCC, Senayan, Jakarta, Jumat (26/6/2026).
+"Oh tidak, tidak. Jadi konteksnya yang ingin beliau sampaikan bahwa perhelatan pemilu lima tahunan itu adalah konsensus kita bersama-sama," kata Pras kepada wartawan di usai [[Sarasehan Kebangsaan Konvensi Sains]], Teknologi, dan [[Industri Indonesia]] (KSTI) 2026, di JCC, Senayan, Jakarta, Jumat (26/6/2026).
 
 Baca juga:
 
-Prabowo: 4 Kali Saya Kalah tapi Tidak Ganggu Pemimpin
+Prabowo: 4 [[Kali Saya Kalah]] tapi [[Tak Ganggu Pemimpin|Tidak Ganggu Pemimpin]]
 
 SCROLL TO CONTINUE WITH CONTENT
 
@@ -51,7 +51,7 @@ Pras mengatakan hasil pemilu yang digelar lima tahunan merupakan kesepakatan ber
 
 Pras lantas membeberkan perjuangan Prabowo untuk meminta mandat rakyat yang dilakukan sesuai mekanisme lewat jalur politik. Jalur itu ditempuh sejak 2004 hingga akhirnya terpilih menjadi presiden di Pilpres 2024.
 
-"Tahun 2004 beliau berjuang melalui Partai Golkar, kemudian tahun 2008 beliau mendirikan partai, mengikuti semua mekanisme dan konsensus yang memang sudah disepakati, mendirikan partai politik, maju, menawarkan diri kepada masyarakat untuk meminta mandat dari masyarakat," ujarnya.
+"Tahun 2004 beliau berjuang melalui [[Golkar|Partai Golkar]], kemudian tahun 2008 beliau mendirikan partai, mengikuti semua mekanisme dan konsensus yang memang sudah disepakati, mendirikan partai politik, maju, menawarkan diri kepada masyarakat untuk meminta mandat dari masyarakat," ujarnya.
 
 "Kemudian pertama belum berhasil, meminta mandat lagi belum berhasil, sampai 4 kali tahun 2024, beliau diberi amanah oleh rakyat yang bisa melalui mekanisme pemilihan dan konstitusional," lanjut Pras.
 
@@ -61,11 +61,11 @@ Usai terpilih, Prabowo, kata Pras, berupaya untuk membayar perjuangannya selama 
 
 Baca juga:
 
-Prabowo Tanya Guru Besar: Kenapa 81 Tahun RI Tak Bisa Bikin Mobil Sendiri?
+[[Prabowo Tanya Guru Besar]]: Kenapa 81 Tahun RI [[Tak Bisa Bikin Mobil Sendiri]]?
 
 Sebelumnya, Prabowo kembali bercerita terkait kekalahan empat kali dalam pemilihan presiden (pilpres). Prabowo mengaku, meski kalah empat kali dalam pilpres, tak pernah mengganggu pemerintahan yang mendapat mandat.
 
-"Saya selalu berusaha dengan persuasi, saya sebagai pemimpin politik, saya dipilih secara demokratis, saya maju ke rakyat lima kali minta mandat, empat kali tidak diberi mandat, empat kali saya kalah, tapi saya tidak mengganggu pemimpin yang dapat mandat," kata Prabowo saat membuka Sarasehan Kebangsaan Konvensi Sains, Teknologi, dan Industri Indonesia (KSTI) 2026.
+"Saya selalu berusaha dengan persuasi, saya sebagai pemimpin politik, saya dipilih secara demokratis, saya maju ke rakyat lima kali minta mandat, empat kali tidak diberi mandat, empat kali saya kalah, tapi saya tidak mengganggu pemimpin yang dapat mandat," kata Prabowo saat membuka Sarasehan Kebangsaan Konvensi Sains, Teknologi, dan Industri [[RI|Indonesia]] (KSTI) 2026.
 
 Halaman 2 dari 2
 

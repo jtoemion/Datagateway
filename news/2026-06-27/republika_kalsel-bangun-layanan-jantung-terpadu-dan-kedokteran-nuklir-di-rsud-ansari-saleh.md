@@ -11,37 +11,37 @@ image_url: https://static.republika.co.id/uploads/images/detailnews/002739800-17
 scraped: true
 ---
 
-# Kalsel Bangun Layanan Jantung Terpadu dan Kedokteran Nuklir di RSUD Ansari Saleh
+# [[Kalsel Bangun Layanan Jantung Terpadu]] dan [[Kedokteran Nuklir]] di RSUD [[Ansari Saleh]]
 
-REPUBLIKA.CO.ID, BANJARMASIN,
+REPUBLIKA.CO.ID, [[Banjarmasin]],
 
-– Pemerintah Provinsi Kalimantan Selatan (Kalsel) menyiapkan pembangunan
+– [[Pemerintah Provinsi Kalimantan Selatan]] (Kalsel) menyiapkan pembangunan
 
-layanan jantung terpadu
+[[Layanan Jantung Terpadu]]
 
 dan
 
 kedokteran nuklir
 
-di RSUD dr. H. Moch. Ansari Saleh Banjarmasin. Langkah ini diambil untuk memperkuat layanan kesehatan rujukan sekaligus mengurangi ketergantungan masyarakat berobat ke luar daerah.
+di RSUD dr. H. Moch. [[Ansari Saleh Banjarmasin]]. Langkah ini diambil untuk memperkuat layanan kesehatan rujukan sekaligus mengurangi ketergantungan masyarakat berobat ke luar daerah.
 
-Gubernur Kalsel Muhidin di Banjarmasin pada Jumat telah meninjau lahan seluas sekitar satu hektare yang disiapkan untuk pembangunan Gedung Layanan Kedokteran Nuklir dan Gedung Pusat
+[[Gubernur Kalsel Muhidin]] di Banjarmasin pada Jumat telah meninjau lahan seluas sekitar satu hektare yang disiapkan untuk pembangunan [[Gedung Layanan Kedokteran Nuklir]] dan [[Gedung Pusat]]
 
 Layanan Jantung Terpadu
 
-di rumah sakit tersebut. Peninjauan ini merupakan bagian dari rencana pengembangan fasilitas kesehatan milik Pemprov Kalsel.
+di rumah sakit tersebut. Peninjauan ini merupakan bagian dari rencana pengembangan fasilitas kesehatan milik [[Pemprov Kalsel]].
 
 Muhidin mengatakan layanan kedokteran nuklir menjadi kebutuhan penting karena mampu mendukung diagnosis berbagai penyakit secara lebih rinci dan akurat. Kehadiran fasilitas itu juga akan melengkapi layanan CT Scan berteknologi tinggi yang telah dimiliki pemerintah daerah.
 
 “Pembangunan ini juga akan dilengkapi berbagai fasilitas penunjang, termasuk tempat menginap bagi pasien dan keluarga selama menjalani pengobatan,” ujarnya.
 
-Target Operasional Akhir 2028
+[[Target Operasional Akhir]] 2028
 
 Dia menjelaskan usulan pembangunan dijadwalkan mulai pada 2027. Apabila seluruh tahapan berjalan sesuai rencana, fasilitas kesehatan tersebut mulai beroperasi pada akhir 2028 untuk melayani masyarakat.
 
 “Layanan itu nantinya terbuka bagi seluruh masyarakat, baik peserta BPJS, pasien umum maupun skema pembiayaan lainnya. Pemerintah provinsi ingin memastikan warga memperoleh pelayanan kesehatan yang lebih lengkap tanpa harus dirujuk ke luar daerah,” ujar Muhidin.
 
-Direktur RSUD dr. H. Moch. Ansari Saleh, dr. Tabiun Huda, mengatakan pembangunan fasilitas tersebut menjadi langkah strategis meningkatkan kapasitas layanan rujukan di Kalimantan Selatan. Fokus utamanya adalah untuk diagnosis penyakit menggunakan teknologi kedokteran nuklir serta penanganan penyakit jantung secara terpadu.
+Direktur RSUD dr. H. Moch. Ansari Saleh, dr. [[Tabiun Huda]], mengatakan pembangunan fasilitas tersebut menjadi langkah strategis meningkatkan kapasitas layanan rujukan di [[Kalimantan Selatan]]. Fokus utamanya adalah untuk diagnosis penyakit menggunakan teknologi kedokteran nuklir serta penanganan penyakit jantung secara terpadu.
 
 Dia menyatakan rumah sakit telah memiliki sumber daya manusia yang kompeten untuk mengoperasikan layanan tersebut. Saat ini, kebutuhan utama adalah penyediaan peralatan medis beserta sarana dan prasarana pendukung agar layanan dapat segera dioperasikan setelah pembangunan selesai.
 
@@ -49,7 +49,7 @@ Dia menyatakan rumah sakit telah memiliki sumber daya manusia yang kompeten untu
 
 Konten ini diolah dengan bantuan AI.
 
-Ikuti Whatsapp Channel Republika
+[[Ikuti Whatsapp Channel Republika]]
 
 sumber : antara
 

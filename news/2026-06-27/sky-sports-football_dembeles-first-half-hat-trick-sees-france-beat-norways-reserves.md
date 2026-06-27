@@ -11,17 +11,17 @@ image_url: https://e0.365dm.com/26/06/1920x1080/skysports-france-norway_7283920.
 scraped: true
 ---
 
-# Dembele's first-half hat-trick sees France beat Norway's reserves
+# Dembele's first-half hat-trick sees [[France]] beat [[Norway]]'s reserves
 
-Norway vs France; FIFA World Cup Group I
+Norway vs France; [[FIFA]] [[World Cup Group]] I
 
 FT
 
-Full Time
+[[Full Time]]
 
 AET
 
-After Extra Time
+[[After Extra Time]]
 
 LIVE
 
@@ -29,19 +29,19 @@ This is a live match.
 
 ET
 
-Extra Time
+[[Extra Time]]
 
 HT
 
-Half Time
+[[Half Time]]
 
 Norway
 
-vs France. FIFA World Cup Group I.
+vs France. FIFA [[World Cup]] Group I.
 
 8:00pm, Friday 26th June 2026.
 
-Boston Stadium
+[[Boston Stadium]]
 
 Attendance:
 
@@ -93,21 +93,21 @@ D Doué (
 
 )
 
-Latest FIFA World Cup Odds
+Latest FIFA [[World Cup Odds]]
 
-Get Sky Sports
+[[Get Sky Sports]]
 
-Get a NOW Sports Membership
+Get a NOW [[Sports Membership]]
 
-Watch Live
+[[Watch Live]]
 
-World Cup 2026: Norway 1-4 France - Ousmane Dembele scores first-half hat-trick as Les Bleus top Group I
+World Cup 2026: Norway 1-4 France - [[Ousmane Dembele]] scores first-half hat-trick as [[Les Bleus]] top Group I
 
-Match report as France top Group I with a 4-1 win over Norway, who made 10 changes and left Erling Haaland and Martin Odegaard as unused substitutes; Ousmane Dembele scored a treble inside 32 minutes in Boston; Thelo Aasgaard pulled one back and Jorgen Strand Larsen's penalty was saved
+Match report as France top Group I with a 4-1 win over Norway, who made 10 changes and left [[Erling Haaland]] and [[Martin Odegaard]] as unused substitutes; Ousmane Dembele scored a treble inside 32 minutes in Boston; [[Thelo Aasgaard]] pulled one back and [[Jorgen Strand Larsen]]'s penalty was saved
 
-Sam Blitz
+[[Sam Blitz]]
 
-Football Journalist
+[[Football Journalist]]
 
 @SamBIitz
 
@@ -121,7 +121,7 @@ Ousmane Dembele's 25-minute hat-trick allowed France to comfortably beat Norway'
 
 With qualification already secured for both sides, and only top spot to play for, Norway made 10 changes - leaving Erling Haaland and Martin Odegaard on the bench - and it showed.
 
-Their back-up defenders were given a warning as Kylian Mbappe hit the bar inside 22 seconds, but Dembele then struck in the seventh and 20th minutes by finding the same bottom corner.
+Their back-up defenders were given a warning as [[Kylian Mbappe]] hit the bar inside 22 seconds, [[But Dembele]] then struck in the seventh and 20th minutes by finding the same bottom corner.
 
 Image:
 
@@ -147,17 +147,17 @@ World Cup day-by-day schedule
 
 World Cup
 
-Follow our World Cup coverage in the Sky Sports App
+Follow our World Cup coverage in the [[Sky Sports App]]
 
-Seventy-nine seconds after Dembele's second, Norway pulled one back as Thelo Aagsaard - who has a French mother - pulled one back from the edge of the box. But Dembele completed his hat-trick by finding that corner a third time. All three goals saw questionable Norway defending.
+Seventy-nine seconds after Dembele's second, Norway pulled one back as [[Thelo Aasgaard|Thelo Aagsaard]] - who has a French mother - pulled one back from the edge of the box. But Dembele completed his hat-trick by finding that corner a third time. All three goals saw questionable Norway defending.
 
-Norway missed a chance to pull one back after half-time when they got a penalty after Oscar Bobb was tripped by a lazy Theo Hernandez challenge, but Jorgen Strand Larsen's weak spot kick after a stutter was easily saved by Mike Maignan.
+Norway missed a chance to pull one back after half-time when they got a penalty after [[Oscar Bobb]] was tripped by a lazy [[Theo Hernandez]] challenge, but Jorgen [[Strand Larsen]]'s weak spot kick after a stutter was easily saved by [[Mike Maignan]].
 
 Did you know?
 
-The only other first-half World Cup hat-trick in history was at the last United States World Cup in 1994 - when Oleg Salenko scored a treble in Russia's 6-1 win over Cameroon. He went on to score five in that game.
+The only other first-half World Cup hat-trick in history was at the last [[United States World Cup]] in 1994 - when [[Oleg Salenko]] scored a treble in [[Russia]]'s 6-1 win over Cameroon. He went on to score five in that game.
 
-There was gloss to the scoreline in added time as Desire Doue nodded in his first goal of the tournament from substitute Bradley Barcola's cross.
+There was gloss to the scoreline in added time as [[Desire Doue]] nodded in his first goal of the tournament from substitute [[Bradley Barcola]]'s cross.
 
 The key moments from Boston...
 
@@ -207,11 +207,11 @@ France
 
 will face one of the third-placed teams - which is most likely to be
 
-Sweden
+[[Sweden]]
 
-- on Tuesday June 30, kick-off at 10pm in New Jersey.
+- on [[Tuesday June]] 30, kick-off at 10pm in [[New Jersey]].
 
-Also See:
+[[Also See]]:
 
 World Cup tables
 
@@ -225,7 +225,7 @@ Norway
 
 will face
 
-Ivory Coast
+[[Ivory Coast]]
 
 on Tuesday June 30 at 6pm in Dallas, Texas.
 
@@ -235,9 +235,9 @@ Image:
 
 Ousmane Dembele celebrates after giving France an early lead against Norway
 
-Sky Sports'
+[[Sky Sports]]'
 
-Roy Keane
+[[Roy Keane]]
 
 on
 
@@ -263,7 +263,7 @@ Norway
 
 head coach
 
-Stale Solbakken
+[[Stale Solbakken]]
 
 :
 
@@ -295,7 +295,7 @@ cookies or to allow those cookies just once.
 
 You can change your settings at any time via the
 
-Privacy Options
+[[Privacy Options]]
 
 .
 
@@ -311,15 +311,15 @@ Monterosa
 
 cookies for this session only.
 
-Enable Cookies
+[[Enable Cookies]]
 
-Allow Cookies Once
+[[Allow Cookies Once]]
 
-Play Super 6!
+[[Play Super]] 6!
 
 Play Super 6 for a chance to win £250k! Enter for free.
 
-Around Sky
+[[Around Sky]]
 
 Sign up for Sky Sports push notifications
 

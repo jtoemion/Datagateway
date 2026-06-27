@@ -11,7 +11,7 @@ image_url: https://akcdn.detik.net.id/visual/2026/06/26/thumbnail-video-17824590
 scraped: true
 ---
 
-# Korsel Latih 500 Ribu Prajurit Operasikan Drone Hadapi Korut
+# [[Korsel Latih]] 500 [[Ribu Prajurit Operasikan Drone Hadapi Korut]]
 
 25
 
@@ -21,13 +21,13 @@ Korsel Latih 500 Ribu Prajurit Operasikan Drone Hadapi Korut
 
 REUTERS
 
-CNN Indonesia
+CNN [[RI|Indonesia]]
 
 Sabtu, 27 Jun 2026 05:30 WIB
 
-Korea Selatan memperluas pelatihan bagi 500 ribu prajurit agar mampu mengoperasikan puluhan ribu drone ke garis depan untuk menghadapi Korea Utara, kata Menteri Pertahanan Korea Selatan Ahn Gyu-back, Jumat (26/6).
+[[Korsel|Korea Selatan]] memperluas pelatihan bagi 500 ribu prajurit agar mampu mengoperasikan puluhan ribu drone ke garis depan untuk menghadapi [[Korut|Korea Utara]], kata [[Menteri Pertahanan Korea Selatan Ahn Gyu]]-back, Jumat (26/6).
 
-Militer Korea Selatan berencana memproduksi sekitar 60 ribu drone pada 2029 untuk digunakan oleh angkatan darat, laut, udara, dan marinir.
+[[Militer Korea Selatan]] berencana memproduksi sekitar 60 ribu drone pada 2029 untuk digunakan oleh angkatan darat, laut, udara, dan marinir.
 
 Sekitar 11 ribu drone akan mulai diperkenalkan pada 2026.
 
@@ -37,7 +37,7 @@ Bagikan:
 
 url telah tercopy
 
-Copy Embed
+[[Copy Embed]]
 
 Embed video telah tercopy
 

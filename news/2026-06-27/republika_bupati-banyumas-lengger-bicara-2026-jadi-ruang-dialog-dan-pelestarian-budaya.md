@@ -11,31 +11,31 @@ image_url: https://static.republika.co.id/uploads/images/detailnews/045358700-17
 scraped: true
 ---
 
-# Bupati Banyumas: Lengger Bicara 2026 Jadi Ruang Dialog dan Pelestarian Budaya
+# [[Bupati Banyumas]]: [[Lengger Bicara]] 2026 [[Jadi Ruang Dialog]] dan [[Pelestarian Budaya]]
 
 REPUBLIKA.CO.ID, PURWOKERTO,
 
 – Bupati Banyumas
 
-Sadewo Tri Lastiono
+[[Sadewo Tri Lastiono]]
 
 menegaskan bahwa acara
 
-Banyumas Lengger Bicara 2026
+[[Banyumas Lengger Bicara]] 2026
 
 merupakan lebih dari sekadar agenda seni. Acara ini menjadi ruang dialog, belajar, dan perjumpaan masyarakat dengan akar budayanya sekaligus memperkuat identitas daerah melalui pelestarian seni dan budaya di tengah perkembangan zaman.
 
-"Lengger Bicara bukan sekadar agenda seni, tetapi ruang dialog, ruang belajar, sekaligus ruang perjumpaan yang mempertemukan masyarakat dengan akar budayanya sendiri," kata Sadewo saat memberi sambutan di Menara Teratai, Purwokerto, Kabupaten Banyumas, Jawa Tengah, Jumat malam.
+"Lengger Bicara bukan sekadar agenda seni, tetapi ruang dialog, ruang belajar, sekaligus ruang perjumpaan yang mempertemukan masyarakat dengan akar budayanya sendiri," kata Sadewo saat memberi sambutan di [[Menara Teratai]], Purwokerto, [[Kabupaten Banyumas]], [[Jawa Tengah]], Jumat malam.
 
 Ia menjelaskan tema "
 
-Gemah Ripah Loh Jinawi
+[[Gemah Ripah Loh Jinawi]]
 
 " yang diusung menggambarkan tanah yang subur, kehidupan yang makmur, masyarakat yang hidup rukun, serta budaya yang tumbuh bersama warganya. Menurut dia, kemakmuran tidak hanya diukur dari pembangunan fisik dan pertumbuhan ekonomi, tetapi juga dari kemampuan menjaga identitas, nilai, dan warisan budaya yang menjadi jiwa masyarakat Banyumas.
 
-Regenerasi dan Keterlibatan Generasi Muda
+Regenerasi dan [[Keterlibatan Generasi Muda]]
 
-Bupati Sadewo menilai pelestarian kesenian
+[[Bupati Sadewo]] menilai pelestarian kesenian
 
 Lengger
 
@@ -49,31 +49,31 @@ sebagai momentum merawat warisan leluhur dan menumbuhkan kreativitas budaya yang
 
 Banyumas Lengger Bicara 2026 menampilkan pagelaran tari
 
-“Sastra Jiwangga”
+“[[Sastra Jiwangga]]”
 
-karya Rianto yang dimainkan oleh Sang Maestro Lengger itu sendiri. Acara utama berupa pagelaran
+karya Rianto yang dimainkan oleh [[Sang Maestro Lengger]] itu sendiri. Acara utama berupa pagelaran
 
-“Senandung Tanah Makmur”
+“[[Senandung Tanah Makmur]]”
 
 yang menyuguhkan tari-tarian diiringi orkestra Jawa.
 
 Pagelaran itu juga diisi dengan penyerahan penghargaan kepada
 
-Peang Penjol
+[[Peang Penjol]]
 
-, grup lawak legendaris asal Banyumas. Menteri Kebudayaan
+, grup lawak legendaris asal Banyumas. [[Kementerian Kebudayaan|Menteri Kebudayaan]]
 
-Fadli Zon
+[[Fadli Zon]]
 
-menyerahkan penghargaan kepada Suliyah, Wakil Ketua MPR RI
+menyerahkan penghargaan kepada Suliyah, [[Wakil Ketua]] [[MPR]] RI
 
-Lestari Moerdijat
+[[Lestari Moerdijat]]
 
-menyerahkan penghargaan kepada keluarga almarhum Rusmadi (Peang), dan Bupati Banyumas Sadewo Tri Lastiono menyerahkan penghargaan kepada keluarga almarhum Sadikun (Penjol).
+menyerahkan penghargaan kepada keluarga almarhum Rusmadi (Peang), dan [[Bupati Banyumas Sadewo Tri Lastiono]] menyerahkan penghargaan kepada keluarga almarhum Sadikun (Penjol).
 
 Konten ini diolah dengan bantuan AI.
 
-Ikuti Whatsapp Channel Republika
+[[Ikuti Whatsapp Channel Republika]]
 
 sumber : antara
 

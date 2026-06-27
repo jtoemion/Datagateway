@@ -11,7 +11,7 @@ image_url: https://akcdn.detik.net.id/visual/2026/06/27/soccer-worldcup-nor-fra-
 scraped: true
 ---
 
-# Dembele Cetak Hattrick Tercepat di Piala Dunia sejak 1954
+# [[Dembele Cetak Hattrick Tercepat]] di [[Piala Dunia]] sejak 1954
 
 Olahraga
 
@@ -19,7 +19,7 @@ Sepakbola
 
 Dembele Cetak Hattrick Tercepat di Piala Dunia sejak 1954
 
-CNN Indonesia
+CNN [[RI|Indonesia]]
 
 Sabtu, 27 Jun 2026 05:48 WIB
 
@@ -27,9 +27,9 @@ Bagikan:
 
 url telah tercopy
 
-Ousmane Dembele jadi pemain pencetak hattrick tercepat di Piala Dunia sejak 1954. (REUTERS/Jeenah Moon)
+[[Ousmane Dembele]] jadi pemain pencetak hattrick tercepat di Piala Dunia sejak 1954. (REUTERS/[[Jeenah Moon]])
 
-Jakarta, CNN Indonesia
+[[Jakarta]], CNN Indonesia
 
 --
 
@@ -41,33 +41,33 @@ hattrick
 
 di Piala Dunia sejak 1954 saat Prancis memang 4-1 atas Norwegia.
 
-Dalam pertandingan terakhir Grup I Piala Dunia 2026 di Stadion Boston, Amerika Serikat pada Jumat (26/6) sore atau Sabtu (27/6) dini hari WIB, Dembele membukukan Hattrick.
+Dalam pertandingan terakhir Grup I Piala Dunia 2026 di [[Stadion Houston|Stadion Boston]], [[AS|Amerika Serikat]] pada Jumat (26/6) sore atau Sabtu (27/6) dini hari WIB, Dembele membukukan Hattrick.
 
-Pemain Paris Saint-Germain ini mencetak gol pembuka pada menit ketujuh, menggandakannya pada menit ke-20, dan mengganjilkannya menjadi tiga pada menit ke-32.
+[[Pemain Paris Saint]]-Germain ini mencetak gol pembuka pada menit ketujuh, menggandakannya pada menit ke-20, dan mengganjilkannya menjadi tiga pada menit ke-32.
 
 ADVERTISEMENT
 
 SCROLL TO CONTINUE WITH CONTENT
 
-Pilihan Redaksi
+[[Pilihan Redaksi]]
 
-Update Klasemen Peringkat 3 Terbaik Piala Dunia 2026: Sisa 5 Tiket
+[[Update Klasemen Peringkat]] 3 [[Terbaik Piala Dunia]] 2026: Sisa 5 Tiket
 
-Hasil AVC Men's Cup 2026: Indonesia ke Semifinal usai Hajar Oman
+Hasil AVC Men's Cup 2026: Indonesia ke Semifinal usai [[Hajar Oman]]
 
-Klasemen Akhir Grup I Piala Dunia usai Prancis-Senegal Menang Besar
+[[Klasemen Akhir Grup]] I Piala Dunia usai Prancis-[[Senegal Menang Besar]]
 
 Torehan trigol Dembele ini menjadi yang kedua dalam Piala Dunia 2026. Pemain pertama yang mencetak
 
 hattrick
 
-dalam pesta sepak bola edisi ke-23 ini adalah Lionel Messi.
+dalam pesta sepak bola edisi ke-23 ini adalah [[Lionel Messi]].
 
 Dengan
 
 hattrick
 
-ini Dembele menyamai torehan gol Kylian Mbappe, Erling Haaland, dan Vinicius Junior. Total sudah empat gol dicetak pemain 29 tahun ini dari tiga pertandingan.
+ini Dembele menyamai torehan gol [[Kylian Mbappe]], [[Erling Haaland]], dan [[Vinicius Junior]]. Total sudah empat gol dicetak pemain 29 tahun ini dari tiga pertandingan.
 
 Terlepas dari itu, Dembele tercatat sebagai pemain pertama yang membukukan
 
@@ -79,13 +79,13 @@ Pemain dengan
 
 hattrick
 
-tercepat dalam sejarah Piala Dunia adalah Erich Probst. Pemain Austria ini mencetak
+tercepat dalam sejarah Piala Dunia adalah [[Erich Probst]]. [[Pemain Austria]] ini mencetak
 
 hattrick
 
 ke gawang Cekoslovakia dalam tempo 24 menit.
 
-Trigol terkilat itu dicetak Probst pada menit keempat, 21, dan 24. Dalam pertandingan pada 19 Juni 1954 di Stadion Hardturn, Jerman itu Austria menang 5-0 atas Cekoslovakia.
+Trigol terkilat itu dicetak Probst pada menit keempat, 21, dan 24. Dalam pertandingan pada 19 Juni 1954 di [[Stadion Hardturn]], Jerman itu [[Austria]] menang 5-0 atas Cekoslovakia.
 
 Dengan kata lain Dembele tercatat sebagai pemain kedua paling cepat mencetak
 

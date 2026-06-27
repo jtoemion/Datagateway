@@ -286,6 +286,32 @@ def get_today_count() -> int:
     return row["cnt"] if row else 0
 
 
+def get_articles_with_meta(limit: int = 500) -> list[dict]:
+    """Get articles with enriched metadata (keywords, sections)."""
+    db = get_db()
+    rows = db.execute(
+        """SELECT a.id, a.source, a.title, a.url, a.description as excerpt,
+                  a.image_url, a.date, a.date_wib, a.category, a.lang, a.filepath, a.wikilink,
+                  m.keywords, m.sections, m.word_count
+           FROM articles a
+           LEFT JOIN article_metadata m ON a.id = m.article_id
+           ORDER BY a.date DESC
+           LIMIT ?""",
+        (limit,),
+    ).fetchall()
+    result = []
+    for r in rows:
+        d = dict(r)
+        import json
+        if isinstance(d.get("keywords"), str):
+            d["keywords"] = json.loads(d["keywords"]) if d["keywords"] else []
+        if isinstance(d.get("sections"), str):
+            d["sections"] = json.loads(d["sections"]) if d["sections"] else []
+        result.append(d)
+    db.close()
+    return result
+
+
 def get_source_stats() -> list[dict]:
     """Article count per source."""
     db = get_db()

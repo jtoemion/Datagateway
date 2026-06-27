@@ -11,7 +11,7 @@ image_url: https://static.republika.co.id/uploads/images/detailnews/digital-deto
 scraped: true
 ---
 
-# Enam Cara Digital Detox yang Efektif Buat Gen Z
+# [[Enam Cara Digital Detox]] yang [[Efektif Buat Gen]] Z
 
 REPUBLIKA.CO.ID, JAKARTA -- Generasi Z yang lahir antara tahun 1997 dan 2012 merupakan generasi yang tumbuh bersama
 
@@ -19,27 +19,27 @@ smartphone
 
 , media sosial, internet, dan berbagai aplikasi digital. Sejak kecil mereka terbiasa hidup di lingkungan yang membuat layar selalu aktif, sehingga interaksi digital menjadi bagian tak terpisahkan dari kehidupan sehari-hari.
 
-Indonesia termasuk empat negara dengan pengguna
+[[RI|Indonesia]] termasuk empat negara dengan pengguna
 
 media sosial
 
 terbanyak di dunia. Kelompok yang paling aktif adalah Gen Z, yang sebagian besar menghabiskan waktu antara satu hingga enam jam per hari di media sosial. Bahkan sekitar 5 persen di antaranya menghabiskan waktu hingga 10 jam sehari di media sosial. Instagram menjadi platform yang paling banyak digunakan, disusul TikTok, X, dan Facebook.
 
-Baca Juga
+[[Baca Juga]]
 
-Perundungan Oma Grace Saat
-
-Live
-
-TikTok dan Minimnya Empati Digital
-
-Ramai Lansia Jualan
+[[Perundungan Oma Grace Saat]]
 
 Live
 
-TikTok, Benarkah Bisa Cegah Pikun?
+TikTok dan [[Minimnya Empati Digital]]
 
-Psikolog Bedah Pola Asuh 'Anak Emas' Taufik Hidayat Pelaku Penyekapan
+[[Ramai Lansia Jualan]]
+
+Live
+
+TikTok, [[Benarkah Bisa Cegah Pikun]]?
+
+[[Psikolog Bedah Pola Asuh]] '[[Anak Emas]]' [[Taufik Hidayat Pelaku Penyekapan]]
 
 Kebiasaan tersebut berpotensi berkembang menjadi
 
@@ -59,7 +59,7 @@ atau mengurangi paparan terhadap perangkat digital dinilai penting. Hal ini dise
 
 Life coach
 
-sekaligus terapis, Sangeeta Sharma, membagikan enam kebiasaan
+sekaligus terapis, [[Sangeeta Sharma]], membagikan enam kebiasaan
 
 digital detox
 
@@ -71,7 +71,7 @@ Sangeeta Sharma menyarankan Gen Z melangkan waktu setidaknya 30 menit setiap har
 
 Loading...
 
-Ikuti Whatsapp Channel Republika
+[[Ikuti Whatsapp Channel Republika]]
 
 ---
 

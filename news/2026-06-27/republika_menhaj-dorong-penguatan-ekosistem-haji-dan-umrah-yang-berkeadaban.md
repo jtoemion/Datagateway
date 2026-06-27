@@ -11,25 +11,25 @@ image_url: https://static.republika.co.id/uploads/images/detailnews/_25073018230
 scraped: true
 ---
 
-# Menhaj Dorong Penguatan Ekosistem Haji dan Umrah yang Berkeadaban
+# [[Menhaj Dorong Penguatan Ekosistem Haji]] dan Umrah yang Berkeadaban
 
-REPUBLIKA.CO.ID,JAKARTA --Menteri
+REPUBLIKA.CO.ID,[[Jakarta]] --Menteri
 
 Haji
 
-dan Umrah (Menhaj) RI, Gus Irfan Yusuf mendorong penguatan ekosistem haji dan umrah nasional yang berkeadaban, transparan, dan berkeadilan. Langkah tersebut dinilai penting untuk membangun tata kelola industri haji dan umrah yang sehat sekaligus menghadirkan pelayanan terbaik bagi jamaah.
+dan Umrah (Menhaj) RI, [[Gus Irfan Yusuf]] mendorong penguatan ekosistem haji dan umrah nasional yang berkeadaban, transparan, dan berkeadilan. Langkah tersebut dinilai penting untuk membangun tata kelola industri haji dan umrah yang sehat sekaligus menghadirkan pelayanan terbaik bagi jamaah.
 
-Menurut Gus Irfan, seluruh pemangku kepentingan harus bergerak dalam satu visi, yakni menghadirkan layanan haji dan umrah yang aman, nyaman, tertib, sesuai syariat, serta menjunjung tinggi transparansi, akuntabilitas, dan martabat jamaah.
+[[Menurut Gus Irfan]], seluruh pemangku kepentingan harus bergerak dalam satu visi, yakni menghadirkan layanan haji dan umrah yang aman, nyaman, tertib, sesuai syariat, serta menjunjung tinggi transparansi, akuntabilitas, dan martabat jamaah.
 
-Baca Juga
+[[Baca Juga]]
 
-Ketua PN Wamena Lantik Lima Anggota DPRK Mamberamo Tengah Jalur Adat
+Ketua PN [[Wamena Lantik Lima Anggota]] DPRK [[Mamberamo Tengah Jalur Adat]]
 
-Kemenhaj Evaluasi Kinerja Syarikah Soal Tenda di Mina
+[[Kemenhaj Evaluasi Kinerja Syarikah Soal Tenda]] di Mina
 
-Dicatat Sejarah, Charles III Raja Inggris Pertama yang Ungkap Pajak Pribadi, Besarannya...
+[[Dicatat Sejarah]], Charles III [[Raja Inggris Pertama]] yang [[Ungkap Pajak Pribadi]], Besarannya...
 
-"Seluruh ekosistem harus tumbuh dalam satu arah, yaitu pelayanan jamaah yang aman, nyaman, tertib sesuai syariat, transparan, akuntabel, dan bermartabat," ujar Gus Irfan saat membuka International Islamic Expo 2026 di Jakarta Convention Center (JCC), Jumat (26/6/2026).
+"Seluruh ekosistem harus tumbuh dalam satu arah, yaitu pelayanan jamaah yang aman, nyaman, tertib sesuai syariat, transparan, akuntabel, dan bermartabat," ujar [[Gus Irfan]] saat membuka [[International Islamic Expo]] 2026 di [[Jakarta Convention Center]] (JCC), Jumat (26/6/2026).
 
 Ia menjelaskan, perhatian pemerintah terhadap penguatan ekosistem industri umrah merupakan bagian dari implementasi amanat konstitusi untuk mewujudkan keadilan sosial sekaligus mendorong pertumbuhan ekonomi yang memberikan manfaat bagi masyarakat.
 
@@ -43,13 +43,13 @@ Dalam kesempatan itu, Gus Irfan juga menegaskan komitmen pemerintah untuk terus 
 
 "Menjaga dan mempertahankan pengalaman baik yang telah terbukti berhasil untuk terus diterapkan, serta mengambil pengalaman baru yang lebih baik guna meningkatkan kualitas penyelenggaraan haji," katanya.
 
-Lebih lanjut, ia menjelaskan bahwa "International Islamic Expo 2026" menjadi langkah awal konsolidasi nasional yang diarahkan pada lima agenda utama, yakni pelindungan jamaah, transparansi biaya dan layanan, kepatuhan terhadap regulasi, integrasi digital, serta penguatan ekonomi haji dan umrah nasional.
+Lebih lanjut, ia menjelaskan bahwa "International Islamic Expo 2026" menjadi langkah awal konsolidasi nasional yang diarahkan pada [[Lima]] agenda utama, yakni pelindungan jamaah, transparansi biaya dan layanan, kepatuhan terhadap regulasi, integrasi digital, serta penguatan ekonomi haji dan umrah nasional.
 
-Menurut Gus Irfan, transformasi tersebut merupakan ikhtiar bersama untuk membangun ekosistem haji dan umrah Indonesia yang semakin maju dan memiliki daya saing di tingkat global.
+Menurut Gus Irfan, transformasi tersebut merupakan ikhtiar bersama untuk membangun ekosistem haji dan umrah [[RI|Indonesia]] yang semakin maju dan memiliki daya saing di tingkat global.
 
 "Kita ingin ekosistem haji dan umrah Indonesia tumbuh bersama, melayani lebih baik, memuliakan jamaah, dan mengangkat martabat Indonesia di tingkat global," jelasnya.
 
-Ikuti Whatsapp Channel Republika
+[[Ikuti Whatsapp Channel Republika]]
 
 ---
 

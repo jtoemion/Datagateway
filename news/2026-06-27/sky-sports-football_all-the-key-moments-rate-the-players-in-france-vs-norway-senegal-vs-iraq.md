@@ -11,17 +11,17 @@ image_url: https://e1.365dm.com/26/06/1920x1080/skysports-ousmane-dembele-france
 scraped: true
 ---
 
-# All the key moments & rate the players in France vs Norway & Senegal vs Iraq
+# All the key moments & rate the players in [[France]] vs [[Norway]] & [[Senegal]] vs [[Iraq]]
 
-Norway vs France; FIFA World Cup Group I
+Norway vs France; [[FIFA]] [[World Cup Group]] I
 
 FT
 
-Full Time
+[[Full Time]]
 
 AET
 
-After Extra Time
+[[After Extra Time]]
 
 LIVE
 
@@ -29,19 +29,19 @@ This is a live match.
 
 ET
 
-Extra Time
+[[Extra Time]]
 
 HT
 
-Half Time
+[[Half Time]]
 
 Norway
 
-vs France. FIFA World Cup Group I.
+vs France. FIFA [[World Cup]] Group I.
 
 8:00pm, Friday 26th June 2026.
 
-Boston Stadium
+[[Boston Stadium]]
 
 Attendance:
 
@@ -93,13 +93,13 @@ D Doué (
 
 )
 
-Latest FIFA World Cup Odds
+Latest FIFA [[World Cup Odds]]
 
-Get Sky Sports
+[[Get Sky Sports]]
 
-Get a NOW Sports Membership
+Get a NOW [[Sports Membership]]
 
-Watch Live
+[[Watch Live]]
 
 Norway vs France, Senegal vs Iraq LIVE! World Cup 2026 Group I fixtures, scores, live updates and team news
 
@@ -109,9 +109,9 @@ Sorry, this blog is currently unavailable. Please try again later.
 
 Back to Home
 
-Around Sky
+[[Around Sky]]
 
-Sign up for Sky Sports push notifications
+Sign up for [[Sky Sports]] push notifications
 
 Upgrade to Sky Sports to watch every minute of end of season
 

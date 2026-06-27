@@ -13,13 +13,13 @@ scraped: true
 
 # Tuchel: Saka pain free and ready to start against Panama
 
-England vs Panama: Bukayo Saka fit and ready to start in Three Lions' final group game plus Reece James, Elliot Anderson, Declan Rice injury news
+England vs Panama: [[Bukayo Saka]] fit and ready to start in [[The Lions|Three Lions]]' final group game plus [[Reece James]], [[Elliot Anderson]], [[Declan Rice]] injury news
 
-Bukayo Saka is fit to start England's final group game against Panama after an injury-hit start to the World Cup; Reece James unavailable but could return in time for round of 32; Elliot Anderson and Declan Rice have been passed fit, but latter runs the risk of a suspension
+Bukayo Saka is fit to start England's final group game against Panama after an injury-hit start to the [[World Cup]]; Reece James unavailable but could return in time for round of 32; Elliot Anderson and Declan Rice have been passed fit, but latter runs the risk of a suspension
 
-Sam Blitz
+[[Sam Blitz]]
 
-Football Journalist
+[[Football Journalist]]
 
 @SamBIitz
 
@@ -27,11 +27,11 @@ Saturday 27 June 2026 00:12, UK
 
 Image:
 
-England's Bukayo Saka is fit enough to start against Panama, says Thomas Tuchel
+England's Bukayo Saka is fit enough to start against Panama, says [[Thomas Tuchel]]
 
 England boss Thomas Tuchel says Bukayo Saka is "free of pain" and "ready to go" for the Three Lions' final group game with Panama  - amid an injury blow to defender Reece James.
 
-Saka started on the bench for England's first two World Cup games against Croatia and Ghana and made second-half cameos as a substitute. This is due to a long-term Achilles issue that affected his season run-in at Arsenal.
+Saka started on the bench for England's first two World Cup games against [[Croatia]] and [[Ghana]] and made second-half cameos as a substitute. This is due to a long-term Achilles issue that affected his season run-in at Arsenal.
 
 However, Tuchel revealed Saka has spent the last few days feeling back to his normal self after a strict medical process that included consultation with Arsenal.
 
@@ -47,9 +47,9 @@ World Cup fixtures day-by-day
 
 World Cup kits
 
-Follow the World Cup in the Sky Sports app
+Follow the World Cup in the [[Sky Sports]] app
 
-"For Bukayo, it was the right thing [not to start him yet]," said Tuchel. "We agreed with Bukayo and especially the medical team at Arsenal in tight co-operation that this is the way to build him up.
+"[[For Bukayo]], it was the right thing [not to start him yet]," said Tuchel. "We agreed with Bukayo and especially the medical team at Arsenal in tight co-operation that this is the way to build him up.
 
 "He is now, since many days, fully free of pain and discomfort and is ready to go and ready to start."
 
@@ -65,7 +65,7 @@ Reece James will miss the Panama game
 
 "Reece has a minor hamstring issue. He was not able to train in the last two days," said Tuchel. "He is now in an accelerated rehabilitation programme and we take it game-by-game. But there is some belief that he will be available for us [again] in the tournament.
 
-Also See:
+[[Also See]]:
 
 World Cup 2026 fixture schedule - your day-by-day guide
 
@@ -73,19 +73,19 @@ Knockout bracket and fixtures
 
 Live group tables and third-place standings
 
-Latest England news
+[[Latest England]] news
 
 "We have hopes that he will be fit for the next match. It can be a tight one. But the hopes are still alive. He didn't travel with us [to play Panama on Saturday.]"
 
 Tuchel named
 
-Djed Spence, Jarell Quansah
+[[Djed Spence]], [[Jarell Quansah]]
 
 and
 
-Ezri Konsa
+[[Ezri Konsa]]
 
-as the right-back cover options who can replace James. But the England boss was also questioned as to why he called up centre-back Trevoh Chalobah - instead of a natural right-back option - when full-back Tino Livramento picked up a tournament-ending injury earlier this month.
+as the right-back cover options who can replace James. But the England boss was also questioned as to why he called up centre-back [[Trevoh Chalobah]] - instead of a natural right-back option - when full-back [[Tino Livramento]] picked up a tournament-ending injury earlier this month.
 
 Monterosa
 
@@ -105,7 +105,7 @@ cookies or to allow those cookies just once.
 
 You can change your settings at any time via the
 
-Privacy Options
+[[Privacy Options]]
 
 .
 
@@ -121,9 +121,9 @@ Monterosa
 
 cookies for this session only.
 
-Enable Cookies
+[[Enable Cookies]]
 
-Allow Cookies Once
+[[Allow Cookies Once]]
 
 "The thinking of calling Chalobah is to free up Quansah on the right full-back position for us," said Tuchel. "I saw him playing very strongly there playing for Liverpool and he played enough in a back three - which is not so far from the position - in Leverkusen. And we have Djed Spence.
 
@@ -157,13 +157,13 @@ has also been passed fit - but the Arsenal midfielder is one yellow card away fr
 
 "Everyone except Reece James is available and ready to go. We will take the decision [on Friday night]."
 
-Tuchel: Anderson has caused no distractions by Man City move
+Tuchel: Anderson has caused no distractions by [[Man City]] move
 
 Please use Chrome browser for a more accessible video player
 
-Tim Sherwood shares his thoughts on England midfielder Anderson and how much of a 'dream' he is for Three Lions boss Thomas Tuchel
+[[Tim Sherwood]] shares his thoughts on England midfielder Anderson and how much of a 'dream' he is for Three Lions boss Thomas Tuchel
 
-Meanwhile, Tuchel also addressed Anderson's impending British transfer record move to Manchester City, who have agreed a £116m move for the Nottingham Forest player.
+Meanwhile, Tuchel also addressed Anderson's impending British transfer record move to [[Manchester City]], who have agreed a £116m move for the [[Nottingham Forest]] player.
 
 Earlier this month, Tuchel revealed he does not want players focused on transfers on the day before a match and the England boss said Anderson has not caused any distractions - and he will facilitate that City move after the Panama game.
 
@@ -175,11 +175,11 @@ Earlier this month, Tuchel revealed he does not want players focused on transfer
 
 "We know that things are going on behind the scenes. We will facilitate that transfer but after the match, not before."
 
-Play Super 6!
+[[Play Super]] 6!
 
 Play Super 6 for a chance to win £250k! Enter for free.
 
-Around Sky
+[[Around Sky]]
 
 Sign up for Sky Sports push notifications
 

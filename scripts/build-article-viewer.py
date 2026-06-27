@@ -10,6 +10,8 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import hashlib
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from scripts.database import (
     init_db,
     get_articles,
@@ -181,6 +183,10 @@ def build_html(articles: list[dict], current_id: str) -> str:
             "date": a.get("date", ""),
             "wikilink": a.get("wikilink", ""),
             "url": a.get("url", ""),
+            "filepath": a.get("filepath", ""),
+            "image_url": a.get("image_url", ""),
+            "date_wib": a.get("date_wib", ""),
+            "lang": a.get("lang", ""),
         }
         for a in articles
     ], ensure_ascii=False)
@@ -265,7 +271,7 @@ def build_html(articles: list[dict], current_id: str) -> str:
     display:inline-flex; align-items:center; gap:5px;
     padding:4px 12px; border-radius:20px; font-family:var(--ui);
     font-size:11px; font-weight:700; letter-spacing:0.3px;
-    background:{{bg}}; color:{{fg}}; border:1px solid {{fg}};
+    background:{bg}; color:{fg}; border:1px solid {fg};
   }}
   .category-badge {{
     display:inline-block; padding:3px 10px; border-radius:4px;
@@ -337,11 +343,13 @@ def build_html(articles: list[dict], current_id: str) -> str:
   .article-body strong {{ color:#ffffff; font-weight:600; }}
   .article-body em {{ color:var(--text-muted); }}
 
-  /* Empty content */
-  .article-empty {{
+  /* Empty + loading content */
+  .article-empty, .article-loading {{
     padding:40px 20px; text-align:center; color:var(--text-muted);
     font-family:var(--ui);
   }}
+  .article-loading {{ font-size:16px; }}
+  .article-empty a {{ color:var(--accent); }}
 
   /* Wikilinks section */
   .wikilinks-section {{
@@ -433,23 +441,21 @@ def build_html(articles: list[dict], current_id: str) -> str:
   <div class="article-panel">
     <div class="article-inner">
 
-      <div class="article-header">
-        <div class="article-badges">
-          <span class="source-badge">{esc(src)}</span>
-          <span class="category-badge">{category}</span>
-          <span class="lang-badge">{current_article.get('lang','id')}</span>
+      <div class="article-content" id="article-content">
+        <div class="article-header">
+          <div class="article-badges" id="art-badges"></div>
+          <div class="article-date" id="art-date"></div>
+          <h1 class="article-title" id="art-title"></h1>
+          <div class="article-author" id="art-author" style="display:none"></div>
         </div>
-        <div class="article-date">{date_display}</div>
-        <h1 class="article-title">{esc(current_article.get('title',''))}</h1>
-        {f'<div class="article-author">By {esc(author)}</div>' if author else ''}
+        <div class="article-body" id="art-body">
+          <div class="article-loading">Loading article...</div>
+        </div>
+        <div class="wikilinks-section" id="art-related" style="display:none">
+          <div class="wikilinks-title">Related Articles</div>
+          <div class="wikilinks-grid" id="art-related-grid"></div>
+        </div>
       </div>
-
-      <div class="article-body">
-        {full_html if full_html else f'<div class="article-empty"><p>Full article content not yet scraped.</p><p style="margin-top:12px;font-size:14px;"><a href="{esc(current_article.get("url",""))}" target="_blank" style="color:var(--accent)">Read original article →</a></p></div>'}
-      </div>
-
-      <!-- RELATED ARTICLES (WIKILINKS) -->
-      {build_wikilinks_section(related, articles) if related else ''}
 
     </div>
   </div>
@@ -488,6 +494,116 @@ function getArticleId() {{
   const params = new URLSearchParams(window.location.search);
   return params.get('id') || '';
 }}
+
+// ─── SOURCE COLORS ───
+const SOURCE_COLORS = {{"CNN Indonesia":"#e31e24","Detik":"#ffffff","CNBC Indonesia":"#0055a5","Antara":"#1b5e20","Republika":"#f7941e","BBC Indonesia":"#bb1919","BBC News":"#bb1919","NY Times":"#333333","BBC Football":"#ff6b35","Sky Sports Football":"#00b050","The Guardian Football":"#052962","Fox Sports Soccer":"#e31e24"}};
+
+// ─── Load and render article ───
+function loadArticle() {{
+  const aid = getArticleId();
+  if (!aid) {{ document.getElementById('art-body').innerHTML = '<div class="article-empty">No article ID specified.</div>'; return; }}
+
+  const dataEl = document.getElementById('articles-data');
+  if (!dataEl) return;
+  const articles = JSON.parse(dataEl.textContent || '[]');
+  const art = articles.find(a => a.id === aid);
+  if (!art) {{ document.getElementById('art-body').innerHTML = '<div class="article-empty">Article not found.</div>'; return; }}
+
+  // Update page title
+  document.title = art.title + ' — Datagateway';
+
+  // Source badge
+  const color = SOURCE_COLORS[art.source] || '#58a6ff';
+  document.getElementById('art-badges').innerHTML =
+    '<span class="source-badge" style="background:' + color + '">' + esc(art.source) + '</span>' +
+    '<span class="category-badge">' + esc(art.category) + '</span>' +
+    '<span class="lang-badge">' + esc(art.lang || 'id') + '</span>';
+
+  // Date
+  const dw = art.date_wib || art.date || '';
+  document.getElementById('art-date').textContent = formatDate(art.date);
+
+  // Title
+  document.getElementById('art-title').textContent = art.title;
+
+  // Body
+  const bodyEl = document.getElementById('art-body');
+  bodyEl.innerHTML = '<div class="article-loading">Loading article...</div>';
+
+  const fp = art.filepath || '';
+  if (fp) {{
+    fetch(fp)
+      .then(r => r.ok ? r.text() : Promise.reject('Not found'))
+      .then(md => {{
+        // Strip frontmatter
+        const body = md.replace(/---[\\s\\S]*?---/, '').trim();
+        // Convert simple markdown to HTML (basic)
+        const html = simpleMarkdown(body);
+        bodyEl.innerHTML = html || '<div class="article-empty">No content in article file.</div>';
+        // Load related articles
+        loadRelated(art, articles);
+      }})
+      .catch(() => {{
+        bodyEl.innerHTML = '<div class="article-empty"><p>Full article not available.</p><p style="margin-top:12px;font-size:14px;"><a href="' + esc(art.url) + '" target="_blank" style="color:var(--accent)">Read original →</a></p></div>';
+        loadRelated(art, articles);
+      }});
+  }} else {{
+    bodyEl.innerHTML = '<div class="article-empty"><p>Article file not found.</p></div>';
+    loadRelated(art, articles);
+  }}
+}}
+
+// ─── Simple markdown to HTML ───
+function simpleMarkdown(text) {{
+  let html = text
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    // Headers
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    // Bold
+    .replace(/\\*\\*(.+?)\\*\\*/g, '<strong>$1</strong>')
+    // Italic
+    .replace(/\\*(.+?)\\*/g, '<em>$1</em>')
+    // Wikilinks [[Canonical|text]] or [[target]]
+    .replace(/\\[\\[([^\\]|]+)\\|([^\\]]+)\\]\\]/g, '<a class="wl" href="entity.html?e=$1">$2</a>')
+    .replace(/\\[\\[([^\\]]+)\\]\\]/g, '<a class="wl" href="entity.html?e=$1">$1</a>')
+    // Links
+    .replace(/\\[([^\\]]+)\\]\\(([^)]+)\\)/g, '<a href="$2" target="_blank">$1</a>')
+    // Lines
+    .replace(/^---$/gm, '<hr>')
+    // Paragraphs
+    .split(/\\n\\n+/).map(p => {{
+      const t = p.trim();
+      if (!t || t.startsWith('<')) return t;
+      return '<p>' + t.replace(/\\n/g, '<br>') + '</p>';
+    }}).join('\\n');
+  return html;
+}}
+
+// ─── Related articles ───
+function loadRelated(current, articles) {{
+  const related = articles.filter(a =>
+    a.id !== current.id &&
+    (a.source === current.source || a.category === current.category)
+  ).slice(0, 8);
+
+  if (!related.length) return;
+  const grid = document.getElementById('art-related-grid');
+  related.forEach(a => {{
+    const c = SOURCE_COLORS[a.source] || '#58a6ff';
+    const card = document.createElement('a');
+    card.className = 'wikilink-card';
+    card.href = 'article.html?id=' + encodeURIComponent(a.id);
+    card.innerHTML = '<div class="wikilink-source" style="background:' + c + '"></div><span class="wikilink-text">' + esc(a.title.slice(0, 60)) + '</span><span class="wikilink-arrow">→</span>';
+    grid.appendChild(card);
+  }});
+  document.getElementById('art-related').style.display = '';
+}}
+
+// ─── Helpers ───
+function esc(s) {{ if (!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }}
+function formatDate(d) {{ if (!d) return ''; return d.slice(0, 10); }}
 
 // ─── Graph setup ───
 function initGraph() {{
@@ -557,7 +673,7 @@ function initGraph() {{
 }}
 
 // ─── Init ───
-document.addEventListener('DOMContentLoaded', initGraph);
+document.addEventListener('DOMContentLoaded', function() {{ loadArticle(); initGraph(); }});
 </script>
 </body>
 </html>"""
@@ -596,7 +712,7 @@ def main():
     print(f"Datagateway — Build Article Viewer ({datetime.now(WIB).strftime('%Y-%m-%d %H:%M WIB')})")
     print("=" * 60)
 
-    articles = get_articles(limit=200)
+    articles = get_articles(limit=500)
     if not articles:
         print("No articles found in DB.")
         # Still generate a placeholder

@@ -11,27 +11,27 @@ image_url: https://static.republika.co.id/uploads/images/detailnews/096620400-17
 scraped: true
 ---
 
-# Kemenhaj Evaluasi Kinerja Syarikah Soal Tenda di Mina
+# [[Kemenhaj Evaluasi Kinerja Syarikah Soal Tenda]] di Mina
 
 REPUBLIKA.CO.IDJAKARTA -- Kementerian
 
 Haji
 
-dan Umrah (Kemenhaj) RI memastikan evaluasi terhadap kinerja syarikah penyedia layanan haji di Arab Saudi akan terus dilakukan, termasuk evaluasi penggunaan tenda di Mina. Langkah tersebut dinilai menjadi keniscayaan untuk meningkatkan kualitas pelayanan kepada
+dan Umrah (Kemenhaj) RI memastikan evaluasi terhadap kinerja syarikah penyedia layanan haji di [[Arab Saudi]] akan terus dilakukan, termasuk evaluasi penggunaan tenda di Mina. Langkah tersebut dinilai menjadi keniscayaan untuk meningkatkan kualitas pelayanan kepada
 
 jamaah haji
 
-Indonesia dari tahun ke tahun.
+[[RI|Indonesia]] dari tahun ke tahun.
 
-Direktur Jenderal Pengendalian Haji dan Umrah Kemenhaj RI, Harun Al Rasyid mengatakan, evaluasi tidak hanya menyasar aspek teknis pelayanan, tetapi juga seluruh kinerja syarikah dalam memenuhi kebutuhan jamaah selama pelaksanaan ibadah haji.
+[[Direktur Jenderal Pengendalian Haji]] dan [[Umrah Kemenhaj]] RI, [[Harun Al Rasyid]] mengatakan, evaluasi tidak hanya menyasar aspek teknis pelayanan, tetapi juga seluruh kinerja syarikah dalam memenuhi kebutuhan jamaah selama pelaksanaan ibadah haji.
 
-Baca Juga
+[[Baca Juga]]
 
-Dicatat Sejarah, Charles III Raja Inggris Pertama yang Ungkap Pajak Pribadi, Besarannya...
+[[Dicatat Sejarah]], Charles III [[Raja Inggris Pertama]] yang [[Ungkap Pajak Pribadi]], Besarannya...
 
-Bupati Banyumas: Lengger Bicara 2026 Jadi Ruang Dialog dan Pelestarian Budaya
+[[Bupati Banyumas]]: [[Lengger Bicara]] 2026 [[Jadi Ruang Dialog]] dan [[Pelestarian Budaya]]
 
-Emas Now Tawarkan Pendekatan Baru dalam Jual Beli Logam Mulia
+[[Emas Now Tawarkan Pendekatan Baru]] dalam [[Jual Beli Logam Mulia]]
 
 "Evaluasi adalah sebuah keniscayaan, termasuk kepada syarikah. Untuk menilai bagaimana kinerja pelayanan yang diberikan oleh syarikah kepada jamaah haji Indonesia," kata Harun saat dihubungi
 
@@ -39,7 +39,7 @@ Republika.co.id
 
 , Jumat (26/6/2026).
 
-Menurut Harun, hasil evaluasi tersebut menjadi dasar bagi pemerintah untuk mendorong perbaikan layanan pada musim haji berikutnya.
+[[Menurut Harun]], hasil evaluasi tersebut menjadi dasar bagi pemerintah untuk mendorong perbaikan layanan pada musim haji berikutnya.
 
 "Mesti harus ada perbaikan, penyempurnaan, dan peningkatan. Dari tahun ke tahun harus lebih baik dan sempurna," ucapnya.
 
@@ -59,9 +59,9 @@ equipment
 
 yang digunakan untuk menunjang sarana dan prasarana layanan jamaah haji," jelas Harun.
 
-Infografis Niat Haji Jangan Cuma di Hati - (Republika)
+[[Infografis Niat Haji Jangan Cuma]] di Hati - (Republika)
 
-Ikuti Whatsapp Channel Republika
+[[Ikuti Whatsapp Channel Republika]]
 
 ---
 
