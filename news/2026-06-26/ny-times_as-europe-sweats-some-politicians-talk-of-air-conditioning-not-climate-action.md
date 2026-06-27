@@ -17,6 +17,4 @@ lang: en
 
 Heat-related deaths and disruptions to daily life are forcing politicians to reckon, in different ways, with a rapidly warming planet.
 
----
-
-*Diambil otomatis oleh Datagateway pada 2026-06-26 21:31 WIB*
+> **Catatan:** Artikel lengkap tidak tersedia — diblokir paywall atau gagal di-scrape.

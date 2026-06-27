@@ -17,6 +17,4 @@ lang: en
 
 Ukrainian officials say their northern neighbor is allowing its radio relay stations to be used to guide Russian attack drones more precisely.
 
----
-
-*Diambil otomatis oleh Datagateway pada 2026-06-26 21:31 WIB*
+> **Catatan:** Artikel lengkap tidak tersedia — diblokir paywall atau gagal di-scrape.

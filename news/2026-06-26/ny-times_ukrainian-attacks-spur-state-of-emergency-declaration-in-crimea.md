@@ -17,6 +17,4 @@ lang: en
 
 Weeks of intense strikes by Ukraine have rattled everyday life in Crimea to an extent unseen since Russia illegally annexed the peninsula in 2014.
 
----
-
-*Diambil otomatis oleh Datagateway pada 2026-06-26 21:45 WIB*
+> **Catatan:** Artikel lengkap tidak tersedia — diblokir paywall atau gagal di-scrape.

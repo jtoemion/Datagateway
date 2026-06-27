@@ -17,6 +17,4 @@ lang: en
 
 Parts of Spain, France and other countries are seeing slight relief, but the record-breaking heat wave is far from over.
 
----
-
-*Diambil otomatis oleh Datagateway pada 2026-06-26 21:31 WIB*
+> **Catatan:** Artikel lengkap tidak tersedia — diblokir paywall atau gagal di-scrape.

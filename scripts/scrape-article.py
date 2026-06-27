@@ -139,6 +139,15 @@ class RateLimiter:
         self._last[key] = time.monotonic()
 
 
+def _clear_url_cache(url: str):
+    """Remove the cached HTML for a URL so next fetch uses fresh strategy."""
+    cache_key = f"scrape:{hashlib.md5(url.encode()).hexdigest()}"
+    db = get_db()
+    db.execute("DELETE FROM cache WHERE cache_key = ?", (cache_key,))
+    db.commit()
+    db.close()
+
+
 def _fetch_url(url: str, timeout: int = REQUEST_TIMEOUT) -> str | None:
     """Fetch URL with DB-cache check. Returns HTML string or None."""
     # Check DB cache (key = URL hash)
@@ -147,16 +156,53 @@ def _fetch_url(url: str, timeout: int = REQUEST_TIMEOUT) -> str | None:
     if cached:
         return cached
 
+    # ── 1. Normal fetch ────────────────────────────────────────────────────────
     try:
         resp = requests.get(url, headers=HEADERS, timeout=timeout, allow_redirects=True)
-        if resp.status_code != 200:
-            return None
-        resp.encoding = resp.apparent_encoding or "utf-8"
-        body = resp.text
-        cache_set(cache_key, body, status_code=resp.status_code, ttl_seconds=86400 * 7)
-        return body
+        if resp.status_code == 200 and len(resp.text) > 500:
+            resp.encoding = resp.apparent_encoding or "utf-8"
+            body = resp.text
+            cache_set(cache_key, body, status_code=resp.status_code, ttl_seconds=86400 * 7)
+            return body
     except Exception:
-        return None
+        pass
+
+    # ── 2. Jina AI reader fallback (for paywall-blocked sites like NYT) ─────────
+    try:
+        jina_url = f"https://r.jina.ai/{url}"
+        resp = requests.get(
+            jina_url,
+            headers={
+                "User-Agent": "Mozilla/5.0 (compatible; DatagatewayBot/1.0)",
+                "Accept": "text/plain, text/markdown; q=0.9",
+                "X-Return-Format": "text",
+            },
+            timeout=timeout,
+        )
+        if resp.status_code == 200 and len(resp.text) > 200:
+            # Jina returns plain text/markdown — wrap in minimal HTML for compatibility
+            text = resp.text.strip()
+            body = f"<article>\n<p>" + text.replace("\n\n", "</p>\n<p>") + "</p>\n</article>"
+            cache_set(cache_key, body, status_code=resp.status_code, ttl_seconds=86400 * 7)
+            return body
+    except Exception:
+        pass
+
+    # ── 3. readability-lxml fallback ───────────────────────────────────────────
+    # Try one more time with readability extraction
+    try:
+        from readability import Document
+        resp = requests.get(url, headers={**HEADERS, "User-Agent": "Mozilla/5.0"}, timeout=timeout)
+        if resp.status_code == 200 and len(resp.text) > 1000:
+            doc = Document(resp.text)
+            html = doc.summary()
+            if html and len(html) > 200:
+                cache_set(cache_key, html, status_code=resp.status_code, ttl_seconds=86400 * 7)
+                return html
+    except Exception:
+        pass
+
+    return None
 
 
 def _strip_noise(soup: BeautifulSoup) -> BeautifulSoup:
@@ -293,27 +339,36 @@ def scrape_article(article_id: str, url: str, title: str, limiter: RateLimiter) 
     return True
 
 
-def scrape_all():
-    """Scrape all articles that haven't been scraped yet."""
+def scrape_all(force: bool = False):
+    """Scrape all articles that haven't been scraped yet. If force=True, re-scrape all."""
     db = get_db()
-    rows = db.execute("""
-        SELECT a.id, a.url, a.title, a.source
-        FROM articles a
-        LEFT JOIN scraped_articles s ON a.id = s.article_id
-        WHERE s.article_id IS NULL
-        ORDER BY a.date DESC
-    """).fetchall()
+    if force:
+        # Re-scrape all articles (for retry with new fallbacks)
+        rows = db.execute("""
+            SELECT a.id, a.url, a.title, a.source
+            FROM articles a
+            ORDER BY a.date DESC
+        """).fetchall()
+    else:
+        rows = db.execute("""
+            SELECT a.id, a.url, a.title, a.source
+            FROM articles a
+            LEFT JOIN scraped_articles s ON a.id = s.article_id
+            WHERE s.article_id IS NULL
+            ORDER BY a.date DESC
+        """).fetchall()
     db.close()
 
     total = len(rows)
     if total == 0:
-        print("No unscraped articles found.")
+        print("No unscraped articles found." if not force else "No articles to re-scrape.")
         return
 
-    print(f"Found {total} unscraped article(s). Starting scrape...\n")
+    print(f"Found {total} article(s). Starting scrape{' (force mode)' if force else ''}...\n")
     limiter = RateLimiter()
     success = 0
-    failed  = 0
+    failed = 0
+    skipped = 0
 
     for i, row in enumerate(rows, 1):
         article_id = row["id"]
@@ -321,6 +376,11 @@ def scrape_all():
         title      = row["title"]
         source     = row["source"]
         print(f"[{i}/{total}] {source}")
+
+        if force:
+            # Clear old cache so we can try fresh with new fallbacks
+            _clear_url_cache(url)
+
         ok = scrape_article(article_id, url, title, limiter)
         if ok:
             success += 1
@@ -335,20 +395,25 @@ def main():
     init_db()
 
     if len(sys.argv) > 1:
-        article_id = sys.argv[1]
-        db = get_db()
-        row = db.execute(
-            "SELECT id, url, title FROM articles WHERE id = ?", (article_id,)
-        ).fetchone()
-        db.close()
-        if not row:
-            print(f"Article '{article_id}' not found in database.")
-            sys.exit(1)
-        print(f"Single article mode: [{row['id']}] {row['title']}\n")
-        limiter = RateLimiter()
-        scrape_article(row["id"], row["url"], row["title"], limiter)
+        if sys.argv[1] == "--force":
+            scrape_all(force=True)
+        else:
+            article_id = sys.argv[1]
+            db = get_db()
+            row = db.execute(
+                "SELECT id, url, title FROM articles WHERE id = ?", (article_id,)
+            ).fetchone()
+            db.close()
+            if not row:
+                print(f"Article '{article_id}' not found in database.")
+                sys.exit(1)
+            print(f"Single article mode: [{row['id']}] {row['title']}\n")
+            # Clear cache for fresh attempt
+            _clear_url_cache(row["url"])
+            limiter = RateLimiter()
+            scrape_article(row["id"], row["url"], row["title"], limiter)
     else:
-        scrape_all()
+        scrape_all(force=False)
 
 
 if __name__ == "__main__":

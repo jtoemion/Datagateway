@@ -356,7 +356,12 @@ def article_save_scraped(article_id: str, url: str, title: str, author: str, ful
     db = get_db()
     exists = db.execute("SELECT fetch_count FROM scraped_articles WHERE article_id = ?", (article_id,)).fetchone()
     if exists:
-        db.execute("UPDATE scraped_articles SET fetch_count = fetch_count + 1, scraped_at = datetime('now') WHERE article_id = ?", (article_id,))
+        db.execute("""UPDATE scraped_articles
+            SET fetch_count = fetch_count + 1,
+                scraped_at = datetime('now'),
+                full_html = ?, full_text = ?, images_json = ?, title = COALESCE(?, title), author = COALESCE(?, author)
+            WHERE article_id = ?""",
+            (full_html, full_text, json.dumps(images), title, author, article_id))
     else:
         db.execute("""INSERT INTO scraped_articles (article_id, url, title, author, full_html, full_text, images_json) VALUES (?,?,?,?,?,?,?)""",
             (article_id, url, title, author, full_html, full_text, json.dumps(images)))

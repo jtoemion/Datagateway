@@ -17,6 +17,4 @@ lang: en
 
 In Myanmar, games are being broadcast by a company that is co-owned by the military, which usurped power five years ago. Some fans are trying other ways to watch.
 
----
-
-*Diambil otomatis oleh Datagateway pada 2026-06-26 21:31 WIB*
+> **Catatan:** Artikel lengkap tidak tersedia — diblokir paywall atau gagal di-scrape.

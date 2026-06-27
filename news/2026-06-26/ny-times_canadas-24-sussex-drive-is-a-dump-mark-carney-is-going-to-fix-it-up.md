@@ -17,6 +17,4 @@ lang: en
 
 The prime minister’s official residence in Ottawa, in disrepair and vacant for more than a decade, has become the country’s most prominent home renovation project.
 
----
-
-*Diambil otomatis oleh Datagateway pada 2026-06-26 21:45 WIB*
+> **Catatan:** Artikel lengkap tidak tersedia — diblokir paywall atau gagal di-scrape.

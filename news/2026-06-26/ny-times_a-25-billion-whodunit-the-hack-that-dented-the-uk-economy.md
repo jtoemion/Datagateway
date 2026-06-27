@@ -17,6 +17,4 @@ lang: en
 
 A loose collective of cybercriminals initially took credit for crippling Jaguar Land Rover last year. Investigators now see Russian hands behind the ransomware attack.
 
----
-
-*Diambil otomatis oleh Datagateway pada 2026-06-26 21:31 WIB*
+> **Catatan:** Artikel lengkap tidak tersedia — diblokir paywall atau gagal di-scrape.

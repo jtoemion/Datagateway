@@ -17,6 +17,4 @@ lang: en
 
 The man drove into a crowd of shoppers in December 2024, wounding hundreds of people.
 
----
-
-*Diambil otomatis oleh Datagateway pada 2026-06-26 21:45 WIB*
+> **Catatan:** Artikel lengkap tidak tersedia — diblokir paywall atau gagal di-scrape.

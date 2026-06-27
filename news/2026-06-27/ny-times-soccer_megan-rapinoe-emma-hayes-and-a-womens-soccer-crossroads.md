@@ -7,16 +7,14 @@ date: 2023-11-10T17:44:28+00:00
 date_wib: 2023-11-11 00:44 WIB
 category: football
 lang: en
+image_url: https://static01.nyt.com/images/2023/11/10/multimedia/10rory-rapinoe-cphq/10rory-rapinoe-cphq-mediumSquareAt3X.jpg
+scraped: false
 ---
 
 # Megan Rapinoe, Emma Hayes and a Women’s Soccer Crossroads
-
-**Sumber:** [NY Times Soccer](https://www.nytimes.com/2023/11/10/world/megan-rapinoe-nwsl-final.html)  
-**Waktu:** 2023-11-11 00:44 WIB  
-**Kategori:** football
 
 Rapinoe, who helped define U.S. soccer for a decade, is retiring after this week’s N.W.S.L. final. Hayes, the Chelsea coach, will try to put her stamp on it next.
 
 ---
 
-*Diambil otomatis oleh Datagateway pada 2026-06-27 06:24 WIB*
+*Sumber: [NY Times Soccer](https://www.nytimes.com/2023/11/10/world/megan-rapinoe-nwsl-final.html)*

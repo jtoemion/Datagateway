@@ -17,6 +17,4 @@ lang: en
 
 Crowds in the capital’s central business district fled as the crash sent debris falling into the streets below.
 
----
-
-*Diambil otomatis oleh Datagateway pada 2026-06-26 21:45 WIB*
+> **Catatan:** Artikel lengkap tidak tersedia — diblokir paywall atau gagal di-scrape.

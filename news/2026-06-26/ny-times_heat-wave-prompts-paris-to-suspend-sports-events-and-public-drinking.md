@@ -17,6 +17,4 @@ lang: en
 
 The Paris police chief, Patrice Faure, said that alcohol restrictions were intended to ease pressure on health services.
 
----
-
-*Diambil otomatis oleh Datagateway pada 2026-06-26 21:31 WIB*
+> **Catatan:** Artikel lengkap tidak tersedia — diblokir paywall atau gagal di-scrape.

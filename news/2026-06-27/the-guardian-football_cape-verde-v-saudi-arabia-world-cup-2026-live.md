@@ -7,16 +7,17 @@ date: 2026-06-26T23:02:16
 date_wib: 2026-06-26 22:02 WIB
 category: football
 lang: en
+image_url: https://i.guim.co.uk/img/media/f616be279c582a6033d4b637ebbe4ae958f38427/859_0_4077_3262/master/4077.jpg?width=140&quality=85&auto=format&fit=max&s=45bda36429b429e0a4aff56c3987a966
+scraped: false
 ---
 
 # Cape Verde v Saudi Arabia: World Cup 2026 – live
 
-**Sumber:** [The Guardian Football](https://www.theguardian.com/football/live/2026/jun/26/cape-verde-v-saudi-arabia-world-cup-2026-live)  
-**Waktu:** 2026-06-26 22:02 WIB  
-**Kategori:** football
-
-⚽️ Kick-off time: 7pm local/8pm EDT/1am BST/10am AEST⚽️ Third-place table | Player guide | Group tables | Mail BeauA couple of groups have a game like this -- one team (Cape Verde in this case, Belgium later) will advance with a win and will be very good shape with a draw, while the other team (Saudi Arabia now, New Zealand later) will either win and advance or fail to win and fly home.Cape Verde have already posted one of the greatest underdog performances in World Cup history, managing draws a
+6 min
+Cape Verde have had plenty of possession, but it’s all within 35 yards of their own goal. They finally work it ahead toward Mendes, who earns a throw-in. They’re
+almost
+across midfield … no, wait, they’ve passed backwards.
 
 ---
 
-*Diambil otomatis oleh Datagateway pada 2026-06-27 06:24 WIB*
+*Sumber: [The Guardian Football](https://www.theguardian.com/football/live/2026/jun/26/cape-verde-v-saudi-arabia-world-cup-2026-live)*

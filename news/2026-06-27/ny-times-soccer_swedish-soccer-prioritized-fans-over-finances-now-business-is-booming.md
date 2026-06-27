@@ -7,16 +7,14 @@ date: 2023-11-19T09:42:01+00:00
 date_wib: 2023-11-19 16:42 WIB
 category: football
 lang: en
+image_url: https://static01.nyt.com/images/2023/11/18/multimedia/18sweden-soccer-blzj/18sweden-soccer-blzj-mediumSquareAt3X.jpg
+scraped: false
 ---
 
 # Swedish Soccer Prioritized Fans Over Finances. Now, Business Is Booming.
-
-**Sumber:** [NY Times Soccer](https://www.nytimes.com/2023/11/19/world/europe/sweden-soccer.html)  
-**Waktu:** 2023-11-19 16:42 WIB  
-**Kategori:** football
 
 While most of Europe’s leagues engage in a Sisyphean quest to source as much money as possible, Sweden has chosen a different model. But its rewards come with risk.
 
 ---
 
-*Diambil otomatis oleh Datagateway pada 2026-06-27 06:24 WIB*
+*Sumber: [NY Times Soccer](https://www.nytimes.com/2023/11/19/world/europe/sweden-soccer.html)*
