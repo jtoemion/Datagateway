@@ -1,12 +1,17 @@
 """Datagateway test fixtures."""
 
+import sys
+from pathlib import Path
 import pytest
 import sqlite3
-from pathlib import Path
 
 TESTS_DIR = Path(__file__).resolve().parent
 FIXTURE_DB = TESTS_DIR / "data" / "fixture.db"
 REPO_ROOT = TESTS_DIR.parent
+
+# Ensure scripts/ is importable
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+sys.path.insert(0, str(REPO_ROOT))
 
 
 @pytest.fixture

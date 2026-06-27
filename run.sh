@@ -50,4 +50,8 @@ echo "[11/11] Build article viewer..."
 PYTHONPATH=. python3 scripts/build-article-viewer.py
 
 echo ""
+echo "[12/12] Write health check..."
+PYTHONPATH=. python3 -c "from scripts.health import write_success; write_success(steps=12)"
+
+echo ""
 echo "=== Done ==="

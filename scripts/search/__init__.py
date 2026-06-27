@@ -1,0 +1,1 @@
+"""Datagateway — Search package."""
