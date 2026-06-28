@@ -25,19 +25,21 @@ CREATE TABLE IF NOT EXISTS sources (
 );
 
 CREATE TABLE IF NOT EXISTS articles (
-    id          TEXT PRIMARY KEY,
-    source      TEXT NOT NULL REFERENCES sources(name),
-    title       TEXT NOT NULL,
-    url         TEXT NOT NULL,
-    description TEXT DEFAULT '',
-    image_url   TEXT DEFAULT '',
-    date        TEXT NOT NULL,
-    date_wib    TEXT,
-    category    TEXT DEFAULT 'umum',
-    lang        TEXT DEFAULT 'id',
-    filepath    TEXT,
-    wikilink    TEXT,
-    created_at  TEXT DEFAULT (datetime('now')),
+    id                     TEXT PRIMARY KEY,
+    source                 TEXT NOT NULL REFERENCES sources(name),
+    title                  TEXT NOT NULL,
+    url                    TEXT NOT NULL,
+    description            TEXT DEFAULT '',
+    normalized_description TEXT DEFAULT '',
+    desc_source            TEXT DEFAULT '',
+    image_url              TEXT DEFAULT '',
+    date                   TEXT NOT NULL,
+    date_wib               TEXT,
+    category               TEXT DEFAULT 'umum',
+    lang                   TEXT DEFAULT 'id',
+    filepath               TEXT,
+    wikilink               TEXT,
+    created_at             TEXT DEFAULT (datetime('now')),
     UNIQUE(url)
 );
 
@@ -165,6 +167,17 @@ def init_db():
     """Initialize schema and seed sources."""
     db = get_db()
     db.executescript(SCHEMA)
+
+    # Migrate: add columns introduced after initial schema
+    for col, definition in [
+        ("normalized_description", "TEXT DEFAULT ''"),
+        ("desc_source",            "TEXT DEFAULT ''"),
+    ]:
+        try:
+            db.execute(f"ALTER TABLE articles ADD COLUMN {col} {definition}")
+            db.commit()
+        except sqlite3.OperationalError:
+            pass  # column already exists
 
     # Seed sources
     for name, url, lang, cat in DEFAULT_SOURCES:
@@ -489,6 +502,33 @@ def get_football_count() -> int:
     row = db.execute("SELECT COUNT(*) as cnt FROM football_events").fetchone()
     db.close()
     return row["cnt"] if row else 0
+
+
+def save_normalized_description(article_id: str, normalized: str, desc_source: str):
+    """Persist the normalized description and its source tag."""
+    db = get_db()
+    db.execute(
+        "UPDATE articles SET normalized_description = ?, desc_source = ? WHERE id = ?",
+        (normalized, desc_source, article_id),
+    )
+    db.commit()
+    db.close()
+
+
+def get_articles_needing_normalize(limit: int = 500) -> list[dict]:
+    """Articles that have not yet been normalized."""
+    db = get_db()
+    rows = db.execute(
+        """SELECT id, source, title, description, lang
+           FROM articles
+           WHERE (normalized_description IS NULL OR normalized_description = '')
+             AND title IS NOT NULL AND title != ''
+           ORDER BY date DESC
+           LIMIT ?""",
+        (limit,),
+    ).fetchall()
+    db.close()
+    return [dict(r) for r in rows]
 
 
 def get_next_football_match() -> dict | None:
