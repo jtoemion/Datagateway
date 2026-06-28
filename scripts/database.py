@@ -132,7 +132,21 @@ CREATE TABLE IF NOT EXISTS article_metadata (
     word_count  INTEGER DEFAULT 0,
     reading_time INTEGER DEFAULT 0,
     enriched_at  TEXT DEFAULT (datetime('now'))
-);"""
+);
+
+CREATE TABLE IF NOT EXISTS arcs (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    entity_spine TEXT NOT NULL,
+    status       TEXT DEFAULT 'EMERGING',
+    source_count INTEGER DEFAULT 0,
+    sources_json TEXT DEFAULT '[]',
+    first_seen   TEXT NOT NULL,
+    last_updated TEXT NOT NULL,
+    conclusion_id TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_arcs_status ON arcs(status);
+CREATE INDEX IF NOT EXISTS idx_arcs_updated ON arcs(last_updated DESC);"""
 
 # Default sources — sync with config.yaml
 DEFAULT_SOURCES = [
@@ -169,12 +183,17 @@ def init_db():
     db.executescript(SCHEMA)
 
     # Migrate: add columns introduced after initial schema
-    for col, definition in [
-        ("normalized_description", "TEXT DEFAULT ''"),
-        ("desc_source",            "TEXT DEFAULT ''"),
-    ]:
+    _migrations = [
+        ("articles",             "normalized_description", "TEXT DEFAULT ''"),
+        ("articles",             "desc_source",            "TEXT DEFAULT ''"),
+        ("article_entities",     "source",                 "TEXT DEFAULT ''"),
+        ("article_entities",     "article_date",           "TEXT DEFAULT ''"),
+        ("entity_cooccurrence",  "nPMI",                   "REAL DEFAULT 0"),
+        ("entity_cooccurrence",  "date",                   "TEXT DEFAULT ''"),
+    ]
+    for table, col, definition in _migrations:
         try:
-            db.execute(f"ALTER TABLE articles ADD COLUMN {col} {definition}")
+            db.execute(f"ALTER TABLE {table} ADD COLUMN {col} {definition}")
             db.commit()
         except sqlite3.OperationalError:
             pass  # column already exists
@@ -502,6 +521,112 @@ def get_football_count() -> int:
     row = db.execute("SELECT COUNT(*) as cnt FROM football_events").fetchone()
     db.close()
     return row["cnt"] if row else 0
+
+
+def save_npmi_scores(scores: dict[tuple[str, str], float]):
+    """Persist computed nPMI scores back to entity_cooccurrence."""
+    db = get_db()
+    for (a, b), score in scores.items():
+        if a < b:  # only store canonical order
+            db.execute(
+                "UPDATE entity_cooccurrence SET nPMI = ? WHERE entity_a = ? AND entity_b = ?",
+                (score, a, b),
+            )
+    db.commit()
+    db.close()
+
+
+def get_entities_window(hours: int = 24) -> list[dict]:
+    """Entities seen across multiple sources within the last N hours."""
+    db = get_db()
+    cutoff = datetime.now(WIB) - timedelta(hours=hours)
+    cutoff_str = cutoff.strftime("%Y-%m-%d")
+    rows = db.execute(
+        """SELECT e.id, e.canonical, e.type,
+                  COUNT(DISTINCT ae.source) as source_count,
+                  GROUP_CONCAT(DISTINCT ae.source) as sources,
+                  COUNT(*) as mention_count
+           FROM article_entities ae
+           JOIN entities e ON ae.entity_id = e.id
+           WHERE ae.article_date >= ?
+             AND e.type != ''
+           GROUP BY e.id
+           HAVING source_count >= 2
+           ORDER BY source_count DESC, mention_count DESC""",
+        (cutoff_str,),
+    ).fetchall()
+    db.close()
+    return [dict(r) for r in rows]
+
+
+def get_cooccurrences_window(hours: int = 24, min_sources: int = 2) -> list[dict]:
+    """Entity pairs that co-occur across multiple sources in the last N hours."""
+    db = get_db()
+    cutoff = datetime.now(WIB) - timedelta(hours=hours)
+    cutoff_str = cutoff.strftime("%Y-%m-%d")
+    rows = db.execute(
+        """SELECT
+               e1.canonical as entity_a, e1.type as type_a,
+               e2.canonical as entity_b, e2.type as type_b,
+               c.co_count, c.nPMI
+           FROM entity_cooccurrence c
+           JOIN entities e1 ON e1.id = c.entity_a
+           JOIN entities e2 ON e2.id = c.entity_b
+           WHERE c.date >= ?
+             AND c.nPMI >= 0.30
+           ORDER BY c.nPMI DESC, c.co_count DESC
+           LIMIT 100""",
+        (cutoff_str,),
+    ).fetchall()
+    db.close()
+    return [dict(r) for r in rows]
+
+
+def upsert_arc(entity_spine: str, sources: list[str], today: str) -> int:
+    """Insert or update an arc record. Returns arc id."""
+    import json
+    db = get_db()
+    existing = db.execute(
+        "SELECT id, sources_json, source_count FROM arcs WHERE entity_spine = ? AND status != 'CONCLUDED'",
+        (entity_spine,),
+    ).fetchone()
+    if existing:
+        existing_sources = set(json.loads(existing["sources_json"] or "[]"))
+        merged = sorted(existing_sources | set(sources))
+        new_count = len(merged)
+        status = "DEVELOPING" if new_count >= 3 else "EMERGING"
+        db.execute(
+            "UPDATE arcs SET sources_json = ?, source_count = ?, last_updated = ?, status = ? WHERE id = ?",
+            (json.dumps(merged), new_count, today, status, existing["id"]),
+        )
+        arc_id = existing["id"]
+    else:
+        merged = sorted(set(sources))
+        status = "DEVELOPING" if len(merged) >= 3 else "EMERGING"
+        cur = db.execute(
+            "INSERT INTO arcs (entity_spine, status, source_count, sources_json, first_seen, last_updated) VALUES (?,?,?,?,?,?)",
+            (entity_spine, status, len(merged), json.dumps(merged), today, today),
+        )
+        arc_id = cur.lastrowid
+    db.commit()
+    db.close()
+    return arc_id
+
+
+def get_active_arcs() -> list[dict]:
+    """Get all non-concluded arcs ordered by source count."""
+    import json
+    db = get_db()
+    rows = db.execute(
+        "SELECT * FROM arcs WHERE status != 'CONCLUDED' ORDER BY source_count DESC, last_updated DESC"
+    ).fetchall()
+    db.close()
+    result = []
+    for r in rows:
+        d = dict(r)
+        d["sources"] = json.loads(d["sources_json"] or "[]")
+        result.append(d)
+    return result
 
 
 def save_normalized_description(article_id: str, normalized: str, desc_source: str):

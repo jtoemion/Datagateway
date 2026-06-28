@@ -37,12 +37,15 @@ def enrich_entity_pipeline(article_id: str = None, max_articles: int = 200) -> d
 
     if article_id:
         rows = db.execute(
-            "SELECT a.id, a.title, a.description, a.normalized_description, a.filepath FROM articles a WHERE a.id = ?",
+            """SELECT a.id, a.source, a.date, a.title, a.description,
+                      a.normalized_description, a.filepath
+               FROM articles a WHERE a.id = ?""",
             (article_id,),
         ).fetchall()
     else:
         rows = db.execute(
-            """SELECT a.id, a.title, a.description, a.normalized_description, a.filepath
+            """SELECT a.id, a.source, a.date, a.title, a.description,
+                      a.normalized_description, a.filepath
                FROM articles a
                LEFT JOIN article_entities ae ON a.id = ae.article_id
                WHERE ae.article_id IS NULL
@@ -56,10 +59,12 @@ def enrich_entity_pipeline(article_id: str = None, max_articles: int = 200) -> d
     tagged = 0
 
     for r in rows:
-        aid = r["id"]
-        title = r["title"] or ""
+        aid      = r["id"]
+        source   = r["source"] or ""
+        art_date = (r["date"] or "")[:10]
+        title    = r["title"] or ""
         # prefer Layer 1 output; fall back to raw description
-        desc = r["normalized_description"] or r["description"] or ""
+        desc     = r["normalized_description"] or r["description"] or ""
         filepath = r["filepath"] or ""
 
         # Get full text from scraped_articles
@@ -74,11 +79,11 @@ def enrich_entity_pipeline(article_id: str = None, max_articles: int = 200) -> d
         if not raw_entities:
             continue
 
-        # 2. Link/resolve entities
-        linked = link_entities(raw_entities)
+        # 2. Link/resolve entities (pass source+date for window tracking)
+        linked = link_entities(raw_entities, source=source, article_date=art_date)
 
         # 3. Write to article_entities table
-        _write_article_entities(aid, linked)
+        _write_article_entities(aid, linked, source=source, article_date=art_date)
 
         # 4. Tag .md file with wikilinks
         if filepath:
@@ -98,15 +103,23 @@ def enrich_entity_pipeline(article_id: str = None, max_articles: int = 200) -> d
     return {"processed": processed, "tagged": tagged, "entity_pages": entity_pages}
 
 
-def _write_article_entities(article_id: str, linked: list[dict]):
+def _write_article_entities(
+    article_id: str,
+    linked: list[dict],
+    source: str = "",
+    article_date: str = "",
+):
     """Write linked entities to article_entities table."""
     db = get_db()
     for ent in linked:
         db.execute(
-            """INSERT OR REPLACE INTO article_entities (article_id, entity_id, mention_count)
-               VALUES (?, ?, COALESCE((SELECT mention_count FROM article_entities
-                                        WHERE article_id = ? AND entity_id = ?), 0) + 1)""",
-            (article_id, ent["entity_id"], article_id, ent["entity_id"]),
+            """INSERT INTO article_entities (article_id, entity_id, mention_count, source, article_date)
+               VALUES (?, ?, 1, ?, ?)
+               ON CONFLICT(article_id, entity_id) DO UPDATE SET
+                   mention_count = mention_count + 1,
+                   source = excluded.source,
+                   article_date = excluded.article_date""",
+            (article_id, ent["entity_id"], source, article_date),
         )
     db.commit()
     db.close()
