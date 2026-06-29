@@ -146,7 +146,18 @@ CREATE TABLE IF NOT EXISTS arcs (
 );
 
 CREATE INDEX IF NOT EXISTS idx_arcs_status ON arcs(status);
-CREATE INDEX IF NOT EXISTS idx_arcs_updated ON arcs(last_updated DESC);"""
+CREATE INDEX IF NOT EXISTS idx_arcs_updated ON arcs(last_updated DESC);
+
+CREATE TABLE IF NOT EXISTS arc_articles (
+    arc_id     INTEGER NOT NULL REFERENCES arcs(id),
+    article_id TEXT NOT NULL REFERENCES articles(id),
+    fetch_status TEXT DEFAULT 'PENDING',
+    linked_at  TEXT DEFAULT (datetime('now')),
+    PRIMARY KEY (arc_id, article_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_arc_articles_arc ON arc_articles(arc_id);
+CREATE INDEX IF NOT EXISTS idx_arc_articles_status ON arc_articles(fetch_status);"""
 
 # Default sources — sync with config.yaml
 DEFAULT_SOURCES = [
@@ -619,6 +630,93 @@ def get_active_arcs() -> list[dict]:
     db = get_db()
     rows = db.execute(
         "SELECT * FROM arcs WHERE status != 'CONCLUDED' ORDER BY source_count DESC, last_updated DESC"
+    ).fetchall()
+    db.close()
+    result = []
+    for r in rows:
+        d = dict(r)
+        d["sources"] = json.loads(d["sources_json"] or "[]")
+        result.append(d)
+    return result
+
+
+def get_developing_arcs(min_sources: int = 3) -> list[dict]:
+    """Arcs ready for on-demand fetch (DEVELOPING, not yet FETCH_READY or CONCLUDED)."""
+    import json
+    db = get_db()
+    rows = db.execute(
+        """SELECT id, entity_spine, status, source_count, sources_json, first_seen, last_updated
+           FROM arcs
+           WHERE status = 'DEVELOPING' AND source_count >= ?
+           ORDER BY source_count DESC""",
+        (min_sources,),
+    ).fetchall()
+    db.close()
+    result = []
+    for r in rows:
+        d = dict(r)
+        d["sources"] = json.loads(d["sources_json"] or "[]")
+        result.append(d)
+    return result
+
+
+def get_arc_articles(arc_id: int) -> list[dict]:
+    """Articles linked to an arc, with scrape status."""
+    db = get_db()
+    rows = db.execute(
+        """SELECT aa.article_id, aa.fetch_status,
+                  a.url, a.source, a.title, a.date,
+                  COALESCE(s.full_text, '') as full_text,
+                  COALESCE(LENGTH(s.full_text), 0) as text_len
+           FROM arc_articles aa
+           JOIN articles a ON a.id = aa.article_id
+           LEFT JOIN scraped_articles s ON s.article_id = aa.article_id
+           WHERE aa.arc_id = ?
+           ORDER BY a.date DESC""",
+        (arc_id,),
+    ).fetchall()
+    db.close()
+    return [dict(r) for r in rows]
+
+
+def upsert_arc_article(arc_id: int, article_id: str, fetch_status: str = "PENDING"):
+    """Link an article to an arc."""
+    db = get_db()
+    db.execute(
+        """INSERT INTO arc_articles (arc_id, article_id, fetch_status)
+           VALUES (?, ?, ?)
+           ON CONFLICT(arc_id, article_id) DO UPDATE SET fetch_status = excluded.fetch_status""",
+        (arc_id, article_id, fetch_status),
+    )
+    db.commit()
+    db.close()
+
+
+def advance_arc_status(arc_id: int, status: str, today: str):
+    """Update arc lifecycle status."""
+    db = get_db()
+    db.execute(
+        "UPDATE arcs SET status = ?, last_updated = ? WHERE id = ?",
+        (status, today, arc_id),
+    )
+    db.commit()
+    db.close()
+
+
+def get_fetch_ready_arcs() -> list[dict]:
+    """Arcs in FETCH_READY state — available for Layer 4 synthesis."""
+    import json
+    db = get_db()
+    rows = db.execute(
+        """SELECT a.id, a.entity_spine, a.status, a.source_count,
+                  a.sources_json, a.first_seen, a.last_updated,
+                  COUNT(aa.article_id) as article_count,
+                  SUM(CASE WHEN aa.fetch_status = 'FETCHED' THEN 1 ELSE 0 END) as fetched_count
+           FROM arcs a
+           LEFT JOIN arc_articles aa ON aa.arc_id = a.id
+           WHERE a.status = 'FETCH_READY'
+           GROUP BY a.id
+           ORDER BY a.source_count DESC"""
     ).fetchall()
     db.close()
     result = []
